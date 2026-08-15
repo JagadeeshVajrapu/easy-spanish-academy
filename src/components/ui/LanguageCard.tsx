@@ -36,6 +36,7 @@ export function LanguageCard({
             fill
             className="object-cover object-center"
             sizes="(max-width: 1024px) 100vw, 50vw"
+            loading="eager"
           />
         </ImageHover>
         <div className="absolute inset-0 bg-gradient-to-t from-esa-navy/70 via-esa-navy/20 to-transparent" />

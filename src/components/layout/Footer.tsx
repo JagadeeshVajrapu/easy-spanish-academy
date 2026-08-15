@@ -109,11 +109,22 @@ export function Footer() {
           </div>
         </div>
 
-        <div className="mt-7 flex flex-col gap-2 border-t border-white/15 pt-4 text-xs text-white/55 sm:mt-8 sm:flex-row sm:items-center sm:justify-between sm:text-sm">
-          <p className="leading-relaxed">
+        <div className="mt-7 flex flex-col gap-2 border-t border-white/15 pt-4 text-xs text-white/55 sm:mt-8 sm:flex-row sm:items-center sm:justify-between sm:gap-4 sm:text-sm">
+          <p className="leading-relaxed sm:min-w-0 sm:flex-1">
             © 2026 Easy Spanish Academy. All rights reserved.
           </p>
-          <div className="flex flex-col gap-1.5 sm:flex-row sm:flex-wrap sm:items-center sm:gap-x-4 sm:gap-y-1">
+          <p className="leading-relaxed sm:text-center">
+            Developed by{" "}
+            <a
+              href="https://webfasttech.com/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="font-medium text-esa-gold transition hover:text-white focus-esa"
+            >
+              Web Fast Technology
+            </a>
+          </p>
+          <div className="flex flex-col gap-1.5 sm:min-w-0 sm:flex-1 sm:flex-row sm:flex-wrap sm:items-center sm:justify-end sm:gap-x-4 sm:gap-y-1">
             <Link
               href="/privacy"
               className="w-fit transition hover:text-esa-gold focus-esa"

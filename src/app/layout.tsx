@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import { Manrope, Syne } from "next/font/google";
 import { Footer } from "@/components/layout/Footer";
 import { Navbar } from "@/components/layout/Navbar";
+import { ScrollToTop } from "@/components/layout/ScrollToTop";
+import { TopBar } from "@/components/layout/TopBar";
 import { WhatsAppButton } from "@/components/sections/WhatsAppButton";
 import { SITE } from "@/lib/constants";
 import "./globals.css";
@@ -62,6 +64,8 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${manrope.variable} ${syne.variable} h-full antialiased`}>
       <body className="flex min-h-full flex-col bg-esa-bg text-esa-navy">
+        <ScrollToTop />
+        <TopBar />
         <Navbar />
         <main className="flex-1">{children}</main>
         <Footer />

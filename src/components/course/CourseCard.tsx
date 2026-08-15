@@ -53,7 +53,7 @@ export function CourseCard({
     <Card
       id={course.id}
       className={cn(
-        "group scroll-mt-28 overflow-hidden p-0 shadow-esa-card transition duration-300 ease-out hover:-translate-y-2 hover:border-esa-red/30 hover:shadow-esa-lift",
+        "group scroll-mt-40 overflow-hidden p-0 shadow-esa-card transition duration-300 ease-out hover:-translate-y-2 hover:border-esa-red/30 hover:shadow-esa-lift",
         className,
       )}
       hover={false}

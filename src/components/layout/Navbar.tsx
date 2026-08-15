@@ -79,10 +79,16 @@ export function Navbar() {
     setMobileCoursesOpen(false);
   }
 
+  function scrollPageTop() {
+    window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
+  }
+
   function goTo(href: string) {
     closeMenus();
     if (href !== pathname) {
       router.push(href);
+    } else {
+      scrollPageTop();
     }
   }
 
@@ -97,11 +103,17 @@ export function Navbar() {
           : "border-transparent bg-white/92 backdrop-blur-sm",
       )}
     >
-      <div className="container-esa flex h-16 items-center justify-between gap-2 px-4 sm:h-[4.35rem] sm:gap-4 sm:px-6 md:h-[4.65rem] lg:px-8">
+      <div className="container-esa flex h-16 items-center justify-between gap-2 px-4 sm:h-[4.35rem] sm:gap-3 sm:px-6 md:h-[4.65rem] lg:px-8">
         <Link
           href="/"
-          onClick={closeMenus}
-          className="group flex min-w-0 flex-1 items-center gap-2 focus-esa sm:gap-3 lg:flex-none"
+          onClick={(event) => {
+            closeMenus();
+            if (pathname === "/") {
+              event.preventDefault();
+              scrollPageTop();
+            }
+          }}
+          className="group flex min-w-0 flex-1 items-center gap-2.5 focus-esa sm:gap-3 lg:flex-none"
         >
           <BrandLogo
             size="nav"
@@ -109,7 +121,7 @@ export function Navbar() {
             className="transition-transform duration-300 group-hover:scale-[1.03]"
           />
           <span className="min-w-0">
-            <span className="block truncate font-display text-[0.88rem] font-semibold leading-tight tracking-tight text-esa-navy transition-colors group-hover:text-esa-red sm:text-base md:text-[1.15rem]">
+            <span className="block truncate font-display text-[0.95rem] font-semibold leading-tight tracking-tight text-esa-navy transition-colors group-hover:text-esa-red sm:text-base md:text-[1.15rem]">
               Easy Spanish Academy
             </span>
             <span className="mt-0.5 hidden text-[11px] font-medium tracking-wide text-esa-muted sm:block">
@@ -160,7 +172,13 @@ export function Navbar() {
                               ? "bg-esa-red-soft text-esa-red"
                               : "text-esa-navy hover:translate-x-0.5 hover:bg-esa-red-soft/50 hover:text-esa-red",
                           )}
-                          onClick={closeMenus}
+                          onClick={(event) => {
+                            closeMenus();
+                            if (pathname === child.href) {
+                              event.preventDefault();
+                              scrollPageTop();
+                            }
+                          }}
                         >
                           <FlagAccent country={child.flag} />
                           <span>{child.label}</span>
@@ -177,7 +195,13 @@ export function Navbar() {
               <Link
                 key={item.href}
                 href={item.href}
-                onClick={closeMenus}
+                onClick={(event) => {
+                  closeMenus();
+                  if (pathname === item.href) {
+                    event.preventDefault();
+                    scrollPageTop();
+                  }
+                }}
                 className={cn(
                   "rounded-xl px-3 py-2 text-sm font-medium transition-all duration-200 focus-esa",
                   active
@@ -226,7 +250,7 @@ export function Navbar() {
       >
         <nav
           aria-label="Mobile"
-          className="container-esa flex max-h-[calc(100vh-5.75rem)] flex-col gap-1 overflow-y-auto px-4 py-4 sm:px-6"
+          className="container-esa flex max-h-[calc(100vh-5rem)] flex-col gap-1 overflow-y-auto px-4 py-4 sm:px-6"
         >
           {NAV_LINKS.map((item) => {
             if ("children" in item && item.children) {

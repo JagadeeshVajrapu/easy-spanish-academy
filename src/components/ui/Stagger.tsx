@@ -20,13 +20,12 @@ export function StaggerGroup({ children, className }: StaggerGroupProps) {
     <motion.div
       className={cn(className)}
       initial="hidden"
-      whileInView="show"
-      viewport={{ once: true, amount: 0.15 }}
+      animate="show"
       variants={{
         hidden: {},
         show: {
           transition: {
-            staggerChildren: motionTokens.stagger,
+            staggerChildren: Math.min(motionTokens.stagger, 0.05),
           },
         },
       }}
@@ -52,12 +51,12 @@ export function StaggerItem({ children, className }: StaggerItemProps) {
     <motion.div
       className={cn(className)}
       variants={{
-        hidden: { opacity: 0, y: 20 },
+        hidden: { opacity: 0.01, y: 10 },
         show: {
           opacity: 1,
           y: 0,
           transition: {
-            duration: motionTokens.duration.base,
+            duration: Math.min(motionTokens.duration.base, 0.28),
             ease: motionTokens.easeOut,
           },
         },

@@ -1,5 +1,9 @@
+"use client";
+
 import Link from "next/link";
 import Image from "next/image";
+import { usePathname } from "next/navigation";
+import type { MouseEvent } from "react";
 import { ArrowUpRight, Clock3 } from "lucide-react";
 import type { BlogPost } from "@/lib/blog-data";
 import { ImageHover } from "@/components/ui/ImageHover";
@@ -12,6 +16,18 @@ type BlogCardProps = {
 };
 
 export function BlogCard({ post, className, showOutline = true }: BlogCardProps) {
+  const pathname = usePathname();
+  const href = `/blog#${post.slug}`;
+
+  function goToTopic(event: MouseEvent<HTMLAnchorElement>) {
+    if (pathname !== "/blog") return;
+    event.preventDefault();
+    const el = document.getElementById(post.slug);
+    if (!el) return;
+    window.history.pushState(null, "", href);
+    el.scrollIntoView({ behavior: "smooth", block: "start" });
+  }
+
   return (
     <article
       className={cn(
@@ -21,7 +37,8 @@ export function BlogCard({ post, className, showOutline = true }: BlogCardProps)
       )}
     >
       <Link
-        href={`/blog#${post.slug}`}
+        href={href}
+        onClick={goToTopic}
         className="relative block aspect-[16/10] overflow-hidden focus-esa"
       >
         <ImageHover>
@@ -29,6 +46,7 @@ export function BlogCard({ post, className, showOutline = true }: BlogCardProps)
             src={post.image}
             alt={post.imageAlt}
             fill
+            loading="eager"
             className="object-cover object-center transition duration-500 group-hover:scale-105"
             sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
           />
@@ -46,28 +64,29 @@ export function BlogCard({ post, className, showOutline = true }: BlogCardProps)
         </div>
 
         <h3 className="min-h-[3.25rem] font-display text-xl font-semibold leading-snug text-esa-navy transition-colors group-hover:text-esa-red sm:min-h-[3.5rem]">
-          <Link href={`/blog#${post.slug}`} className="focus-esa">
+          <Link href={href} onClick={goToTopic} className="focus-esa">
             {post.title}
           </Link>
         </h3>
 
-        <p className="mt-3 line-clamp-3 flex-1 text-sm leading-relaxed text-esa-muted sm:text-[0.95rem]">
+        <p className="mt-3 flex-1 text-sm leading-relaxed text-esa-muted sm:text-[0.95rem]">
           {post.excerpt}
         </p>
 
         {showOutline ? (
           <ul className="mt-4 space-y-1.5 border-t border-esa-border/80 pt-4">
-            {post.outline.slice(0, 3).map((item) => (
+            {post.outline.map((item) => (
               <li key={item} className="flex gap-2 text-sm text-esa-muted">
                 <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-esa-red" aria-hidden />
-                <span className="line-clamp-1">{item}</span>
+                <span>{item}</span>
               </li>
             ))}
           </ul>
         ) : null}
 
         <Link
-          href={`/blog#${post.slug}`}
+          href={href}
+          onClick={goToTopic}
           className="mt-5 inline-flex items-center gap-1.5 text-sm font-semibold text-esa-red transition-colors hover:text-esa-red-dark focus-esa"
         >
           View topic

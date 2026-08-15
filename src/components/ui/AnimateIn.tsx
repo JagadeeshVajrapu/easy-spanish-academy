@@ -14,10 +14,10 @@ type AnimateInProps = {
 };
 
 const offsets = {
-  up: { y: 18, x: 0 },
-  down: { y: -18, x: 0 },
-  left: { y: 0, x: 18 },
-  right: { y: 0, x: -18 },
+  up: { y: 10, x: 0 },
+  down: { y: -10, x: 0 },
+  left: { y: 0, x: 10 },
+  right: { y: 0, x: -10 },
   none: { y: 0, x: 0 },
 };
 
@@ -39,12 +39,11 @@ export function AnimateIn({
   return (
     <motion.div
       className={cn(className)}
-      initial={{ opacity: 0, ...offset }}
-      whileInView={{ opacity: 1, x: 0, y: 0 }}
-      viewport={{ once: true, amount: 0.18 }}
+      initial={{ opacity: 0.01, ...offset }}
+      animate={{ opacity: 1, x: 0, y: 0 }}
       transition={{
-        duration: motionTokens.duration.base,
-        delay,
+        duration: Math.min(motionTokens.duration.base, 0.28),
+        delay: Math.min(delay, 0.08),
         ease: motionTokens.easeOut,
       }}
     >

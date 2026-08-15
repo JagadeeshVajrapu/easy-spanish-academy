@@ -53,7 +53,7 @@ export default function BlogPage() {
         <AnimateIn delay={0.06}>
           <article
             id={featured.slug}
-            className="mt-10 scroll-mt-28 overflow-hidden rounded-3xl border border-esa-border bg-esa-surface shadow-esa-soft transition duration-300 hover:-translate-y-0.5 hover:border-esa-red/20 hover:shadow-esa-lift"
+            className="mt-10 scroll-mt-40 overflow-hidden rounded-3xl border border-esa-border bg-esa-surface shadow-esa-soft transition duration-300 hover:-translate-y-0.5 hover:border-esa-red/20 hover:shadow-esa-lift"
           >
             <div className="grid lg:grid-cols-2">
               <div className="relative min-h-[240px] sm:min-h-[320px]">
@@ -111,7 +111,7 @@ export default function BlogPage() {
         <StaggerGroup className="mt-12 grid auto-rows-fr gap-6 md:grid-cols-2 xl:grid-cols-3">
           {rest.map((post) => (
             <StaggerItem key={post.slug} className="h-full">
-              <div id={post.slug} className="h-full scroll-mt-28">
+              <div id={post.slug} className="h-full scroll-mt-40">
                 <BlogCard post={post} className="h-full" />
               </div>
             </StaggerItem>

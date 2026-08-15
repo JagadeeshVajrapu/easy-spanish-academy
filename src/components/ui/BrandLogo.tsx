@@ -15,7 +15,7 @@ const NAV = {
   src: "/esa-mark.png",
   width: 900,
   height: 507,
-  className: "h-8 w-auto sm:h-9 md:h-10 max-w-[5.5rem] sm:max-w-[6.5rem] md:max-w-[7.25rem]",
+  className: "h-9 w-auto sm:h-10 md:h-11 max-w-[6.5rem] sm:max-w-[7.25rem] md:max-w-[8rem]",
 } as const;
 
 const FOOTER = {
