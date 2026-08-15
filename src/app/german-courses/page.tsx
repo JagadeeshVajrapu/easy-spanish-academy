@@ -60,7 +60,7 @@ export default function GermanCoursesPage() {
           <div className="grid items-center gap-8 rounded-3xl border border-esa-border bg-white/80 p-6 shadow-esa-soft sm:p-8 lg:grid-cols-[1fr_auto] lg:p-10">
             <div>
               <SectionHeading
-                eyebrow="Certificate / Diploma Pathway"
+                eyebrow="Certificate Diploma"
                 title="A complete German pathway from A1 to B2."
                 description="Progress through each level with speaking, grammar, vocabulary, listening, reading, and writing support."
               />

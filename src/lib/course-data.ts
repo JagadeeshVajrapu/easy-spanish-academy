@@ -77,7 +77,7 @@ export const GERMAN_SKILLS: SkillFocus[] = [
 export const SPANISH_COURSES: CourseProgram[] = [
   {
     id: "certificate",
-    title: "Certificate / Diploma Pathway",
+    title: "Certificate Diploma",
     levels: "A1, A2, B1, B2",
     overview:
       "A structured Spanish pathway designed to take you from foundational skills toward confident communication. Lessons balance clarity, practice, and steady progression across CEFR levels.",
@@ -142,7 +142,7 @@ export const SPANISH_COURSES: CourseProgram[] = [
 export const GERMAN_COURSES: CourseProgram[] = [
   {
     id: "certificate",
-    title: "Certificate / Diploma Pathway",
+    title: "Certificate Diploma",
     levels: "A1 → A2 → B1 → B2",
     overview:
       "A clear German learning pathway from beginner foundations to more confident communication. The course focuses on structured progression, practical usage, and skills you can apply in real life.",

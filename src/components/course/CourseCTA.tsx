@@ -26,24 +26,27 @@ export function CourseCTA({
     : SITE.whatsappMessage;
 
   return (
-    <Section tone="navy" className="relative overflow-hidden">
+    <Section
+      tone="mesh"
+      className="relative overflow-hidden border-t border-esa-border"
+    >
       <div
         aria-hidden
-        className="pointer-events-none absolute -right-16 top-0 h-64 w-64 rounded-full bg-esa-red/25 blur-3xl"
+        className="pointer-events-none absolute -right-16 top-0 h-56 w-56 rounded-full bg-esa-red/15 blur-3xl"
       />
       <div
         aria-hidden
-        className="pointer-events-none absolute -bottom-20 left-8 h-72 w-72 rounded-full bg-esa-gold/20 blur-3xl"
+        className="pointer-events-none absolute -bottom-20 left-8 h-64 w-64 rounded-full bg-esa-gold/20 blur-3xl"
       />
       <AnimateIn>
-        <div className="relative grid gap-8 lg:grid-cols-[1.3fr_auto] lg:items-center">
+        <div className="relative grid gap-8 rounded-3xl border border-esa-border bg-white/90 p-6 shadow-esa-soft sm:p-8 lg:grid-cols-[1.3fr_auto] lg:items-center lg:p-10">
           <div>
-            <Label tone="light">Next step</Label>
-            <h2 className="text-section mt-3 text-white">{title}</h2>
-            <p className="mt-4 max-w-2xl text-base text-white/75 sm:text-lg">
+            <Label tone="primary">Next step</Label>
+            <h2 className="text-section mt-3 text-esa-navy">{title}</h2>
+            <p className="mt-4 max-w-2xl text-base text-esa-muted sm:text-lg">
               {description}
             </p>
-            <p className="mt-3 text-sm text-white/55">
+            <p className="mt-3 text-sm text-esa-muted/80">
               Contact us for details on schedules, formats, and enrollment.
             </p>
           </div>
@@ -66,7 +69,7 @@ export function CourseCTA({
               href={SITE.phoneHref}
               variant="outline"
               size="lg"
-              className="w-full border-white/20 bg-white/5 text-white hover:bg-white/10 sm:w-auto"
+              className="w-full sm:w-auto"
             >
               <Phone className="h-4 w-4" aria-hidden />
               Call Now

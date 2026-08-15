@@ -19,7 +19,7 @@ type FormState = {
 const LANGUAGE_OPTIONS = ["Spanish", "German", "Both", "Not sure yet"] as const;
 
 const COURSE_OPTIONS = [
-  "Certificate / Diploma Pathway",
+  "Certificate Diploma",
   "Crash Course",
   "School-Oriented Course",
   "General enquiry",
@@ -40,7 +40,7 @@ function resolveCourse(raw: string | null) {
   if (lower.includes("crash")) return "Crash Course";
   if (lower.includes("school")) return "School-Oriented Course";
   if (lower.includes("certificate") || lower.includes("diploma")) {
-    return "Certificate / Diploma Pathway";
+    return "Certificate Diploma";
   }
   return "General enquiry";
 }

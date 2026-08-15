@@ -452,20 +452,23 @@ export function HomeFaqPreview() {
 
 export function HomeFinalCta() {
   return (
-    <Section tone="navy" className="relative overflow-hidden">
+    <Section
+      tone="mesh"
+      className="relative overflow-hidden border-t border-esa-border"
+    >
       <div
         aria-hidden
-        className="pointer-events-none absolute -right-16 top-0 h-64 w-64 rounded-full bg-esa-red/25 blur-3xl"
+        className="pointer-events-none absolute -right-16 top-0 h-56 w-56 rounded-full bg-esa-red/15 blur-3xl"
       />
       <div
         aria-hidden
-        className="pointer-events-none absolute -bottom-20 left-10 h-72 w-72 rounded-full bg-esa-gold/20 blur-3xl"
+        className="pointer-events-none absolute -bottom-20 left-10 h-64 w-64 rounded-full bg-esa-gold/20 blur-3xl"
       />
-      <div className="relative mx-auto max-w-3xl text-center">
+      <div className="relative mx-auto max-w-3xl rounded-3xl border border-esa-border bg-white/90 px-6 py-10 text-center shadow-esa-soft sm:px-10 sm:py-12">
         <AnimateIn>
-          <Label tone="light">Ready when you are</Label>
-          <h2 className="text-section mt-3 text-white">Ready to Start Speaking?</h2>
-          <p className="mx-auto mt-4 max-w-2xl text-base text-white/75 sm:text-lg">
+          <Label tone="primary">Ready when you are</Label>
+          <h2 className="text-section mt-3 text-esa-navy">Ready to Start Speaking?</h2>
+          <p className="mx-auto mt-4 max-w-2xl text-base text-esa-muted sm:text-lg">
             Choose your language and take the first step toward confident
             communication.
           </p>

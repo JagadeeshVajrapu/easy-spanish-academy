@@ -15,7 +15,7 @@ export const FEATURED_COURSES: FeaturedCourse[] = [
     id: "es-certificate",
     language: "Spanish",
     flag: "ES",
-    title: "Certificate / Diploma Pathway",
+    title: "Certificate Diploma",
     level: "A1 – B2",
     description:
       "A structured Spanish pathway designed to build strong foundations and steady progress across levels.",
@@ -51,7 +51,7 @@ export const FEATURED_COURSES: FeaturedCourse[] = [
     id: "de-certificate",
     language: "German",
     flag: "DE",
-    title: "Certificate / Diploma Pathway",
+    title: "Certificate Diploma",
     level: "A1 – B2",
     description:
       "A clear German learning path from beginner foundations toward more confident communication.",

@@ -15,14 +15,14 @@ const NAV = {
   src: "/esa-mark.png",
   width: 900,
   height: 507,
-  className: "h-9 w-auto sm:h-10 md:h-11 max-w-[6.5rem] sm:max-w-[7.25rem] md:max-w-[8rem]",
+  className: "h-8 w-auto sm:h-9 md:h-10 max-w-[5.5rem] sm:max-w-[6.5rem] md:max-w-[7.25rem]",
 } as const;
 
 const FOOTER = {
   src: "/esa-mark.png",
   width: 900,
   height: 507,
-  className: "h-auto w-[7.5rem] sm:w-[8.5rem]",
+  className: "h-9 w-auto max-w-[5.75rem] sm:h-10 sm:max-w-[6.5rem]",
 } as const;
 
 export function BrandLogo({
@@ -40,7 +40,7 @@ export function BrandLogo({
         "inline-flex shrink-0 items-center justify-center overflow-hidden transition duration-300",
         size === "nav" && "rounded-lg bg-transparent p-0",
         size === "footer" &&
-          "rounded-xl bg-white p-1.5 shadow-esa-soft ring-1 ring-white/20 sm:p-2",
+          "rounded-xl bg-white p-1.5 shadow-esa-soft ring-1 ring-esa-gold/30 sm:p-2",
         className,
       )}
     >

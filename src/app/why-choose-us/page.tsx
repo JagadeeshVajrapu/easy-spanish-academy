@@ -170,14 +170,14 @@ export default function WhyChooseUsPage() {
         </div>
       </Section>
 
-      <Section tone="navy">
+      <Section tone="mesh" className="border-t border-esa-border">
         <AnimateIn>
-          <div className="mx-auto max-w-3xl text-center">
-            <Label tone="light">The result</Label>
-            <h2 className="text-section mt-3 text-white">
+          <div className="mx-auto max-w-3xl rounded-3xl border border-esa-border bg-white/90 px-6 py-10 text-center shadow-esa-soft sm:px-10 sm:py-12">
+            <Label tone="primary">The result</Label>
+            <h2 className="text-section mt-3 text-esa-navy">
               Confidence that grows through guided practice.
             </h2>
-            <p className="mt-4 text-base text-white/75 sm:text-lg">
+            <p className="mt-4 text-base text-esa-muted sm:text-lg">
               Choose Spanish, German, or explore both—and take the next step with
               a team ready to guide your enquiry.
             </p>
