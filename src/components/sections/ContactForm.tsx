@@ -1,9 +1,9 @@
 "use client";
 
+import Link from "next/link";
 import { FormEvent, Suspense, useState } from "react";
 import { useSearchParams } from "next/navigation";
-import { CheckCircle2, LoaderCircle, Send } from "lucide-react";
-import { Button } from "@/components/ui/Button";
+import { CheckCircle2, LoaderCircle } from "lucide-react";
 import { SITE } from "@/lib/constants";
 import { cn } from "@/lib/utils";
 
@@ -19,30 +19,33 @@ type FormState = {
 const LANGUAGE_OPTIONS = ["Spanish", "German", "Both", "Not sure yet"] as const;
 
 const COURSE_OPTIONS = [
-  "Certificate Diploma",
-  "Crash Course",
-  "School-Oriented Course",
+  "Spanish Certificate & Diploma",
+  "Spanish Crash Course",
+  "Spanish School-Oriented",
+  "German Certificate & Diploma",
+  "Not sure yet",
   "General enquiry",
 ] as const;
 
 function resolveLanguage(raw: string | null) {
-  if (!raw) return "Spanish";
+  if (!raw) return "";
   const lower = raw.toLowerCase();
   if (lower.includes("german")) return "German";
   if (lower.includes("both")) return "Both";
   if (lower.includes("spanish")) return "Spanish";
-  return "Spanish";
+  return "";
 }
 
 function resolveCourse(raw: string | null) {
-  if (!raw) return "General enquiry";
+  if (!raw) return "";
   const lower = raw.toLowerCase();
-  if (lower.includes("crash")) return "Crash Course";
-  if (lower.includes("school")) return "School-Oriented Course";
+  if (lower.includes("german")) return "German Certificate & Diploma";
+  if (lower.includes("crash")) return "Spanish Crash Course";
+  if (lower.includes("school")) return "Spanish School-Oriented";
   if (lower.includes("certificate") || lower.includes("diploma")) {
-    return "Certificate Diploma";
+    return "Spanish Certificate & Diploma";
   }
-  return "General enquiry";
+  return "";
 }
 
 function openMailtoFallback(values: FormState) {
@@ -50,7 +53,7 @@ function openMailtoFallback(values: FormState) {
     `Course enquiry from ${values.name} — ${values.language} / ${values.course}`,
   );
   const body = encodeURIComponent(
-    `Name: ${values.name}\nPhone: ${values.phone || "Not provided"}\nEmail: ${values.email}\nPreferred Language: ${values.language}\nPreferred Course: ${values.course}\n\nMessage:\n${values.message}`,
+    `Name: ${values.name}\nPhone: ${values.phone}\nEmail: ${values.email}\nPreferred Language: ${values.language}\nPreferred Course: ${values.course}\n\nMessage:\n${values.message || "(none)"}`,
   );
   window.location.href = `mailto:${SITE.email}?subject=${subject}&body=${body}`;
 }
@@ -67,18 +70,22 @@ function ContactFormFields() {
     course: resolveCourse(interest),
     message: "",
   }));
-  const [errors, setErrors] = useState<Partial<FormState>>({});
+  const [errors, setErrors] = useState<Partial<Record<keyof FormState, string>>>({});
   const [submitted, setSubmitted] = useState(false);
   const [submitting, setSubmitting] = useState(false);
   const [submitError, setSubmitError] = useState<string | null>(null);
 
   function validate(values: FormState) {
-    const next: Partial<FormState> = {};
+    const next: Partial<Record<keyof FormState, string>> = {};
     if (!values.name.trim()) next.name = "Please enter your name.";
+    if (!values.phone.trim() || values.phone.replace(/\D/g, "").length < 10) {
+      next.phone = "Please enter a valid phone number.";
+    }
     if (!values.email.trim() || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(values.email)) {
       next.email = "Please enter a valid email.";
     }
-    if (!values.message.trim()) next.message = "Please share a short message.";
+    if (!values.language) next.language = "Please select a language.";
+    if (!values.course) next.course = "Please select a course.";
     return next;
   }
 
@@ -101,10 +108,10 @@ function ContactFormFields() {
         body: JSON.stringify({
           name: form.name.trim(),
           email: form.email.trim(),
-          phone: form.phone.trim() || "Not provided",
+          phone: form.phone.trim(),
           language: form.language,
           course: form.course,
-          message: form.message.trim(),
+          message: form.message.trim() || "No additional message",
           _subject: `ESA enquiry — ${form.language} / ${form.course} — ${form.name.trim()}`,
           _template: "table",
           _replyto: form.email.trim(),
@@ -112,9 +119,7 @@ function ContactFormFields() {
         }),
       });
 
-      if (!response.ok) {
-        throw new Error("Unable to send enquiry right now.");
-      }
+      if (!response.ok) throw new Error("Unable to send enquiry right now.");
 
       const result = (await response.json().catch(() => null)) as
         | { success?: string | boolean; message?: string }
@@ -138,27 +143,22 @@ function ContactFormFields() {
 
   if (submitted) {
     return (
-      <div className="rounded-2xl border border-esa-border bg-esa-surface p-8 text-center shadow-esa-soft transition hover:shadow-esa-card">
-        <CheckCircle2 className="mx-auto h-12 w-12 text-esa-red" aria-hidden />
-        <h3 className="mt-4 font-display text-2xl font-semibold text-esa-navy">
-          Enquiry sent
-        </h3>
-        <p className="mt-3 text-esa-muted">
-          Your enquiry is on its way to{" "}
-          <a
-            className="font-semibold text-esa-red underline-offset-2 transition hover:underline"
-            href={SITE.emailHref}
-          >
+      <div className="rounded-xl border border-esa-border bg-white p-6 text-center shadow-esa-soft sm:p-8">
+        <CheckCircle2 className="mx-auto h-11 w-11 text-esa-red" aria-hidden />
+        <h3 className="mt-4 text-xl font-bold text-esa-navy">Enquiry sent</h3>
+        <p className="mt-2 text-sm text-esa-muted">
+          Thank you. We will get back to you soon at{" "}
+          <a href={SITE.emailHref} className="font-semibold text-esa-red focus-esa">
             {SITE.email}
           </a>
-          . We will get back to you soon.
+          .
         </p>
         {submitError ? (
           <p className="mt-3 text-sm text-esa-muted">{submitError}</p>
         ) : null}
-        <Button
-          className="mt-6"
-          variant="outline"
+        <button
+          type="button"
+          className="mt-6 rounded-lg border border-esa-border px-4 py-2.5 text-sm font-semibold text-esa-navy transition hover:bg-esa-soft focus-esa"
           onClick={() => {
             setSubmitted(false);
             setSubmitError(null);
@@ -173,7 +173,7 @@ function ContactFormFields() {
           }}
         >
           Send another enquiry
-        </Button>
+        </button>
       </div>
     );
   }
@@ -181,120 +181,112 @@ function ContactFormFields() {
   return (
     <form
       onSubmit={handleSubmit}
-      className="rounded-2xl border border-esa-border bg-esa-surface p-6 shadow-esa-soft transition duration-300 hover:border-esa-red/15 hover:shadow-esa-card sm:p-8"
+      className="rounded-xl border border-esa-border bg-white p-5 shadow-esa-soft sm:p-7"
       noValidate
     >
-      <div className="mb-6">
-        <h2 className="font-display text-2xl font-semibold text-esa-navy">
-          Enquiry form
-        </h2>
-        <p className="mt-2 text-sm text-esa-muted">
-          Share your details and preferred course. Your enquiry is sent to{" "}
-          <span className="font-medium text-esa-navy">{SITE.email}</span>.
-        </p>
-      </div>
+      <h2 className="text-xl font-bold text-esa-navy sm:text-2xl">
+        Send us an enquiry
+      </h2>
+      <p className="mt-1.5 text-sm text-esa-muted">
+        We usually respond within a few hours.
+      </p>
 
-      <div className="grid gap-5 sm:grid-cols-2">
+      <div className="mt-6 space-y-4">
         <Field
           label="Name"
-          id="name"
+          id="contact-name"
           error={errors.name}
           value={form.name}
           onChange={(value) => setForm((prev) => ({ ...prev, name: value }))}
           required
+          autoComplete="name"
         />
-        <Field
-          label="Phone"
-          id="phone"
-          type="tel"
-          value={form.phone}
-          onChange={(value) => setForm((prev) => ({ ...prev, phone: value }))}
-        />
-        <Field
-          label="Email"
-          id="email"
-          type="email"
-          error={errors.email}
-          value={form.email}
-          onChange={(value) => setForm((prev) => ({ ...prev, email: value }))}
-          required
-          className="sm:col-span-2"
-        />
-        <div>
-          <label htmlFor="language" className="mb-2 block text-sm font-semibold text-esa-navy">
-            Preferred Language
-          </label>
-          <select
-            id="language"
+
+        <div className="grid gap-4 sm:grid-cols-2">
+          <Field
+            label="Phone"
+            id="contact-phone"
+            type="tel"
+            error={errors.phone}
+            value={form.phone}
+            onChange={(value) => setForm((prev) => ({ ...prev, phone: value }))}
+            required
+            autoComplete="tel"
+            inputMode="tel"
+          />
+          <Field
+            label="Email"
+            id="contact-email"
+            type="email"
+            error={errors.email}
+            value={form.email}
+            onChange={(value) => setForm((prev) => ({ ...prev, email: value }))}
+            required
+            autoComplete="email"
+          />
+        </div>
+
+        <div className="grid gap-4 sm:grid-cols-2">
+          <SelectField
+            label="Preferred Language"
+            id="contact-language"
+            error={errors.language}
             value={form.language}
-            onChange={(event) =>
-              setForm((prev) => ({ ...prev, language: event.target.value }))
-            }
-            className="h-12 w-full rounded-xl border border-esa-border bg-white px-4 text-esa-navy transition hover:border-esa-navy/25 focus-esa"
-          >
-            {LANGUAGE_OPTIONS.map((option) => (
-              <option key={option} value={option}>
-                {option}
-              </option>
-            ))}
-          </select>
-        </div>
-        <div>
-          <label htmlFor="course" className="mb-2 block text-sm font-semibold text-esa-navy">
-            Preferred Course
-          </label>
-          <select
-            id="course"
+            onChange={(value) => setForm((prev) => ({ ...prev, language: value }))}
+            required
+            placeholder="Select language"
+            options={LANGUAGE_OPTIONS}
+          />
+          <SelectField
+            label="Preferred Course"
+            id="contact-course"
+            error={errors.course}
             value={form.course}
-            onChange={(event) =>
-              setForm((prev) => ({ ...prev, course: event.target.value }))
-            }
-            className="h-12 w-full rounded-xl border border-esa-border bg-white px-4 text-esa-navy transition hover:border-esa-navy/25 focus-esa"
+            onChange={(value) => setForm((prev) => ({ ...prev, course: value }))}
+            required
+            placeholder="Select a course"
+            options={COURSE_OPTIONS}
+          />
+        </div>
+
+        <div>
+          <label
+            htmlFor="contact-message"
+            className="mb-1.5 block text-sm font-semibold text-esa-navy"
           >
-            {COURSE_OPTIONS.map((option) => (
-              <option key={option} value={option}>
-                {option}
-              </option>
-            ))}
-          </select>
+            Message
+          </label>
+          <textarea
+            id="contact-message"
+            rows={4}
+            value={form.message}
+            onChange={(event) =>
+              setForm((prev) => ({ ...prev, message: event.target.value }))
+            }
+            placeholder="Tell us your goal, level, or any questions."
+            className={inputClass()}
+          />
         </div>
       </div>
 
-      <div className="mt-5">
-        <label htmlFor="message" className="mb-2 block text-sm font-semibold text-esa-navy">
-          Message
-        </label>
-        <textarea
-          id="message"
-          rows={5}
-          value={form.message}
-          aria-invalid={errors.message ? true : undefined}
-          aria-describedby={errors.message ? "message-error" : undefined}
-          onChange={(event) =>
-            setForm((prev) => ({ ...prev, message: event.target.value }))
-          }
-          className={cn(
-            "w-full rounded-xl border bg-white px-4 py-3 text-esa-navy transition hover:border-esa-navy/25 focus-esa",
-            errors.message ? "border-esa-red" : "border-esa-border",
-          )}
-          placeholder="Tell us about your goals, level, or any questions."
-          required
-        />
-        {errors.message ? (
-          <p id="message-error" role="alert" className="mt-1.5 text-sm text-esa-red">
-            {errors.message}
-          </p>
-        ) : null}
+      <div className="mt-6 flex flex-col gap-2.5 sm:flex-row sm:flex-wrap">
+        <button
+          type="submit"
+          disabled={submitting}
+          className="inline-flex items-center justify-center gap-2 rounded-lg bg-esa-red px-5 py-3 text-sm font-semibold text-white transition hover:bg-esa-red-dark focus-esa disabled:opacity-70"
+        >
+          {submitting ? (
+            <LoaderCircle className="h-4 w-4 animate-spin" aria-hidden />
+          ) : null}
+          {submitting ? "Sending…" : "Send Enquiry"}
+        </button>
+        <Link
+          href="/book-demo"
+          className="inline-flex items-center justify-center rounded-lg border border-esa-border bg-white px-5 py-3 text-sm font-semibold text-esa-navy transition hover:bg-esa-soft focus-esa"
+        >
+          Book a Demo
+        </Link>
       </div>
-
-      <Button type="submit" size="lg" className="mt-6 w-full sm:w-auto" disabled={submitting}>
-        {submitting ? (
-          <LoaderCircle className="h-4 w-4 animate-spin" aria-hidden />
-        ) : (
-          <Send className="h-4 w-4" aria-hidden />
-        )}
-        {submitting ? "Sending…" : "Send Enquiry"}
-      </Button>
     </form>
   );
 }
@@ -303,7 +295,7 @@ export function ContactForm() {
   return (
     <Suspense
       fallback={
-        <div className="rounded-2xl border border-esa-border bg-esa-surface p-8 text-esa-muted shadow-esa-soft">
+        <div className="rounded-xl border border-esa-border bg-white p-8 text-sm text-esa-muted shadow-esa-soft">
           Loading enquiry form…
         </div>
       }
@@ -321,7 +313,8 @@ type FieldProps = {
   error?: string;
   type?: string;
   required?: boolean;
-  className?: string;
+  autoComplete?: string;
+  inputMode?: React.HTMLAttributes<HTMLInputElement>["inputMode"];
 };
 
 function Field({
@@ -332,31 +325,89 @@ function Field({
   error,
   type = "text",
   required,
-  className,
+  autoComplete,
+  inputMode,
 }: FieldProps) {
   return (
-    <div className={className}>
-      <label htmlFor={id} className="mb-2 block text-sm font-semibold text-esa-navy">
+    <div>
+      <label htmlFor={id} className="mb-1.5 block text-sm font-semibold text-esa-navy">
         {label}
+        {required ? <span className="text-esa-red"> *</span> : null}
       </label>
       <input
         id={id}
         type={type}
         value={value}
         required={required}
+        autoComplete={autoComplete}
+        inputMode={inputMode}
         aria-invalid={error ? true : undefined}
         aria-describedby={error ? `${id}-error` : undefined}
         onChange={(event) => onChange(event.target.value)}
-        className={cn(
-          "h-12 w-full rounded-xl border bg-white px-4 text-esa-navy transition hover:border-esa-navy/25 focus-esa",
-          error ? "border-esa-red" : "border-esa-border",
-        )}
+        className={inputClass(error)}
       />
       {error ? (
-        <p id={`${id}-error`} role="alert" className="mt-1.5 text-sm text-esa-red">
+        <p id={`${id}-error`} role="alert" className="mt-1 text-xs text-esa-red">
           {error}
         </p>
       ) : null}
     </div>
+  );
+}
+
+function SelectField({
+  label,
+  id,
+  value,
+  onChange,
+  error,
+  required,
+  placeholder,
+  options,
+}: {
+  label: string;
+  id: string;
+  value: string;
+  onChange: (value: string) => void;
+  error?: string;
+  required?: boolean;
+  placeholder: string;
+  options: readonly string[];
+}) {
+  return (
+    <div>
+      <label htmlFor={id} className="mb-1.5 block text-sm font-semibold text-esa-navy">
+        {label}
+        {required ? <span className="text-esa-red"> *</span> : null}
+      </label>
+      <select
+        id={id}
+        value={value}
+        required={required}
+        aria-invalid={error ? true : undefined}
+        aria-describedby={error ? `${id}-error` : undefined}
+        onChange={(event) => onChange(event.target.value)}
+        className={inputClass(error)}
+      >
+        <option value="">{placeholder}</option>
+        {options.map((option) => (
+          <option key={option} value={option}>
+            {option}
+          </option>
+        ))}
+      </select>
+      {error ? (
+        <p id={`${id}-error`} role="alert" className="mt-1 text-xs text-esa-red">
+          {error}
+        </p>
+      ) : null}
+    </div>
+  );
+}
+
+function inputClass(error?: string) {
+  return cn(
+    "w-full rounded-lg border bg-white px-3.5 py-2.5 text-sm text-esa-navy outline-none transition placeholder:text-esa-muted/70 focus:border-esa-red focus:ring-2 focus:ring-[var(--esa-ring)]",
+    error ? "border-esa-red" : "border-esa-border hover:border-esa-navy/25",
   );
 }

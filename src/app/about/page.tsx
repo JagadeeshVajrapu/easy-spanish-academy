@@ -219,8 +219,8 @@ export default function AboutPage() {
                 That promise guides our Spanish and German programs—helping
                 learners move from first lessons to meaningful communication.
               </BodyText>
-              <Button href="/why-choose-us" variant="outline" className="mt-6">
-                Why Choose Us
+              <Button href="/book-demo" className="mt-6">
+                Book a Demo
               </Button>
             </div>
           </AnimateIn>

@@ -10,7 +10,7 @@ import {
   Label,
   Subheading,
 } from "@/components/ui/Typography";
-import type { CourseProgram } from "@/lib/course-data";
+import { courseTopicsHref, type CourseProgram } from "@/lib/course-data";
 import { cn } from "@/lib/utils";
 
 type CourseCardProps = {
@@ -148,15 +148,8 @@ export function CourseCard({
           </BodyText>
         </div>
 
-        <Button
-          href={
-            course.ctaHref ??
-            `/contact?interest=${encodeURIComponent(course.enquiryInterest ?? course.title)}`
-          }
-          size="lg"
-          className="w-full sm:w-auto"
-        >
-          {course.ctaLabel}
+        <Button href={courseTopicsHref(course)} size="lg" className="w-full sm:w-auto">
+          View Topics
           <ArrowRight className="h-4 w-4" aria-hidden />
         </Button>
       </div>

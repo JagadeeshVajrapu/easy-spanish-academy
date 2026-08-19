@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { Globe, Mail, Phone } from "lucide-react";
+import { Mail, Phone } from "lucide-react";
 import { SITE } from "@/lib/constants";
 import { cn, whatsappUrl } from "@/lib/utils";
 
@@ -35,13 +35,7 @@ function LinkedInIcon({ className }: { className?: string }) {
   );
 }
 
-const websiteLabel = SITE.url.replace(/^https?:\/\//, "").replace(/\/$/, "");
-
-/**
- * Social destinations for the top bar.
- * WhatsApp uses the academy number; other profiles open the Contact page
- * until dedicated social URLs are provided.
- */
+/** Social links for the top bar. */
 const SOCIAL_LINKS = [
   {
     label: "WhatsApp",
@@ -75,9 +69,9 @@ const SOCIAL_LINKS = [
 
 export function TopBar() {
   return (
-    <div className="border-b border-white/10 bg-[#0b1220] text-white">
-      <div className="container-esa flex min-h-10 flex-col justify-center gap-2 px-4 py-2.5 sm:min-h-11 sm:flex-row sm:items-center sm:justify-between sm:gap-4 sm:px-6 sm:py-3 lg:px-8">
-        <div className="flex min-w-0 flex-wrap items-center gap-x-4 gap-y-1.5 text-xs sm:text-[0.8125rem]">
+    <div className="border-b border-white/10 bg-esa-navy text-white">
+      <div className="container-esa flex min-h-10 flex-col justify-center gap-2.5 py-2.5 sm:min-h-11 sm:flex-row sm:items-center sm:justify-between sm:gap-4">
+        <div className="flex min-w-0 flex-wrap items-center gap-x-5 gap-y-1.5 text-xs sm:text-[0.8125rem]">
           <a
             href={SITE.phoneHref}
             className="inline-flex items-center gap-1.5 text-white/90 transition hover:text-esa-gold focus-esa"
@@ -94,21 +88,10 @@ export function TopBar() {
           </a>
         </div>
 
-        <div className="flex flex-wrap items-center gap-3 sm:justify-end">
-          <a
-            href={SITE.url}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center gap-1.5 text-xs text-white/90 transition hover:text-esa-gold focus-esa sm:text-[0.8125rem]"
-          >
-            <Globe className="h-3.5 w-3.5 shrink-0 text-esa-red" aria-hidden />
-            <span>{websiteLabel}</span>
-          </a>
-
-          <div className="flex items-center gap-1.5">
-            {SOCIAL_LINKS.map(({ label, href, external, Icon, hoverClass }) => {
+        <div className="flex flex-wrap items-center gap-1 sm:justify-end">
+          {SOCIAL_LINKS.map(({ label, href, external, Icon, hoverClass }) => {
               const className = cn(
-                "inline-flex h-8 w-8 items-center justify-center rounded-md text-white/90 transition hover:bg-white/10 focus-esa",
+                "inline-flex h-8 w-8 items-center justify-center rounded-lg text-white/85 transition hover:bg-white/10 hover:text-esa-gold focus-esa",
                 hoverClass,
               );
 
@@ -133,7 +116,6 @@ export function TopBar() {
                 </Link>
               );
             })}
-          </div>
         </div>
       </div>
     </div>

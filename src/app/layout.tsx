@@ -1,21 +1,15 @@
 import type { Metadata } from "next";
-import { Manrope, Syne } from "next/font/google";
+import { DM_Sans } from "next/font/google";
 import { Footer } from "@/components/layout/Footer";
 import { Navbar } from "@/components/layout/Navbar";
-import { ScrollToTop } from "@/components/layout/ScrollToTop";
 import { TopBar } from "@/components/layout/TopBar";
-import { WhatsAppButton } from "@/components/sections/WhatsAppButton";
+import { ScrollToTop } from "@/components/layout/ScrollToTop";
+import { ContactFab } from "@/components/sections/ContactFab";
 import { SITE } from "@/lib/constants";
 import "./globals.css";
 
-const manrope = Manrope({
-  variable: "--font-manrope",
-  subsets: ["latin"],
-  display: "swap",
-});
-
-const syne = Syne({
-  variable: "--font-syne",
+const dmSans = DM_Sans({
+  variable: "--font-dm-sans",
   subsets: ["latin"],
   display: "swap",
 });
@@ -62,14 +56,14 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${manrope.variable} ${syne.variable} h-full antialiased`}>
+    <html lang="en" className={`${dmSans.variable} h-full antialiased`}>
       <body className="flex min-h-full flex-col bg-esa-bg text-esa-navy">
         <ScrollToTop />
         <TopBar />
         <Navbar />
         <main className="flex-1">{children}</main>
         <Footer />
-        <WhatsAppButton />
+        <ContactFab />
       </body>
     </html>
   );

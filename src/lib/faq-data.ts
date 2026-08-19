@@ -40,6 +40,6 @@ export const FAQ_ITEMS: FaqItem[] = [
   {
     question: "How can I contact the academy?",
     answer:
-      "Call 9971-62-7900, email easyspanishacademy01@gmail.com, or message us on WhatsApp. You can also use the enquiry form on our Contact page.",
+      "Call +91 99716 27900, email easyspanishacademy01@gmail.com, or message us on WhatsApp. You can also use the enquiry form on our Contact page.",
   },
 ];

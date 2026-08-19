@@ -21,8 +21,8 @@ export function CourseFAQ({
       <div className="grid gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:items-start lg:gap-14">
         <AnimateIn>
           <SectionHeading eyebrow="FAQ" title={title} description={description} />
-          <Button href="/faq" variant="outline" className="mt-8">
-            View all FAQs
+          <Button href="/contact" variant="outline" className="mt-8">
+            Contact us
           </Button>
         </AnimateIn>
         <AnimateIn delay={0.08}>

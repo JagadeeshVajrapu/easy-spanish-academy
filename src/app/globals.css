@@ -1,42 +1,42 @@
 @import "tailwindcss";
 
 /* =========================================================
-   Easy Spanish Academy — Design System Tokens
+   Easy Spanish Academy — Premium Education Design System
    ========================================================= */
 
 :root {
-  --esa-red: #c8102e;
-  --esa-red-dark: #9e0c24;
-  --esa-red-soft: #f8e8eb;
+  --esa-red: #c41e1e;
+  --esa-red-dark: #9f1515;
+  --esa-red-soft: #fce8e8;
   --esa-navy: #152238;
-  --esa-navy-soft: #24324a;
-  --esa-navy-muted: #3a4a63;
-  --esa-gold: #c9a227;
-  --esa-gold-soft: #f7f0d8;
-  --esa-gold-deep: #a8861a;
-  --esa-bg: #f7f8fa;
+  --esa-navy-soft: #243552;
+  --esa-navy-muted: #3d4f6a;
+  --esa-gold: #d4a017;
+  --esa-gold-soft: #fbf3d9;
+  --esa-gold-deep: #b8860b;
+  --esa-bg: #f7f4ef;
   --esa-surface: #ffffff;
-  --esa-soft: #eef0f4;
-  --esa-muted: #5b6575;
-  --esa-border: #e4e7ee;
-  --esa-ring: color-mix(in oklab, var(--esa-red) 35%, transparent);
+  --esa-soft: #efeae3;
+  --esa-muted: #5c6b7a;
+  --esa-border: #e4ddd3;
+  --esa-ring: color-mix(in oklab, var(--esa-red) 32%, transparent);
   --esa-overlay: rgb(21 34 56 / 0.72);
   --background: var(--esa-bg);
   --foreground: var(--esa-navy);
   --primary: var(--esa-red);
   --secondary: var(--esa-navy);
   --accent: var(--esa-gold);
-  --radius-sm: 0.5rem;
-  --radius-md: 0.75rem;
-  --radius-lg: 1rem;
-  --radius-xl: 1.25rem;
-  --radius-2xl: 1.5rem;
-  --radius-3xl: 1.75rem;
-  --shadow-soft: 0 10px 30px -18px rgb(21 34 56 / 0.28);
-  --shadow-card: 0 14px 40px -24px rgb(21 34 56 / 0.35);
-  --shadow-lift: 0 18px 48px -22px rgb(21 34 56 / 0.4);
-  --section-y: clamp(3.5rem, 6vw, 6rem);
-  --container: 80rem;
+  --radius-sm: 0.375rem;
+  --radius-md: 0.5rem;
+  --radius-lg: 0.75rem;
+  --radius-xl: 0.875rem;
+  --radius-2xl: 1rem;
+  --radius-3xl: 1.25rem;
+  --shadow-soft: 0 6px 20px -8px rgb(21 34 56 / 0.14);
+  --shadow-card: 0 12px 30px -12px rgb(21 34 56 / 0.18);
+  --shadow-lift: 0 18px 40px -14px rgb(21 34 56 / 0.22);
+  --section-y: clamp(3.25rem, 5.5vw, 5.5rem);
+  --container: 72rem;
 }
 
 @theme inline {
@@ -56,8 +56,8 @@
   --color-esa-soft: var(--esa-soft);
   --color-esa-muted: var(--esa-muted);
   --color-esa-border: var(--esa-border);
-  --font-sans: var(--font-manrope);
-  --font-display: var(--font-syne);
+  --font-sans: var(--font-dm-sans);
+  --font-display: var(--font-dm-sans);
   --shadow-soft: var(--shadow-soft);
   --shadow-card: var(--shadow-card);
   --shadow-lift: var(--shadow-lift);
@@ -83,10 +83,10 @@
   body {
     background: var(--background);
     color: var(--foreground);
-    font-family: var(--font-manrope), system-ui, sans-serif;
+    font-family: var(--font-dm-sans), system-ui, sans-serif;
     font-size: 1rem;
     line-height: 1.65;
-    overflow-x: hidden;
+    overflow-x: clip;
     -webkit-font-smoothing: antialiased;
     text-rendering: optimizeLegibility;
   }
@@ -95,14 +95,11 @@
   h2,
   h3,
   h4 {
-    font-family: var(--font-syne), var(--font-manrope), system-ui, sans-serif;
-    letter-spacing: -0.02em;
+    font-family: var(--font-dm-sans), system-ui, sans-serif;
+    letter-spacing: -0.025em;
     color: var(--esa-navy);
-    text-wrap: balance;
-  }
-
-  p {
-    text-wrap: pretty;
+    font-weight: 700;
+    line-height: 1.2;
   }
 
   a,
@@ -124,117 +121,69 @@
 }
 
 @layer utilities {
-  .font-display {
-    font-family: var(--font-syne), var(--font-manrope), system-ui, sans-serif;
+  .container-esa {
+    margin-inline: auto;
+    width: 100%;
+    max-width: var(--container);
+    padding-inline: 1rem;
+  }
+
+  @media (min-width: 640px) {
+    .container-esa {
+      padding-inline: 1.5rem;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .container-esa {
+      padding-inline: 2rem;
+    }
+  }
+
+  .section-pad {
+    padding-block: var(--section-y);
   }
 
   .text-hero {
-    font-family: var(--font-syne), var(--font-manrope), system-ui, sans-serif;
-    font-size: clamp(2rem, 7.2vw, 4.25rem);
-    font-weight: 600;
-    line-height: 1.06;
+    font-size: clamp(1.85rem, 4.2vw, 3.15rem);
+    font-weight: 700;
+    line-height: 1.15;
     letter-spacing: -0.03em;
   }
 
   .text-section {
-    font-family: var(--font-syne), var(--font-manrope), system-ui, sans-serif;
-    font-size: clamp(1.6rem, 4vw, 3rem);
-    font-weight: 600;
-    line-height: 1.15;
+    font-size: clamp(1.45rem, 2.8vw, 2.15rem);
+    font-weight: 700;
+    line-height: 1.22;
     letter-spacing: -0.025em;
   }
 
-  .text-subheading {
-    font-family: var(--font-syne), var(--font-manrope), system-ui, sans-serif;
-    font-size: clamp(1.2rem, 2.2vw, 1.5rem);
-    font-weight: 600;
-    line-height: 1.3;
-    letter-spacing: -0.02em;
-  }
-
-  .text-card-title {
-    font-family: var(--font-syne), var(--font-manrope), system-ui, sans-serif;
-    font-size: clamp(1.05rem, 1.6vw, 1.25rem);
-    font-weight: 600;
-    line-height: 1.35;
-    letter-spacing: -0.015em;
-  }
-
-  .text-body {
-    font-size: clamp(0.98rem, 1.4vw, 1.0625rem);
-    line-height: 1.7;
-    color: var(--esa-muted);
-  }
-
-  .text-body-sm {
-    font-size: 0.9375rem;
-    line-height: 1.65;
-    color: var(--esa-muted);
-  }
-
   .text-label {
-    font-size: 0.72rem;
+    font-size: 0.75rem;
     font-weight: 600;
-    letter-spacing: 0.16em;
+    letter-spacing: 0.08em;
     text-transform: uppercase;
   }
 
-  .text-course-meta {
-    font-size: 0.875rem;
-    font-weight: 500;
-    color: var(--esa-muted);
-  }
-
-  .text-balance {
-    text-wrap: balance;
-  }
-
-  .bg-mesh {
-    background:
-      radial-gradient(ellipse 80% 50% at 10% -10%, rgb(200 16 46 / 0.09), transparent 55%),
-      radial-gradient(ellipse 60% 40% at 90% 0%, rgb(201 162 39 / 0.1), transparent 50%),
-      radial-gradient(ellipse 50% 45% at 80% 100%, rgb(21 34 56 / 0.04), transparent 55%),
-      var(--esa-bg);
-  }
-
-  .bg-hero-overlay {
-    background:
-      linear-gradient(
-        165deg,
-        rgb(21 34 56 / 0.82) 0%,
-        rgb(21 34 56 / 0.7) 48%,
-        rgb(21 34 56 / 0.45) 100%
-      );
-  }
-
-  @media (min-width: 768px) {
-    .bg-hero-overlay {
-      background:
-        linear-gradient(
-          105deg,
-          rgb(21 34 56 / 0.88) 0%,
-          rgb(21 34 56 / 0.72) 42%,
-          rgb(21 34 56 / 0.35) 100%
-        );
-    }
-  }
-
-  .bg-panel {
-    background:
-      linear-gradient(180deg, rgb(255 255 255 / 0.92), rgb(255 255 255 / 1)),
-      var(--esa-surface);
-  }
-
-  .section-pad {
-    @apply px-4 py-12 sm:px-6 sm:py-16 md:py-20 lg:px-8 lg:py-24;
-  }
-
-  .container-esa {
-    @apply mx-auto w-full max-w-7xl;
-  }
-
   .focus-esa {
-    @apply outline-none focus-visible:ring-2 focus-visible:ring-[var(--esa-ring)] focus-visible:ring-offset-2;
+    outline: none;
+  }
+
+  .focus-esa:focus-visible {
+    outline: 2px solid var(--esa-ring);
+    outline-offset: 2px;
+  }
+
+  .break-anywhere {
+    overflow-wrap: anywhere;
+    word-break: break-word;
+  }
+
+  .underline-accent {
+    background-image: linear-gradient(var(--esa-gold), var(--esa-gold));
+    background-position: 0 92%;
+    background-repeat: no-repeat;
+    background-size: 100% 0.28em;
   }
 
   .shadow-esa-soft {
@@ -249,45 +198,87 @@
     box-shadow: var(--shadow-lift);
   }
 
-  .radius-esa {
-    border-radius: var(--radius-2xl);
+  /* Premium interactive surfaces — CSS only, no layout-breaking transforms on scroll */
+  .esa-lift {
+    transition:
+      transform 220ms ease,
+      box-shadow 220ms ease,
+      border-color 220ms ease,
+      background-color 220ms ease;
   }
 
-  .border-esa {
-    border: 1px solid var(--esa-border);
+  .esa-lift:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-lift);
+    border-color: color-mix(in oklab, var(--esa-red) 28%, var(--esa-border));
   }
 
-  .hover-lift {
-    @apply transition-[transform,box-shadow,border-color] duration-300 ease-out hover:-translate-y-1;
+  .esa-lift-dark:hover {
+    border-color: color-mix(in oklab, var(--esa-gold) 45%, transparent);
+    box-shadow: 0 18px 40px -14px rgb(21 34 56 / 0.45);
   }
 
-  .btn-interactive {
-    @apply transition-[transform,background-color,border-color,box-shadow,color] duration-200 ease-out;
+  .esa-lift-soft {
+    transition:
+      transform 200ms ease,
+      box-shadow 200ms ease,
+      border-color 200ms ease,
+      background-color 200ms ease;
   }
 
-  .btn-interactive:hover {
+  .esa-lift-soft:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-card);
+    border-color: color-mix(in oklab, var(--esa-red) 22%, var(--esa-border));
+  }
+
+  .esa-media {
+    transition: transform 320ms ease;
+  }
+
+  .group:hover .esa-media {
+    transform: scale(1.04);
+  }
+
+  .esa-btn {
+    transition:
+      transform 180ms ease,
+      background-color 180ms ease,
+      box-shadow 180ms ease,
+      border-color 180ms ease;
+  }
+
+  .esa-btn:hover {
     transform: translateY(-1px);
   }
 
-  .btn-interactive:active {
-    transform: translateY(0) scale(0.985);
+  .esa-fab:active {
+    transform: scale(0.97);
   }
 
-  .safe-fab-pad {
-    padding-bottom: calc(6.25rem + env(safe-area-inset-bottom, 0px));
+  .esa-surface-warm {
+    background:
+      radial-gradient(ellipse 80% 60% at 10% 0%, color-mix(in oklab, var(--esa-gold) 14%, transparent), transparent 55%),
+      radial-gradient(ellipse 70% 50% at 95% 10%, color-mix(in oklab, var(--esa-red) 8%, transparent), transparent 50%),
+      linear-gradient(180deg, #fcfaf7 0%, var(--esa-bg) 100%);
   }
 
-  .break-anywhere {
-    overflow-wrap: anywhere;
-    word-break: break-word;
+  .esa-panel {
+    background: linear-gradient(165deg, #ffffff 0%, #fbf8f3 100%);
   }
 
-  .hover-glow-text {
-    @apply transition-colors duration-300 hover:text-esa-red;
+  @keyframes esa-marquee-scroll {
+    from {
+      transform: translateX(0);
+    }
+    to {
+      transform: translateX(-50%);
+    }
   }
 
   .esa-marquee-track {
-    animation: esa-marquee-rtl 55s linear infinite;
+    animation: esa-marquee-scroll 42s linear infinite;
+    will-change: transform;
   }
 
   .esa-marquee-track:hover {
@@ -297,15 +288,9 @@
   @media (prefers-reduced-motion: reduce) {
     .esa-marquee-track {
       animation: none;
+      flex-wrap: wrap;
+      width: 100%;
+      justify-content: center;
     }
-  }
-}
-
-@keyframes esa-marquee-rtl {
-  from {
-    transform: translateX(0);
-  }
-  to {
-    transform: translateX(-50%);
   }
 }
