@@ -67,14 +67,16 @@ export default async function LanguageCoursesPage({ params }: Props) {
       </section>
 
       <section className="section-pad bg-esa-bg">
-        <div className="container-esa">
-          <p className="text-label text-esa-red">Programs</p>
-          <h2 className="text-section mt-2">Pick your {label} pathway</h2>
-          <p className="mt-3 max-w-2xl text-esa-muted">
-            Explore topics, levels, and learning areas. Every course page includes
-            View Topics, Book a Demo, and Talk to a Consultant.
-          </p>
-          <div className="mt-10 grid gap-5 md:grid-cols-2 xl:grid-cols-3">
+        <div className="container-esa mx-auto max-w-6xl">
+          <div className="max-w-2xl">
+            <p className="text-label text-esa-red">Programs</p>
+            <h2 className="text-section mt-2">Pick your {label} pathway</h2>
+            <p className="mt-3 text-esa-muted">
+              Compare programs, explore full course details, and book a demo when you are
+              ready to start.
+            </p>
+          </div>
+          <div className="mt-8 grid auto-rows-fr gap-4 sm:grid-cols-2 xl:grid-cols-3">
             {courses.map((course) => (
               <CourseProgramCard key={course.id} course={course} />
             ))}

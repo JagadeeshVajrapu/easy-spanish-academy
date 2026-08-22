@@ -27,95 +27,99 @@ function InstagramIcon({ className }: { className?: string }) {
   );
 }
 
-function LinkedInIcon({ className }: { className?: string }) {
+function YouTubeIcon({ className }: { className?: string }) {
   return (
     <svg viewBox="0 0 24 24" fill="currentColor" className={className} aria-hidden>
-      <path d="M4.98 3.5C4.98 4.88 3.86 6 2.5 6S0 4.88 0 3.5 1.12 1 2.5 1s2.48 1.12 2.48 2.5zM.5 8.5h4V23h-4V8.5zM8.5 8.5h3.8v2h.05c.53-1 1.82-2.05 3.75-2.05 4.01 0 4.75 2.64 4.75 6.07V23h-4v-6.7c0-1.6-.03-3.66-2.23-3.66-2.23 0-2.57 1.74-2.57 3.54V23h-4V8.5z" />
+      <path d="M23.5 6.2a3 3 0 00-2.1-2.1C19.5 3.5 12 3.5 12 3.5s-7.5 0-9.4.6A3 3 0 00.5 6.2 31 31 0 000 12a31 31 0 00.5 5.8 3 3 0 002.1 2.1c1.9.6 9.4.6 9.4.6s7.5 0 9.4-.6a3 3 0 002.1-2.1A31 31 0 0024 12a31 31 0 00-.5-5.8zM9.75 15.5v-7l6.5 3.5-6.5 3.5z" />
     </svg>
   );
 }
 
-/** Social links for the top bar. */
 const SOCIAL_LINKS = [
   {
     label: "WhatsApp",
     href: whatsappUrl(SITE.whatsappMessage),
     external: true,
     Icon: WhatsAppIcon,
-    hoverClass: "hover:text-[#25D366]",
+    color: "#25D366",
   },
   {
     label: "Facebook",
     href: "/contact",
     external: false,
     Icon: FacebookIcon,
-    hoverClass: "hover:text-esa-gold",
+    color: "#1877F2",
   },
   {
     label: "Instagram",
     href: "/contact",
     external: false,
     Icon: InstagramIcon,
-    hoverClass: "hover:text-esa-gold",
+    color: "#E4405F",
   },
   {
-    label: "LinkedIn",
-    href: "/contact",
+    label: "YouTube",
+    href: SITE.youtubeHref,
     external: false,
-    Icon: LinkedInIcon,
-    hoverClass: "hover:text-esa-gold",
+    Icon: YouTubeIcon,
+    color: "#FF0000",
   },
 ] as const;
 
 export function TopBar() {
   return (
     <div className="border-b border-white/10 bg-esa-navy text-white">
-      <div className="container-esa flex min-h-10 flex-col justify-center gap-2.5 py-2.5 sm:min-h-11 sm:flex-row sm:items-center sm:justify-between sm:gap-4">
-        <div className="flex min-w-0 flex-wrap items-center gap-x-5 gap-y-1.5 text-xs sm:text-[0.8125rem]">
+      <div className="container-esa flex h-11 items-center justify-between gap-3 sm:h-12">
+        <div className="flex min-w-0 items-center gap-4 overflow-hidden text-xs sm:gap-5 sm:text-[0.8125rem]">
           <a
             href={SITE.phoneHref}
-            className="inline-flex items-center gap-1.5 text-white/90 transition hover:text-esa-gold focus-esa"
+            className="inline-flex shrink-0 items-center gap-2 whitespace-nowrap text-white/90 transition hover:text-esa-gold focus-esa"
           >
-            <Phone className="h-3.5 w-3.5 shrink-0 text-esa-red" aria-hidden />
-            <span>{SITE.phoneDisplay}</span>
+            <Phone className="h-3.5 w-3.5 shrink-0 text-esa-red sm:h-4 sm:w-4" aria-hidden />
+            {SITE.phoneDisplay}
           </a>
           <a
             href={SITE.emailHref}
-            className="inline-flex min-w-0 items-center gap-1.5 text-white/90 transition hover:text-esa-gold focus-esa"
+            title={SITE.email}
+            className="hidden min-w-0 items-center gap-2 text-white/90 transition hover:text-esa-gold focus-esa md:inline-flex"
           >
-            <Mail className="h-3.5 w-3.5 shrink-0 text-esa-red" aria-hidden />
-            <span className="break-anywhere">{SITE.email}</span>
+            <Mail className="h-3.5 w-3.5 shrink-0 text-esa-red sm:h-4 sm:w-4" aria-hidden />
+            <span className="truncate">{SITE.email}</span>
           </a>
         </div>
 
-        <div className="flex flex-wrap items-center gap-1 sm:justify-end">
-          {SOCIAL_LINKS.map(({ label, href, external, Icon, hoverClass }) => {
-              const className = cn(
-                "inline-flex h-8 w-8 items-center justify-center rounded-lg text-white/85 transition hover:bg-white/10 hover:text-esa-gold focus-esa",
-                hoverClass,
-              );
+        <div className="flex shrink-0 items-center gap-1.5">
+          {SOCIAL_LINKS.map(({ label, href, external, Icon, color }) => {
+            const className =
+              "inline-flex h-8 w-8 items-center justify-center rounded-md bg-white/8 transition hover:bg-white/15 hover:scale-105 focus-esa sm:h-9 sm:w-9";
 
-              if (external) {
-                return (
-                  <a
-                    key={label}
-                    href={href}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    aria-label={label}
-                    className={className}
-                  >
-                    <Icon className="h-3.5 w-3.5" />
-                  </a>
-                );
-              }
+            const icon = (
+              <span style={{ color }} className="inline-flex">
+                <Icon className="h-4 w-4 sm:h-[1.125rem] sm:w-[1.125rem]" aria-hidden />
+              </span>
+            );
 
+            if (external) {
               return (
-                <Link key={label} href={href} aria-label={label} className={className}>
-                  <Icon className="h-3.5 w-3.5" />
-                </Link>
+                <a
+                  key={label}
+                  href={href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={label}
+                  className={className}
+                >
+                  {icon}
+                </a>
               );
-            })}
+            }
+
+            return (
+              <Link key={label} href={href} aria-label={label} className={className}>
+                {icon}
+              </Link>
+            );
+          })}
         </div>
       </div>
     </div>

@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { Mail, Phone } from "lucide-react";
+import { Mail, MapPin, Phone } from "lucide-react";
 import { BrandLogo } from "@/components/ui/BrandLogo";
 import { FlagAccent } from "@/components/ui/FlagAccent";
 import { FOOTER_LINKS, SITE } from "@/lib/constants";
@@ -16,12 +16,12 @@ export function Footer() {
                 <span className="block text-base font-bold text-white">
                   Easy Spanish Academy
                 </span>
-                <span className="mt-0.5 block text-xs text-white/60">
-                  Spanish & German
+                <span className="mt-0.5 block text-xs leading-snug text-white/75">
+                  {SITE.instituteTagline}
                 </span>
               </span>
             </Link>
-            <p className="mt-3 max-w-xs text-sm leading-relaxed text-white/70">
+            <p className="mt-3 max-w-xs text-sm leading-relaxed text-white/80">
               {SITE.tagline}
             </p>
             <div className="mt-4 flex flex-wrap gap-2">
@@ -41,7 +41,7 @@ export function Footer() {
                 <li key={link.href}>
                   <Link
                     href={link.href}
-                    className="text-sm text-white/70 transition hover:text-white focus-esa"
+                    className="text-sm text-white/80 transition hover:text-white focus-esa"
                   >
                     {link.label}
                   </Link>
@@ -57,7 +57,7 @@ export function Footer() {
                 <li key={link.href}>
                   <Link
                     href={link.href}
-                    className="text-sm text-white/70 transition hover:text-white focus-esa"
+                    className="text-sm text-white/80 transition hover:text-white focus-esa"
                   >
                     {link.label}
                   </Link>
@@ -66,37 +66,50 @@ export function Footer() {
             </ul>
           </div>
 
-          <div>
+          <div className="min-w-0 sm:col-span-2 lg:col-span-1 lg:min-w-[15.5rem]">
             <h2 className="text-sm font-semibold text-white">Contact</h2>
-            <ul className="mt-3 space-y-2.5 text-sm text-white/70">
+            <ul className="mt-3 space-y-2.5 text-sm text-white/80">
               <li>
                 <a
                   href={SITE.phoneHref}
-                  className="inline-flex items-center gap-2 transition hover:text-white focus-esa"
+                  className="inline-flex items-center gap-2 whitespace-nowrap transition hover:text-white focus-esa"
                 >
-                  <Phone className="h-3.5 w-3.5 text-esa-gold" aria-hidden />
+                  <Phone className="h-3.5 w-3.5 shrink-0 text-esa-gold" aria-hidden />
                   {SITE.phoneDisplay}
                 </a>
               </li>
               <li>
                 <a
                   href={SITE.emailHref}
-                  className="inline-flex items-start gap-2 transition hover:text-white focus-esa"
+                  className="inline-flex items-center gap-2 transition hover:text-white focus-esa"
+                  title={SITE.email}
                 >
-                  <Mail className="mt-0.5 h-3.5 w-3.5 shrink-0 text-esa-gold" aria-hidden />
-                  <span className="break-anywhere">{SITE.email}</span>
+                  <Mail className="h-3.5 w-3.5 shrink-0 text-esa-gold" aria-hidden />
+                  <span className="break-anywhere text-sm tracking-tight">
+                    {SITE.email}
+                  </span>
                 </a>
               </li>
               <li>
-                <Link href="/privacy" className="transition hover:text-white focus-esa">
-                  Privacy Policy
-                </Link>
+                <a
+                  href={SITE.addressMapsHref}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-start gap-2 transition hover:text-white focus-esa"
+                >
+                  <MapPin className="mt-0.5 h-3.5 w-3.5 shrink-0 text-esa-gold" aria-hidden />
+                  <span className="text-sm leading-relaxed">
+                    {SITE.addressLine1}
+                    <br />
+                    {SITE.addressLine2}
+                  </span>
+                </a>
               </li>
             </ul>
           </div>
         </div>
 
-        <div className="mt-8 flex flex-col gap-2 border-t border-white/15 pt-4 text-xs text-white/50 sm:flex-row sm:items-center sm:justify-between sm:text-sm">
+        <div className="mt-8 flex flex-col gap-2 border-t border-white/15 pt-4 text-xs text-white/65 sm:flex-row sm:items-center sm:justify-between sm:text-sm">
           <p>© 2026 Easy Spanish Academy. All rights reserved.</p>
           <p className="sm:text-center">
             Developed by{" "}
@@ -109,7 +122,7 @@ export function Footer() {
               Web Fast Technology
             </a>
           </p>
-          <p className="text-white/45 sm:text-right">{SITE.tagline}</p>
+          <p className="text-white/65 sm:text-right">{SITE.tagline}</p>
         </div>
       </div>
     </footer>

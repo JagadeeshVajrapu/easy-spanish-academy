@@ -6,13 +6,25 @@ import { useEffect, useId, useRef, useState } from "react";
 import { ChevronDown, Menu, Phone, X } from "lucide-react";
 import { BrandLogo } from "@/components/ui/BrandLogo";
 import { FlagAccent } from "@/components/ui/FlagAccent";
-import { NAV_LINKS, SITE } from "@/lib/constants";
+import { COURSE_NAV, NAV_LINKS, SITE } from "@/lib/constants";
 import { cn } from "@/lib/utils";
 
-const COURSE_LINKS = [
-  { label: "Spanish", href: "/courses/spanish", flag: "ES" as const },
-  { label: "German", href: "/courses/german", flag: "DE" as const },
-] as const;
+function isCoursePathActive(pathname: string, href: string) {
+  return pathname === href || pathname.startsWith(`${href}/`);
+}
+
+function isNavLinkActive(pathname: string, href: string) {
+  if (href === "/") return pathname === "/";
+  return pathname === href || pathname.startsWith(`${href}/`);
+}
+
+const navLinkClass = (active: boolean) =>
+  cn(
+    "relative whitespace-nowrap rounded-lg px-3 py-2 text-sm font-medium transition duration-200 focus-esa",
+    active
+      ? "bg-esa-red-soft text-esa-red ring-1 ring-esa-red/15"
+      : "text-esa-navy/85 hover:bg-esa-soft hover:text-esa-navy",
+  );
 
 export function Navbar() {
   const pathname = usePathname();
@@ -72,9 +84,114 @@ export function Navbar() {
     pathname.startsWith("/spanish-courses") ||
     pathname.startsWith("/german-courses");
 
+  useEffect(() => {
+    setCoursesOpen(false);
+  }, [pathname]);
+
+  function renderDesktopCourseMenu() {
+    return (
+      <div
+        role="menu"
+        className="absolute left-1/2 top-full z-50 mt-2 w-[17rem] -translate-x-1/2 rounded-xl border border-esa-border bg-white p-2 shadow-esa-lift"
+      >
+        {COURSE_NAV.map((group) => (
+          <div key={group.href} className="rounded-lg">
+            <Link
+              href={group.href}
+              role="menuitem"
+              className={cn(
+                "flex items-center gap-2.5 rounded-lg px-3 py-2.5 text-sm font-semibold focus-esa",
+                isCoursePathActive(pathname, group.href)
+                  ? "bg-esa-red-soft text-esa-red"
+                  : "text-esa-navy hover:bg-esa-soft",
+              )}
+              onClick={closeMenus}
+            >
+              {group.flag ? <FlagAccent country={group.flag} /> : null}
+              {group.label}
+            </Link>
+
+            {group.children?.length ? (
+              <div className="mb-1 mt-0.5 space-y-0.5 pl-3">
+                <p className="px-3 py-1 text-xs font-semibold uppercase tracking-wider text-esa-muted">
+                  Programs
+                </p>
+                {group.children.map((sub) => (
+                  <Link
+                    key={sub.href}
+                    href={sub.href}
+                    role="menuitem"
+                    className={cn(
+                      "block rounded-lg px-3 py-2 text-sm font-medium focus-esa",
+                      pathname.startsWith(sub.href)
+                        ? "bg-esa-red-soft text-esa-red"
+                        : "text-esa-navy/90 hover:bg-esa-soft hover:text-esa-navy",
+                    )}
+                    onClick={closeMenus}
+                  >
+                    {sub.label}
+                  </Link>
+                ))}
+              </div>
+            ) : null}
+
+            {group !== COURSE_NAV[COURSE_NAV.length - 1] ? (
+              <div className="my-1.5 border-t border-esa-border/80" aria-hidden />
+            ) : null}
+          </div>
+        ))}
+      </div>
+    );
+  }
+
+  function renderMobileCourseMenu() {
+    return (
+      <div className="space-y-1 border-t border-esa-border p-2">
+        {COURSE_NAV.map((group) => (
+          <div key={group.href} className="rounded-lg">
+            <button
+              type="button"
+              className={cn(
+                "flex w-full items-center gap-2.5 rounded-lg px-3 py-2.5 text-left text-base font-semibold focus-esa",
+                isCoursePathActive(pathname, group.href)
+                  ? "bg-esa-red-soft text-esa-red"
+                  : "text-esa-navy hover:bg-esa-soft",
+              )}
+              onClick={() => goTo(group.href)}
+            >
+              {group.flag ? <FlagAccent country={group.flag} size="md" /> : null}
+              {group.label}
+            </button>
+
+            {group.children?.length ? (
+              <div className="ml-3 mt-0.5 space-y-0.5 border-l-2 border-esa-red/15 pl-2">
+                {group.children.map((sub) => (
+                  <button
+                    key={sub.href}
+                    type="button"
+                    className={cn(
+                      "w-full rounded-lg px-3 py-2 text-left text-sm font-medium focus-esa",
+                      pathname.startsWith(sub.href)
+                        ? "bg-esa-red-soft text-esa-red"
+                        : "text-esa-navy/85 hover:bg-esa-soft",
+                    )}
+                    onClick={() => goTo(sub.href)}
+                  >
+                    {sub.label}
+                  </button>
+                ))}
+              </div>
+            ) : null}
+          </div>
+        ))}
+      </div>
+    );
+  }
+
   return (
-    <header className="sticky top-0 z-40 border-b border-esa-border/80 bg-white">
-      <div className="container-esa flex h-16 items-center justify-between gap-3 sm:h-[4.25rem]">
+    <header className="sticky top-0 z-40 border-b border-esa-border/70 bg-white/95 shadow-esa-soft backdrop-blur-md">
+      <div className="container-esa grid h-[4.25rem] grid-cols-[minmax(0,auto)_1fr_auto] items-center gap-3 sm:h-[4.5rem] sm:gap-4 lg:gap-6">
+        {/* Brand */}
         <Link
           href="/"
           onClick={(event) => {
@@ -84,20 +201,24 @@ export function Navbar() {
               window.scrollTo({ top: 0, behavior: "smooth" });
             }
           }}
-          className="group flex min-w-0 items-center gap-2.5 focus-esa"
+          className="group flex min-w-0 items-center gap-2 focus-esa sm:gap-2.5"
         >
           <BrandLogo size="nav" priority />
-          <span className="min-w-0">
-            <span className="block truncate text-[0.95rem] font-bold leading-tight text-esa-navy sm:text-base">
+          <span className="hidden min-w-0 leading-tight md:block">
+            <span className="block truncate text-[0.9375rem] font-bold text-esa-navy lg:text-base">
               Easy Spanish Academy
             </span>
-            <span className="mt-0.5 hidden text-[11px] text-esa-muted sm:block">
-              Spanish & German Language Institute
+            <span className="mt-0.5 hidden text-[11px] leading-snug text-esa-muted lg:block lg:text-xs">
+              {SITE.instituteTagline}
             </span>
           </span>
         </Link>
 
-        <nav className="hidden items-center gap-0.5 lg:flex" aria-label="Primary">
+        {/* Desktop nav — centered in middle column */}
+        <nav
+          className="hidden min-w-0 items-center justify-center gap-0.5 lg:flex"
+          aria-label="Primary"
+        >
           {NAV_LINKS.map((item) => {
             if ("children" in item && item.children) {
               return (
@@ -105,60 +226,35 @@ export function Navbar() {
                   <button
                     type="button"
                     className={cn(
-                      "inline-flex items-center gap-1 rounded-lg px-3 py-2 text-sm font-medium transition focus-esa",
-                      courseActive || coursesOpen
-                        ? "bg-esa-red-soft text-esa-red"
-                        : "text-esa-navy/80 hover:bg-esa-soft hover:text-esa-navy",
+                      navLinkClass(courseActive || coursesOpen),
+                      "inline-flex items-center gap-1",
                     )}
                     aria-expanded={coursesOpen}
+                    aria-current={courseActive ? "page" : undefined}
                     onClick={() => setCoursesOpen((v) => !v)}
                   >
                     Courses
                     <ChevronDown
-                      className={cn("h-4 w-4 transition", coursesOpen && "rotate-180")}
+                      className={cn(
+                        "h-4 w-4 transition duration-200",
+                        coursesOpen && "rotate-180",
+                      )}
                       aria-hidden
                     />
                   </button>
-                  {coursesOpen ? (
-                    <div
-                      role="menu"
-                      className="absolute left-0 top-full z-50 mt-2 min-w-[200px] rounded-xl border border-esa-border bg-white p-1.5 shadow-esa-card"
-                    >
-                      {COURSE_LINKS.map((child) => (
-                        <Link
-                          key={child.href}
-                          href={child.href}
-                          role="menuitem"
-                          className={cn(
-                            "flex items-center gap-2.5 rounded-lg px-3 py-2.5 text-sm font-medium focus-esa",
-                            pathname.startsWith(child.href)
-                              ? "bg-esa-red-soft text-esa-red"
-                              : "text-esa-navy hover:bg-esa-soft",
-                          )}
-                          onClick={closeMenus}
-                        >
-                          <FlagAccent country={child.flag} />
-                          {child.label}
-                        </Link>
-                      ))}
-                    </div>
-                  ) : null}
+                  {coursesOpen ? renderDesktopCourseMenu() : null}
                 </div>
               );
             }
 
-            const active = pathname === item.href;
+            const active = isNavLinkActive(pathname, item.href);
             return (
               <Link
                 key={item.href}
                 href={item.href}
                 onClick={closeMenus}
-                className={cn(
-                  "rounded-lg px-3 py-2 text-sm font-medium transition focus-esa",
-                  active
-                    ? "bg-esa-red-soft text-esa-red"
-                    : "text-esa-navy/80 hover:bg-esa-soft hover:text-esa-navy",
-                )}
+                className={navLinkClass(active)}
+                aria-current={active ? "page" : undefined}
               >
                 {item.label}
               </Link>
@@ -166,17 +262,20 @@ export function Navbar() {
           })}
         </nav>
 
-        <div className="flex items-center gap-2 sm:gap-3">
+        {/* Actions */}
+        <div className="flex shrink-0 items-center justify-end gap-2 sm:gap-2.5">
           <a
             href={SITE.phoneHref}
-            className="hidden items-center gap-1.5 whitespace-nowrap text-sm font-medium text-esa-navy transition hover:text-esa-red focus-esa xl:inline-flex"
+            className="hidden items-center gap-1.5 whitespace-nowrap text-sm font-medium text-esa-navy transition hover:text-esa-red focus-esa lg:inline-flex"
           >
-            <Phone className="h-4 w-4 shrink-0 text-esa-red" aria-hidden />
-            {SITE.phoneDisplay}
+            <span className="inline-flex h-9 w-9 items-center justify-center rounded-full bg-esa-red-soft">
+              <Phone className="h-4 w-4 text-esa-red" aria-hidden />
+            </span>
+            <span className="hidden xl:inline">{SITE.phoneDisplay}</span>
           </a>
           <Link
             href="/book-demo"
-            className="hidden rounded-lg bg-esa-red px-4 py-2.5 text-sm font-semibold text-white transition hover:bg-esa-red-dark focus-esa sm:inline-flex"
+            className="esa-btn hidden rounded-lg bg-esa-red px-4 py-2.5 text-sm font-semibold text-white shadow-esa-soft transition hover:bg-esa-red-dark focus-esa lg:inline-flex lg:px-5 lg:py-3"
             onClick={closeMenus}
           >
             Book a Demo
@@ -194,9 +293,13 @@ export function Navbar() {
         </div>
       </div>
 
+      {/* Mobile menu */}
       <div
         id={mobileNavId}
-        className={cn("border-t border-esa-border bg-white lg:hidden", open ? "block" : "hidden")}
+        className={cn(
+          "border-t border-esa-border bg-white lg:hidden",
+          open ? "block" : "hidden",
+        )}
       >
         <nav
           aria-label="Mobile"
@@ -205,36 +308,28 @@ export function Navbar() {
           {NAV_LINKS.map((item) => {
             if ("children" in item && item.children) {
               return (
-                <div key={item.label} className="rounded-xl border border-esa-border">
+                <div key={item.label} className="overflow-hidden rounded-xl border border-esa-border">
                   <button
                     type="button"
-                    className="flex w-full items-center justify-between px-3 py-3 text-left text-base font-medium text-esa-navy focus-esa"
+                    className={cn(
+                      "flex w-full items-center justify-between px-3 py-3 text-left text-base font-medium focus-esa",
+                      courseActive || mobileCoursesOpen
+                        ? "bg-esa-red-soft text-esa-red"
+                        : "text-esa-navy",
+                    )}
                     aria-expanded={mobileCoursesOpen}
+                    aria-current={courseActive ? "page" : undefined}
                     onClick={() => setMobileCoursesOpen((v) => !v)}
                   >
                     Courses
                     <ChevronDown
                       className={cn(
-                        "h-5 w-5 transition",
+                        "h-5 w-5 transition duration-200",
                         mobileCoursesOpen && "rotate-180",
                       )}
                     />
                   </button>
-                  {mobileCoursesOpen ? (
-                    <div className="space-y-1 border-t border-esa-border p-2">
-                      {COURSE_LINKS.map((child) => (
-                        <button
-                          key={child.href}
-                          type="button"
-                          className="flex w-full items-center gap-2.5 rounded-lg px-3 py-2.5 text-left text-base font-medium text-esa-navy hover:bg-esa-soft focus-esa"
-                          onClick={() => goTo(child.href)}
-                        >
-                          <FlagAccent country={child.flag} size="md" />
-                          {child.label}
-                        </button>
-                      ))}
-                    </div>
-                  ) : null}
+                  {mobileCoursesOpen ? renderMobileCourseMenu() : null}
                 </div>
               );
             }
@@ -245,10 +340,11 @@ export function Navbar() {
                 type="button"
                 className={cn(
                   "rounded-lg px-3 py-3 text-left text-base font-medium focus-esa",
-                  pathname === item.href
-                    ? "bg-esa-red-soft text-esa-red"
+                  isNavLinkActive(pathname, item.href)
+                    ? "bg-esa-red-soft text-esa-red ring-1 ring-esa-red/15"
                     : "text-esa-navy",
                 )}
+                aria-current={isNavLinkActive(pathname, item.href) ? "page" : undefined}
                 onClick={() => goTo(item.href)}
               >
                 {item.label}
@@ -258,7 +354,7 @@ export function Navbar() {
           <Link
             href="/book-demo"
             onClick={closeMenus}
-            className="mt-2 rounded-lg bg-esa-red px-3 py-3 text-center text-base font-semibold text-white focus-esa"
+            className="mt-2 rounded-lg bg-esa-red px-3 py-3 text-center text-base font-semibold text-white shadow-esa-soft focus-esa"
           >
             Book a Demo
           </Link>

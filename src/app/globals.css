@@ -165,6 +165,69 @@
     text-transform: uppercase;
   }
 
+  .bg-hero-overlay {
+    background: linear-gradient(
+      180deg,
+      rgb(21 34 56 / 0.5) 0%,
+      rgb(21 34 56 / 0.78) 50%,
+      rgb(21 34 56 / 0.9) 100%
+    );
+  }
+
+  .bg-mesh {
+    background:
+      radial-gradient(ellipse 80% 60% at 10% 0%, color-mix(in oklab, var(--esa-gold) 10%, transparent), transparent 55%),
+      var(--esa-bg);
+  }
+
+  .text-body {
+    font-size: 1rem;
+    line-height: 1.65;
+    color: var(--esa-muted);
+  }
+
+  @media (min-width: 640px) {
+    .text-body {
+      font-size: 1.0625rem;
+    }
+  }
+
+  .text-body-sm {
+    font-size: 0.875rem;
+    line-height: 1.65;
+    color: var(--esa-muted);
+  }
+
+  @media (min-width: 640px) {
+    .text-body-sm {
+      font-size: 0.9375rem;
+    }
+  }
+
+  .text-subheading {
+    font-size: 1.25rem;
+    font-weight: 600;
+    line-height: 1.3;
+    color: var(--esa-navy);
+  }
+
+  .text-card-title {
+    font-size: 1.125rem;
+    font-weight: 600;
+    line-height: 1.35;
+    color: var(--esa-navy);
+  }
+
+  .text-course-meta {
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: var(--esa-muted);
+  }
+
+  .hero-text-shadow {
+    text-shadow: 0 1px 14px rgb(0 0 0 / 35%);
+  }
+
   .focus-esa {
     outline: none;
   }

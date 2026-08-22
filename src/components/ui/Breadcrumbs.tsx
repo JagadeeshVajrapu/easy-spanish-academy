@@ -25,7 +25,7 @@ export function Breadcrumbs({ items, className, light = false }: BreadcrumbsProp
                 <ChevronRight
                   className={cn(
                     "h-3.5 w-3.5 shrink-0",
-                    light ? "text-white/45" : "text-esa-muted/70",
+                    light ? "text-white/70" : "text-esa-muted/70",
                   )}
                   aria-hidden
                 />
@@ -36,7 +36,7 @@ export function Breadcrumbs({ items, className, light = false }: BreadcrumbsProp
                   className={cn(
                     "font-medium transition-colors focus-esa",
                     light
-                      ? "text-white/70 hover:text-white"
+                      ? "text-white/85 hover:text-white"
                       : "text-esa-muted hover:text-esa-navy",
                   )}
                 >

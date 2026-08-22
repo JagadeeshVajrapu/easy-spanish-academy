@@ -66,7 +66,7 @@ export default function CoursesIndexPage() {
               View all Spanish →
             </Link>
           </div>
-          <div className="grid gap-5 md:grid-cols-2 xl:grid-cols-3">
+          <div className="grid auto-rows-fr gap-4 sm:grid-cols-2 xl:grid-cols-3">
             {SPANISH_COURSES.map((course) => (
               <CourseProgramCard key={course.id} course={course} />
             ))}
@@ -90,7 +90,7 @@ export default function CoursesIndexPage() {
               View German →
             </Link>
           </div>
-          <div className="grid gap-5 md:grid-cols-2 xl:grid-cols-3">
+          <div className="grid auto-rows-fr gap-4 sm:grid-cols-2 lg:max-w-2xl">
             {GERMAN_COURSES.map((course) => (
               <CourseProgramCard key={course.id} course={course} />
             ))}

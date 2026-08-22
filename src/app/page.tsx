@@ -80,7 +80,7 @@ const homeFaq = [
   {
     question: "How do I book a demo or get in touch?",
     answer:
-      "Use Book a Demo on this site, call +91 99716 27900, email easyspanishacademy01@gmail.com, or message us on WhatsApp.",
+      "Use Book a Demo on this site, call +91 9971-627-900, email easyspanishacademy01@gmail.com, or message us on WhatsApp. Visit us at C1, Madhuban Chowk, Pitampura, New Delhi - 110034.",
   },
   {
     question: "Is there a program for school students?",
@@ -96,26 +96,26 @@ export default function HomePage() {
       <section className="esa-surface-warm relative overflow-hidden">
         <div className="container-esa grid items-center gap-10 py-12 lg:grid-cols-2 lg:gap-14 lg:py-16">
           <div className="min-w-0">
-            <p className="inline-flex items-center gap-2 rounded-full border border-esa-border bg-white/90 px-3 py-1.5 text-xs font-medium text-esa-muted shadow-esa-soft backdrop-blur-sm">
+            <p className="inline-flex items-center gap-2 rounded-full border border-esa-border bg-white/90 px-3 py-1.5 text-xs font-medium text-esa-muted shadow-esa-soft">
               <span className="h-1.5 w-1.5 rounded-full bg-esa-red" aria-hidden />
-              Spanish & German Language Training
+              Online Spanish & German Language Training
             </p>
             <p className="mt-5 text-base font-semibold text-esa-navy sm:text-lg">
               Easy Spanish Academy
             </p>
-            <h1 className="text-hero mt-2 max-w-[20ch] text-esa-navy">
+            <h1 className="text-hero mt-2 max-w-2xl text-esa-navy">
               Learn Today. Speak Tomorrow.{" "}
               <span className="underline-accent text-esa-red">Connect Forever.</span>
             </h1>
             <p className="mt-4 max-w-xl text-base leading-relaxed text-esa-muted sm:text-[1.05rem]">
-              Structured Spanish and German programs from A1 to B2—with guided
-              practice that builds real speaking confidence.
+              Online Spanish and German programs from A1 to B2—including certificate
+              courses and school-oriented learning with guided speaking practice.
             </p>
-            <div className="mt-5 flex flex-wrap gap-2.5">
-              <span className="esa-lift-soft inline-flex items-center gap-2 rounded-lg border border-esa-border bg-white px-3.5 py-2 text-sm font-semibold text-esa-navy">
+            <div className="mt-5 flex flex-wrap gap-2.5" aria-label="Languages offered">
+              <span className="inline-flex cursor-default select-none items-center gap-2 rounded-lg border border-esa-border bg-white px-3.5 py-2 text-sm font-semibold text-esa-navy">
                 <FlagAccent country="ES" size="md" /> Spanish
               </span>
-              <span className="esa-lift-soft inline-flex items-center gap-2 rounded-lg border border-esa-border bg-white px-3.5 py-2 text-sm font-semibold text-esa-navy">
+              <span className="inline-flex cursor-default select-none items-center gap-2 rounded-lg border border-esa-border bg-white px-3.5 py-2 text-sm font-semibold text-esa-navy">
                 <FlagAccent country="DE" size="md" /> German
               </span>
             </div>
@@ -154,8 +154,6 @@ export default function HomePage() {
           </div>
         </div>
       </section>
-
-      <StatsStrip />
 
       {/* Why ESA */}
       <section className="section-pad bg-white">
@@ -198,6 +196,8 @@ export default function HomePage() {
           </div>
         </div>
       </section>
+
+      <StatsStrip />
 
       {/* Challenges */}
       <section className="section-pad bg-esa-bg">
@@ -279,8 +279,8 @@ export default function HomePage() {
             <p className="text-label text-esa-red">Courses</p>
             <h2 className="text-section mt-2">Choose Your Learning Path</h2>
             <p className="mt-3 text-esa-muted">
-              Spanish and German programs for beginners, intensive learners, and
-              school students.
+              Certificate & Diploma pathways from A1 to B2, plus school-oriented
+              courses for young learners—delivered online across India.
             </p>
           </div>
 
@@ -289,7 +289,7 @@ export default function HomePage() {
               flag="ES"
               label="Learn Spanish"
               title="Spanish Programs"
-              text="Certificate, crash course, and school programs from A1 to B2."
+              text="Certificate & Diploma from A1 to B2, plus crash and school-oriented programs."
               href="/courses/spanish"
               cta="Explore Spanish"
             />

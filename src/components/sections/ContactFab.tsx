@@ -13,7 +13,7 @@ function WhatsAppIcon({ className }: { className?: string }) {
 }
 
 const fabBase =
-  "esa-fab inline-flex h-10 w-10 items-center justify-center rounded-full text-white shadow-esa-card transition duration-200 hover:-translate-y-0.5 hover:shadow-esa-lift focus-esa sm:h-11 sm:w-11";
+  "esa-fab inline-flex h-[3.25rem] w-[3.25rem] items-center justify-center rounded-full text-white shadow-esa-card transition duration-200 hover:-translate-y-0.5 hover:shadow-esa-lift focus-esa sm:h-14 sm:w-14";
 
 /** Stacked Call + WhatsApp controls (Call above WhatsApp). */
 export function ContactFab() {
@@ -30,7 +30,7 @@ export function ContactFab() {
           "bg-gradient-to-br from-esa-red to-esa-red-dark hover:from-esa-red-dark hover:to-esa-red",
         )}
       >
-        <Phone className="h-[1.125rem] w-[1.125rem] sm:h-5 sm:w-5" strokeWidth={2.25} aria-hidden />
+        <Phone className="h-[1.45rem] w-[1.45rem] sm:h-[1.65rem] sm:w-[1.65rem]" strokeWidth={2.25} aria-hidden />
       </a>
 
       <a
@@ -43,7 +43,7 @@ export function ContactFab() {
           "bg-gradient-to-br from-[#25D366] to-[#1da851] hover:from-[#1ebe57] hover:to-[#25D366]",
         )}
       >
-        <WhatsAppIcon className="h-[1.125rem] w-[1.125rem] sm:h-5 sm:w-5" />
+        <WhatsAppIcon className="h-[1.45rem] w-[1.45rem] sm:h-[1.65rem] sm:w-[1.65rem]" />
       </a>
     </div>
   );

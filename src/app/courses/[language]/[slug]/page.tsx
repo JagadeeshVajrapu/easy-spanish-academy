@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import Link from "next/link";
 import { notFound } from "next/navigation";
 import { CourseDetailView } from "@/components/course/CourseDetailView";
 import { getCourseByPath } from "@/lib/course-data";
@@ -39,31 +38,14 @@ export default async function CourseDetailPage({ params }: PageProps) {
   if (!course) notFound();
 
   return (
-    <>
-      <nav
-        aria-label="Breadcrumb"
-        className="border-b border-esa-border bg-white"
-      >
-        <div className="container-esa flex flex-wrap items-center gap-1.5 py-3 text-sm text-esa-muted">
-          <Link href="/" className="hover:text-esa-red focus-esa">
-            Home
-          </Link>
-          <span aria-hidden>/</span>
-          <Link href="/courses" className="hover:text-esa-red focus-esa">
-            Courses
-          </Link>
-          <span aria-hidden>/</span>
-          <Link
-            href={`/courses/${language}`}
-            className="hover:text-esa-red focus-esa"
-          >
-            {course.language}
-          </Link>
-          <span aria-hidden>/</span>
-          <span className="font-medium text-esa-navy">{course.shortTitle}</span>
-        </div>
-      </nav>
-      <CourseDetailView course={course} />
-    </>
+    <CourseDetailView
+      course={course}
+      breadcrumbs={[
+        { label: "Home", href: "/" },
+        { label: "Courses", href: "/courses" },
+        { label: course.language, href: `/courses/${language}` },
+        { label: course.shortTitle },
+      ]}
+    />
   );
 }

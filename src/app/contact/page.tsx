@@ -1,14 +1,14 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { Mail, MessageSquare, Phone } from "lucide-react";
+import { Mail, MapPin, MessageSquare, Phone } from "lucide-react";
 import { ContactForm } from "@/components/sections/ContactForm";
-import { SITE } from "@/lib/constants";
+import { ACADEMY_LOCATIONS, SITE } from "@/lib/constants";
 import { whatsappUrl } from "@/lib/utils";
 
 export const metadata: Metadata = {
   title: "Contact Us",
   description:
-    "Contact Easy Spanish Academy by phone, email, or WhatsApp. Send an enquiry about Spanish and German courses.",
+    "Contact Easy Spanish Academy in Pitampura, Delhi. Call, WhatsApp, email, or send an enquiry about Spanish and German courses.",
   openGraph: {
     title: `Contact Us | ${SITE.name}`,
     description:
@@ -105,6 +105,30 @@ export default function ContactPage() {
               <div className="my-5 border-t border-esa-border" />
 
               <div className="flex items-start gap-3">
+                <span className="inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-esa-navy text-white">
+                  <MapPin className="h-4 w-4" aria-hidden />
+                </span>
+                <div className="min-w-0 flex-1">
+                  <h3 className="text-base font-bold text-esa-navy">Address</h3>
+                  <address className="mt-1 not-italic text-sm leading-relaxed text-esa-navy sm:text-base">
+                    {SITE.addressLine1}
+                    <br />
+                    {SITE.addressLine2}
+                  </address>
+                  <a
+                    href={SITE.addressMapsHref}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="mt-2 inline-block text-sm font-semibold text-esa-red transition hover:text-esa-red-dark focus-esa"
+                  >
+                    View on Google Maps
+                  </a>
+                </div>
+              </div>
+
+              <div className="my-5 border-t border-esa-border" />
+
+              <div className="flex items-start gap-3">
                 <span className="inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-esa-red-soft text-esa-red">
                   <Mail className="h-4 w-4" aria-hidden />
                 </span>
@@ -123,6 +147,52 @@ export default function ContactPage() {
               </div>
             </div>
           </aside>
+        </div>
+      </section>
+
+      {/* Locations */}
+      <section className="border-t border-esa-border bg-white">
+        <div className="container-esa section-pad">
+          <div className="max-w-2xl">
+            <p className="text-label text-esa-red">Locations we serve</p>
+            <h2 className="text-section mt-2 text-esa-navy">
+              Learn Online Across India
+            </h2>
+            <p className="mt-3 text-esa-muted">
+              Our academy is based in Pitampura, Delhi. We also offer online Spanish
+              and German programs for learners across these regions.
+            </p>
+          </div>
+
+          <div className="mt-8 rounded-xl border border-esa-border bg-esa-bg p-5 sm:p-6">
+            <p className="text-label text-esa-red">Office address</p>
+            <address className="mt-2 not-italic text-base font-semibold leading-relaxed text-esa-navy">
+              {SITE.addressLine1}
+              <br />
+              {SITE.addressLine2}
+            </address>
+            <a
+              href={SITE.addressMapsHref}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="mt-3 inline-flex items-center gap-1.5 text-sm font-semibold text-esa-red transition hover:text-esa-red-dark focus-esa"
+            >
+              <MapPin className="h-4 w-4" aria-hidden />
+              Open in Google Maps
+            </a>
+          </div>
+
+          <ul className="mt-6 grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-4">
+            {ACADEMY_LOCATIONS.map((location) => (
+              <li
+                key={location}
+                className="esa-lift-soft flex items-center gap-2 rounded-xl border border-esa-border bg-esa-bg px-3 py-3 text-sm font-medium text-esa-navy sm:px-4"
+              >
+                <MapPin className="h-4 w-4 shrink-0 text-esa-red" aria-hidden />
+                {location}
+              </li>
+            ))}
+          </ul>
         </div>
       </section>
 

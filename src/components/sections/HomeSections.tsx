@@ -381,7 +381,7 @@ export function HomeSpeakingSection() {
             <h2 className="text-section mt-3 text-white">
               Don&apos;t Just Learn the Language. Start Speaking It.
             </h2>
-            <p className="mt-5 max-w-xl text-base leading-relaxed text-white/75 sm:text-lg">
+            <p className="mt-5 max-w-xl text-base leading-relaxed text-white/80 sm:text-lg">
               Vocabulary and grammar matter—but confidence grows when you speak.
               Our courses emphasize practical communication so you can understand,
               respond, and connect in Spanish or German with greater ease.
