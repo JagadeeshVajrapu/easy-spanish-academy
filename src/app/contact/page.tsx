@@ -42,25 +42,26 @@ export default function ContactPage() {
 
       {/* CONTACT INFO + FORM */}
       <section className="section-pad bg-esa-bg">
-        <div className="container-esa grid gap-8 lg:grid-cols-[1.15fr_0.85fr] lg:items-start lg:gap-10">
-          {/* Enquiry form — left on desktop (reference layout) */}
-          <div className="order-2 lg:order-1">
-            <ContactForm />
+        <div className="container-esa grid gap-8 lg:grid-cols-2 lg:items-stretch lg:gap-10">
+          {/* Enquiry form — left on desktop */}
+          <div className="order-2 flex h-full lg:order-1">
+            <ContactForm className="h-full" />
           </div>
 
-          {/* Primary contact area — Call / WhatsApp / Email once */}
-          <aside className="order-1 space-y-4 lg:order-2">
-            <div>
-              <p className="text-label text-esa-red">Contact information</p>
-              <h2 className="mt-2 text-xl font-bold text-esa-navy sm:text-2xl">
-                Reach Easy Spanish Academy
-              </h2>
-              <p className="mt-2 text-sm leading-relaxed text-esa-muted">
-                Call, WhatsApp, or email us—whichever is easiest for your enquiry.
-              </p>
-            </div>
+          {/* Primary contact area */}
+          <aside className="order-1 flex h-full lg:order-2">
+            <div className="flex h-full w-full flex-col rounded-xl border border-esa-border bg-white p-6 shadow-esa-soft sm:p-8">
+              <div className="mb-6 border-b border-esa-border pb-6">
+                <p className="text-label text-esa-red">Contact information</p>
+                <h2 className="mt-2 text-xl font-bold text-esa-navy sm:text-2xl">
+                  Reach Easy Spanish Academy
+                </h2>
+                <p className="mt-2 text-sm leading-relaxed text-esa-muted sm:text-base">
+                  Call, WhatsApp, or email us—whichever is easiest for your enquiry.
+                </p>
+              </div>
 
-            <div className="rounded-xl border border-esa-border bg-white p-5 shadow-esa-soft sm:p-6">
+              <div className="flex flex-1 flex-col">
               <div className="flex items-start gap-3">
                 <span className="inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-esa-navy text-white">
                   <Phone className="h-4 w-4" aria-hidden />
@@ -145,6 +146,7 @@ export default function ContactPage() {
                   </p>
                 </div>
               </div>
+              </div>
             </div>
           </aside>
         </div>
@@ -198,30 +200,30 @@ export default function ContactPage() {
 
       {/* BOOK A DEMO + TALK TO CONSULTANT */}
       <section className="border-t border-esa-border bg-white">
-        <div className="container-esa grid gap-4 py-10 sm:py-12 lg:grid-cols-2 lg:gap-6">
-          <div className="rounded-xl border border-esa-border bg-esa-bg p-5 sm:p-6">
+        <div className="container-esa grid auto-rows-fr gap-5 py-10 sm:py-12 lg:grid-cols-2 lg:gap-6">
+          <div className="flex h-full min-h-[240px] flex-col rounded-xl border border-esa-border bg-esa-bg p-6 shadow-esa-soft sm:min-h-[260px] sm:p-8">
             <p className="text-label text-esa-red">Book a Demo</p>
-            <h2 className="mt-2 text-xl font-bold text-esa-navy">
+            <h2 className="mt-2 text-xl font-bold text-esa-navy sm:text-2xl">
               Prefer a demo class first?
             </h2>
-            <p className="mt-2 text-sm text-esa-muted">
+            <p className="mt-3 flex-1 text-sm leading-relaxed text-esa-muted sm:text-base">
               Share your preferred language and course—we will help you take the
               next step with a demo enquiry.
             </p>
             <Link
               href="/book-demo"
-              className="mt-5 inline-flex rounded-lg bg-esa-red px-5 py-3 text-sm font-semibold text-white transition hover:bg-esa-red-dark focus-esa"
+              className="mt-6 inline-flex w-full items-center justify-center rounded-lg bg-esa-red px-5 py-3 text-sm font-semibold text-white transition hover:bg-esa-red-dark focus-esa sm:w-auto"
             >
               Book a Demo
             </Link>
           </div>
 
-          <div className="rounded-xl border border-esa-border bg-esa-navy p-5 text-white sm:p-6">
+          <div className="flex h-full min-h-[240px] flex-col rounded-xl border border-esa-border bg-esa-navy p-6 text-white shadow-esa-soft sm:min-h-[260px] sm:p-8">
             <p className="text-label text-esa-gold">Consultant</p>
-            <h2 className="mt-2 text-xl font-bold text-white">
+            <h2 className="mt-2 text-xl font-bold text-white sm:text-2xl">
               Talk to a Consultant
             </h2>
-            <p className="mt-2 text-sm text-white/75">
+            <p className="mt-3 flex-1 text-sm leading-relaxed text-white/75 sm:text-base">
               Need help choosing Spanish or German? Use the enquiry form above, or
               call{" "}
               <a href={SITE.phoneHref} className="font-semibold text-esa-gold focus-esa">
@@ -231,7 +233,7 @@ export default function ContactPage() {
             </p>
             <a
               href="#contact-name"
-              className="mt-5 inline-flex items-center gap-2 rounded-lg border border-white/25 bg-white/10 px-5 py-3 text-sm font-semibold text-white transition hover:bg-white/15 focus-esa"
+              className="mt-6 inline-flex w-full items-center justify-center gap-2 rounded-lg border border-white/25 bg-white/10 px-5 py-3 text-sm font-semibold text-white transition hover:bg-white/15 focus-esa sm:w-auto"
             >
               <MessageSquare className="h-4 w-4" aria-hidden />
               Go to enquiry form

@@ -58,7 +58,7 @@ function openMailtoFallback(values: FormState) {
   window.location.href = `mailto:${SITE.email}?subject=${subject}&body=${body}`;
 }
 
-function ContactFormFields() {
+function ContactFormFields({ className }: { className?: string }) {
   const searchParams = useSearchParams();
   const interest = searchParams.get("interest");
 
@@ -143,7 +143,12 @@ function ContactFormFields() {
 
   if (submitted) {
     return (
-      <div className="rounded-xl border border-esa-border bg-white p-6 text-center shadow-esa-soft sm:p-8">
+      <div
+        className={cn(
+          "flex h-full flex-col justify-center rounded-xl border border-esa-border bg-white p-6 text-center shadow-esa-soft sm:p-8",
+          className,
+        )}
+      >
         <CheckCircle2 className="mx-auto h-11 w-11 text-esa-red" aria-hidden />
         <h3 className="mt-4 text-xl font-bold text-esa-navy">Enquiry sent</h3>
         <p className="mt-2 text-sm text-esa-muted">
@@ -181,7 +186,10 @@ function ContactFormFields() {
   return (
     <form
       onSubmit={handleSubmit}
-      className="rounded-xl border border-esa-border bg-white p-5 shadow-esa-soft sm:p-7"
+      className={cn(
+        "flex h-full flex-col rounded-xl border border-esa-border bg-white p-6 shadow-esa-soft sm:p-8",
+        className,
+      )}
       noValidate
     >
       <h2 className="text-xl font-bold text-esa-navy sm:text-2xl">
@@ -269,7 +277,7 @@ function ContactFormFields() {
         </div>
       </div>
 
-      <div className="mt-6 flex flex-col gap-2.5 sm:flex-row sm:flex-wrap">
+      <div className="mt-6 flex flex-col gap-2.5 sm:mt-auto sm:flex-row sm:flex-wrap sm:pt-4">
         <button
           type="submit"
           disabled={submitting}
@@ -291,16 +299,21 @@ function ContactFormFields() {
   );
 }
 
-export function ContactForm() {
+export function ContactForm({ className }: { className?: string }) {
   return (
     <Suspense
       fallback={
-        <div className="rounded-xl border border-esa-border bg-white p-8 text-sm text-esa-muted shadow-esa-soft">
+        <div
+          className={cn(
+            "rounded-xl border border-esa-border bg-white p-8 text-sm text-esa-muted shadow-esa-soft",
+            className,
+          )}
+        >
           Loading enquiry form…
         </div>
       }
     >
-      <ContactFormFields />
+      <ContactFormFields className={className} />
     </Suspense>
   );
 }
