@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { Mail, MapPin, MessageSquare, Phone } from "lucide-react";
+import { SocialLinks } from "@/components/layout/SocialLinks";
 import { ContactForm } from "@/components/sections/ContactForm";
 import { ACADEMY_LOCATIONS, SITE } from "@/lib/constants";
 import { whatsappUrl } from "@/lib/utils";
@@ -145,6 +146,16 @@ export default function ContactPage() {
                     Send course questions or enrolment details by email.
                   </p>
                 </div>
+              </div>
+
+              <div className="my-5 border-t border-esa-border" />
+
+              <div>
+                <h3 className="text-base font-bold text-esa-navy">Follow us</h3>
+                <p className="mt-1 text-sm text-esa-muted">
+                  YouTube, Instagram, and Facebook — opens in a new tab.
+                </p>
+                <SocialLinks tone="light" className="mt-3" />
               </div>
               </div>
             </div>

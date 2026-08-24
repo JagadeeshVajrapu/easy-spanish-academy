@@ -3,9 +3,11 @@ import Image from "next/image";
 import {
   ArrowRight,
   BookOpen,
+  CalendarDays,
   Check,
   MessageCircle,
   MessageSquare,
+  MonitorPlay,
   Phone,
   Mail,
   Route,
@@ -20,7 +22,7 @@ import { SITE } from "@/lib/constants";
 const highlights = [
   {
     title: "Spanish & German",
-    detail: "Two European languages under one structured academy.",
+    detail: "Two European languages under one structured online academy.",
     icon: "flags" as const,
   },
   {
@@ -29,13 +31,23 @@ const highlights = [
     icon: Route,
   },
   {
+    title: "Live Online Classes",
+    detail: "Interactive Zoom and Google Meet sessions with expert trainers.",
+    icon: MonitorPlay,
+  },
+  {
+    title: "Weekday & Weekend Batches",
+    detail: "Flexible timings for students and working professionals.",
+    icon: CalendarDays,
+  },
+  {
     title: "Speaking Focus",
     detail: "Practice that turns lessons into real conversation.",
     icon: MessageCircle,
   },
   {
-    title: "Guided Learning",
-    detail: "Support at every step—not learning alone.",
+    title: "Study Support",
+    detail: "Online PDFs, recorded classes, and books delivered to your doorstep.",
     icon: BookOpen,
   },
 ];
@@ -93,33 +105,30 @@ export default function HomePage() {
   return (
     <>
       {/* Hero */}
-      <section className="esa-surface-warm relative overflow-hidden">
-        <div className="container-esa grid items-center gap-10 py-12 lg:grid-cols-2 lg:gap-14 lg:py-16">
+      <section className="esa-surface-warm border-b border-esa-border/60">
+        <div className="container-esa grid items-center gap-10 py-14 sm:py-16 lg:grid-cols-2 lg:gap-14 lg:py-20">
           <div className="min-w-0">
             <p className="inline-flex items-center gap-2 rounded-full border border-esa-border bg-white/90 px-3 py-1.5 text-xs font-medium text-esa-muted shadow-esa-soft">
               <span className="h-1.5 w-1.5 rounded-full bg-esa-red" aria-hidden />
-              Online Spanish & German Language Training
+              {SITE.instituteTagline}
             </p>
-            <p className="mt-5 text-base font-semibold text-esa-navy sm:text-lg">
-              Easy Spanish Academy
-            </p>
-            <h1 className="text-hero mt-2 max-w-2xl text-esa-navy">
+            <h1 className="text-hero mt-5 max-w-2xl text-esa-navy">
               Learn Today. Speak Tomorrow.{" "}
-              <span className="underline-accent text-esa-red">Connect Forever.</span>
+              <span className="text-esa-red">Connect Forever.</span>
             </h1>
             <p className="mt-4 max-w-xl text-base leading-relaxed text-esa-muted sm:text-[1.05rem]">
-              Online Spanish and German programs from A1 to B2—including certificate
-              courses and school-oriented learning with guided speaking practice.
+              Online Spanish and German programs from A1 to B2—with live classes,
+              weekday and weekend batches, and guided speaking practice.
             </p>
-            <div className="mt-5 flex flex-wrap gap-2.5" aria-label="Languages offered">
-              <span className="inline-flex cursor-default select-none items-center gap-2 rounded-lg border border-esa-border bg-white px-3.5 py-2 text-sm font-semibold text-esa-navy">
+            <div className="mt-6 flex flex-wrap gap-2.5" aria-label="Languages offered">
+              <span className="inline-flex cursor-default select-none items-center gap-2 rounded-lg border border-esa-border bg-white px-3.5 py-2 text-sm font-semibold text-esa-navy shadow-esa-soft">
                 <FlagAccent country="ES" size="md" /> Spanish
               </span>
-              <span className="inline-flex cursor-default select-none items-center gap-2 rounded-lg border border-esa-border bg-white px-3.5 py-2 text-sm font-semibold text-esa-navy">
+              <span className="inline-flex cursor-default select-none items-center gap-2 rounded-lg border border-esa-border bg-white px-3.5 py-2 text-sm font-semibold text-esa-navy shadow-esa-soft">
                 <FlagAccent country="DE" size="md" /> German
               </span>
             </div>
-            <div className="mt-7 flex flex-col gap-2.5 sm:flex-row">
+            <div className="mt-8 flex flex-col gap-2.5 sm:flex-row">
               <Link
                 href="/book-demo"
                 className="esa-btn inline-flex items-center justify-center rounded-lg bg-esa-red px-5 py-3 text-sm font-semibold text-white shadow-esa-soft hover:bg-esa-red-dark focus-esa"
@@ -138,7 +147,7 @@ export default function HomePage() {
 
           <div className="group relative mx-auto w-full max-w-lg lg:max-w-none">
             <div
-              className="absolute -inset-3 rounded-[1.35rem] bg-gradient-to-br from-esa-gold/25 via-transparent to-esa-red/15 blur-sm"
+              className="absolute -inset-3 rounded-[1.35rem] bg-gradient-to-br from-esa-gold/20 via-transparent to-esa-red/10 blur-sm"
               aria-hidden
             />
             <div className="relative aspect-[4/3] overflow-hidden rounded-2xl border border-esa-border shadow-esa-card">
@@ -169,31 +178,41 @@ export default function HomePage() {
             </p>
           </div>
 
-          <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+          <div className="mt-10 grid gap-4 sm:grid-cols-2 xl:grid-cols-3">
             {highlights.map((item) => (
               <article
                 key={item.title}
-                className="esa-lift esa-panel flex h-full flex-col rounded-xl border border-esa-border p-5"
+                className="esa-lift esa-panel flex h-full flex-col rounded-xl border border-esa-border p-5 sm:p-6"
               >
-                <div className="mb-3">
+                <div className="mb-4">
                   {item.icon === "flags" ? (
-                    <span className="inline-flex gap-1.5">
-                      <FlagAccent country="ES" size="md" />
-                      <FlagAccent country="DE" size="md" />
+                    <span className="inline-flex items-center gap-2">
+                      <FlagAccent country="ES" size="lg" />
+                      <FlagAccent country="DE" size="lg" />
                     </span>
                   ) : (
-                    <span className="inline-flex h-9 w-9 items-center justify-center rounded-lg bg-esa-red-soft text-esa-red">
-                      <item.icon className="h-4 w-4" aria-hidden />
+                    <span className="inline-flex h-10 w-10 items-center justify-center rounded-lg bg-esa-red-soft text-esa-red">
+                      <item.icon className="h-5 w-5" aria-hidden />
                     </span>
                   )}
                 </div>
-                <h3 className="text-base font-bold text-esa-navy">{item.title}</h3>
-                <p className="mt-1.5 text-sm leading-relaxed text-esa-muted">
+                <h3 className="text-base font-bold text-esa-navy sm:text-lg">{item.title}</h3>
+                <p className="mt-2 flex-1 text-sm leading-relaxed text-esa-muted">
                   {item.detail}
                 </p>
               </article>
             ))}
           </div>
+
+          <p className="mt-8 text-center">
+            <Link
+              href="/why-choose-us"
+              className="inline-flex items-center gap-2 text-sm font-semibold text-esa-red transition hover:text-esa-red-dark focus-esa"
+            >
+              See all reasons to choose us
+              <ArrowRight className="h-4 w-4" aria-hidden />
+            </Link>
+          </p>
         </div>
       </section>
 
@@ -201,7 +220,7 @@ export default function HomePage() {
 
       {/* Challenges */}
       <section className="section-pad bg-esa-bg">
-        <div className="container-esa grid items-center gap-10 lg:grid-cols-2 lg:gap-14">
+        <div className="container-esa grid items-start gap-10 lg:grid-cols-2 lg:gap-14">
           <div>
             <p className="text-label text-esa-red">Sound familiar?</p>
             <h2 className="text-section mt-2">
@@ -224,7 +243,7 @@ export default function HomePage() {
             {struggles.map((item) => (
               <li
                 key={item.title}
-                className="esa-lift-soft flex items-start gap-3 rounded-xl border border-esa-border bg-white px-4 py-4"
+                className="esa-lift-soft flex items-start gap-3 rounded-xl border border-esa-border bg-white px-4 py-4 sm:px-5"
               >
                 <span className="inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-esa-red-soft text-esa-red">
                   <item.icon className="h-5 w-5" aria-hidden />
@@ -251,28 +270,24 @@ export default function HomePage() {
             </h2>
           </div>
 
-          <ol className="relative mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-5 lg:gap-3">
-            <div
-              aria-hidden
-              className="pointer-events-none absolute left-[8%] right-[8%] top-6 hidden h-px bg-gradient-to-r from-transparent via-esa-border to-transparent lg:block"
-            />
+          <ol className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-5">
             {journey.map((item) => (
               <li
                 key={item.step}
-                className="esa-lift relative flex h-full flex-col items-center rounded-xl border border-esa-border bg-esa-bg px-3 py-5 text-center"
+                className="esa-lift flex h-full flex-col items-center rounded-xl border border-esa-border bg-esa-bg px-4 py-5 text-center"
               >
-                <span className="relative z-10 inline-flex h-11 w-11 items-center justify-center rounded-full bg-esa-navy text-sm font-bold text-white shadow-esa-soft">
+                <span className="inline-flex h-11 w-11 items-center justify-center rounded-full bg-esa-navy text-sm font-bold text-white shadow-esa-soft">
                   {item.step}
                 </span>
                 <h3 className="mt-3 text-base font-bold text-esa-navy">{item.title}</h3>
-                <p className="mt-1 text-sm text-esa-muted">{item.text}</p>
+                <p className="mt-1.5 text-sm leading-relaxed text-esa-muted">{item.text}</p>
               </li>
             ))}
           </ol>
         </div>
       </section>
 
-      {/* Courses & paths */}
+      {/* Courses */}
       <section id="paths" className="section-pad scroll-mt-24 bg-esa-bg">
         <div className="container-esa">
           <div className="max-w-2xl">
@@ -314,7 +329,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Testimonials marquee */}
+      {/* Testimonials */}
       <section className="section-pad overflow-hidden bg-white pb-8 sm:pb-10">
         <div className="container-esa">
           <div className="mx-auto max-w-2xl text-center">
@@ -332,8 +347,8 @@ export default function HomePage() {
       {/* Book demo */}
       <section className="section-pad bg-esa-bg">
         <div className="container-esa">
-          <div className="esa-lift overflow-hidden rounded-2xl border border-esa-border bg-white shadow-esa-soft lg:grid lg:grid-cols-2">
-            <div className="relative min-h-[220px] lg:min-h-full">
+          <div className="overflow-hidden rounded-2xl border border-esa-border bg-white shadow-esa-soft lg:grid lg:grid-cols-2">
+            <div className="relative min-h-[240px] lg:min-h-[320px]">
               <Image
                 src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=1400&q=80"
                 alt="Learners in a guided language session"
@@ -341,19 +356,19 @@ export default function HomePage() {
                 className="object-cover object-center"
                 sizes="(max-width: 1024px) 100vw, 50vw"
               />
-              <div className="absolute inset-0 bg-gradient-to-r from-esa-navy/80 to-esa-navy/40 lg:bg-gradient-to-t lg:from-esa-navy/90 lg:to-transparent" />
-              <div className="relative flex h-full flex-col justify-end p-6 sm:p-8">
+              <div className="absolute inset-0 bg-gradient-to-t from-esa-navy/90 via-esa-navy/50 to-esa-navy/20 lg:bg-gradient-to-r lg:from-esa-navy/85 lg:via-esa-navy/45 lg:to-transparent" />
+              <div className="relative flex h-full min-h-[240px] flex-col justify-end p-6 sm:p-8 lg:min-h-[320px]">
                 <p className="text-label text-esa-gold">Free guidance</p>
                 <h2 className="mt-2 text-2xl font-bold text-white sm:text-3xl">
                   Not Sure Where to Start?
                 </h2>
-                <p className="mt-2 max-w-md text-sm text-white/80">
+                <p className="mt-2 max-w-md text-sm leading-relaxed text-white/80 sm:text-base">
                   Book a demo—we help you pick the right language and level.
                 </p>
               </div>
             </div>
             <div className="flex flex-col justify-center p-6 sm:p-8 lg:p-10">
-              <ul className="space-y-2.5 text-sm text-esa-navy">
+              <ul className="space-y-3 text-sm text-esa-navy sm:text-base">
                 {[
                   "Share your language goal and experience",
                   "Get a recommended starting level",
@@ -398,7 +413,7 @@ export default function HomePage() {
       </section>
 
       {/* Final CTA */}
-      <section className="esa-surface-warm section-pad">
+      <section className="esa-surface-warm section-pad border-t border-esa-border/60">
         <div className="container-esa text-center">
           <h2 className="text-section mx-auto max-w-2xl">
             Start Your Language Journey Today
@@ -464,12 +479,12 @@ function PathCard({
       className="group esa-lift esa-panel flex h-full flex-col rounded-2xl border border-esa-border p-6 shadow-esa-soft focus-esa sm:p-8"
     >
       <span className="inline-flex items-center gap-2 text-sm font-semibold uppercase tracking-wide text-esa-red">
-        <FlagAccent country={flag} size="md" /> {label}
+        <FlagAccent country={flag} size="lg" /> {label}
       </span>
       <h3 className="mt-4 text-2xl font-bold text-esa-navy transition group-hover:text-esa-red">
         {title}
       </h3>
-      <p className="mt-3 flex-1 text-esa-muted">{text}</p>
+      <p className="mt-3 flex-1 leading-relaxed text-esa-muted">{text}</p>
       <span className="mt-6 inline-flex items-center gap-2 text-sm font-semibold text-esa-red">
         {cta}
         <ArrowRight className="h-4 w-4 transition duration-200 group-hover:translate-x-1" />

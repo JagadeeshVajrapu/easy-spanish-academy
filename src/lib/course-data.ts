@@ -207,7 +207,7 @@ export const SPANISH_COURSES: CourseProgram[] = [
     levelList: ["A1", "A2", "B1", "B2"],
     levelDetails: SPANISH_LEVELS,
     overview:
-      "A structured Spanish pathway designed to take you from foundational skills toward confident communication across CEFR levels.",
+      "A structured Spanish pathway designed to take you from foundational skills toward confident communication from A1 to B2.",
     introduction:
       "The Spanish Certificate & Diploma Course gives you a clear learning path from A1 to B2. Lessons balance grammar, vocabulary, and guided practice so you can understand more, speak more clearly, and build lasting communication skills.",
     whoFor:
@@ -242,7 +242,7 @@ export const SPANISH_COURSES: CourseProgram[] = [
     image:
       "https://images.unsplash.com/photo-1434030216411-0b793f4b4173?auto=format&fit=crop&w=1200&q=80",
     imageAlt: "Student studying Spanish notes and materials",
-    ctaLabel: "View Topics",
+    ctaLabel: "View Course",
     enquiryInterest: "Spanish Certificate & Diploma Course",
     faq: courseFaq("Spanish", "Spanish Certificate & Diploma Course"),
   },
@@ -316,7 +316,7 @@ export const SPANISH_COURSES: CourseProgram[] = [
     image:
       "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=1200&q=80",
     imageAlt: "Learners practicing conversation in a language class",
-    ctaLabel: "View Topics",
+    ctaLabel: "View Course",
     enquiryInterest: "Spanish Crash Course",
     faq: courseFaq("Spanish", "Spanish Crash Course"),
   },
@@ -390,7 +390,7 @@ export const SPANISH_COURSES: CourseProgram[] = [
     image:
       "https://images.unsplash.com/photo-1509062522246-3755977927d7?auto=format&fit=crop&w=1200&q=80",
     imageAlt: "Young learners in a friendly classroom setting",
-    ctaLabel: "View Topics",
+    ctaLabel: "View Course",
     enquiryInterest: "Spanish School-Oriented Course",
     faq: courseFaq("Spanish", "Spanish School-Oriented Course"),
   },
@@ -442,7 +442,7 @@ export const GERMAN_COURSES: CourseProgram[] = [
     image:
       "https://images.unsplash.com/photo-1467269204594-9661b134dd2b?auto=format&fit=crop&w=1200&q=80",
     imageAlt: "European streetscape reflecting German language learning",
-    ctaLabel: "View Topics",
+    ctaLabel: "View Course",
     enquiryInterest: "German Certificate & Diploma Course",
     faq: courseFaq("German", "German Certificate & Diploma Course"),
   },
@@ -459,10 +459,6 @@ export function getCourseByPath(
 export function courseHref(course: CourseProgram) {
   const lang = course.language === "German" ? "german" : "spanish";
   return `/courses/${lang}/${course.slug}`;
-}
-
-export function courseTopicsHref(course: CourseProgram) {
-  return `${courseHref(course)}#topics`;
 }
 
 export const ALL_COURSES = [...SPANISH_COURSES, ...GERMAN_COURSES];

@@ -15,11 +15,11 @@ import { SITE } from "@/lib/constants";
 export const metadata: Metadata = {
   title: "Blog",
   description:
-    "Language-learning guides from Easy Spanish Academy—Spanish starters, German A1 guidance, and tips on speaking practice.",
+    "Spanish vs German guides, career benefits of Spanish, German A1 for beginners, and tips for choosing online Spanish & German classes in India.",
   openGraph: {
     title: `Blog | ${SITE.name}`,
     description:
-      "Guides and topic outlines to support Spanish and German learners.",
+      "Practical guides for Spanish and German learners—career, travel, beginners, and online class tips.",
     url: `${SITE.url}/blog`,
   },
 };
@@ -77,6 +77,18 @@ export default function BlogPage() {
                   {featured.title}
                 </CardTitle>
                 <BodyText className="mt-4">{featured.excerpt}</BodyText>
+                {featured.keywords?.length ? (
+                  <div className="mt-4 flex flex-wrap gap-1.5">
+                    {featured.keywords.map((keyword) => (
+                      <span
+                        key={keyword}
+                        className="rounded-md bg-esa-soft px-2.5 py-1 text-xs font-medium text-esa-navy/80"
+                      >
+                        {keyword}
+                      </span>
+                    ))}
+                  </div>
+                ) : null}
                 <Label tone="muted" className="mt-6">
                   Key points
                 </Label>

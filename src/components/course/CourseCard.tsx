@@ -1,4 +1,4 @@
-import { ArrowRight, CheckCircle2, GraduationCap, Users } from "lucide-react";
+import { ArrowRight, GraduationCap, Users } from "lucide-react";
 import { Button } from "@/components/ui/Button";
 import { Card } from "@/components/ui/Card";
 import { CourseLevelProgress } from "@/components/course/CourseLevelProgress";
@@ -8,9 +8,8 @@ import {
   CardTitle,
   CourseMeta,
   Label,
-  Subheading,
 } from "@/components/ui/Typography";
-import { courseTopicsHref, type CourseProgram } from "@/lib/course-data";
+import { courseHref, type CourseProgram } from "@/lib/course-data";
 import { cn } from "@/lib/utils";
 
 type CourseCardProps = {
@@ -114,33 +113,6 @@ export function CourseCard({
 
         <LearningOutcomes outcomes={course.outcomes} />
 
-        <div>
-          <Subheading as="h3" className="text-xl">
-            Skills you will develop
-          </Subheading>
-          <div className="mt-5 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
-            {course.skills.map((skill) => (
-              <div
-                key={skill.title}
-                className="group rounded-2xl border border-esa-border bg-white p-4 shadow-esa-soft transition duration-300 hover:-translate-y-0.5 hover:border-esa-red/25 hover:shadow-esa-card"
-              >
-                <div className="mb-2 flex items-center gap-2">
-                  <CheckCircle2
-                    className="h-4 w-4 text-esa-red transition group-hover:scale-110"
-                    aria-hidden
-                  />
-                  <p className="font-display text-base font-semibold text-esa-navy">
-                    {skill.title}
-                  </p>
-                </div>
-                <p className="text-sm leading-relaxed text-esa-muted">
-                  {skill.description}
-                </p>
-              </div>
-            ))}
-          </div>
-        </div>
-
         <div className="rounded-2xl border border-esa-gold/40 bg-gradient-to-br from-esa-gold-soft/70 to-white px-5 py-4">
           <Label tone="muted">Certification information</Label>
           <BodyText className="mt-2 text-base text-esa-navy/80">
@@ -148,8 +120,8 @@ export function CourseCard({
           </BodyText>
         </div>
 
-        <Button href={courseTopicsHref(course)} size="lg" className="w-full sm:w-auto">
-          View Topics
+        <Button href={courseHref(course)} size="lg" className="w-full sm:w-auto">
+          View Course
           <ArrowRight className="h-4 w-4" aria-hidden />
         </Button>
       </div>

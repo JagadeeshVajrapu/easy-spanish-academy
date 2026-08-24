@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import { useEffect, useId, useRef, useState } from "react";
-import { ChevronDown, Menu, Phone, X } from "lucide-react";
+import { ChevronDown, Menu, X } from "lucide-react";
 import { BrandLogo } from "@/components/ui/BrandLogo";
 import { FlagAccent } from "@/components/ui/FlagAccent";
 import { COURSE_NAV, NAV_LINKS, SITE } from "@/lib/constants";
@@ -20,9 +20,9 @@ function isNavLinkActive(pathname: string, href: string) {
 
 const navLinkClass = (active: boolean) =>
   cn(
-    "relative whitespace-nowrap rounded-lg px-3 py-2 text-sm font-medium transition duration-200 focus-esa",
+    "inline-flex min-h-9 shrink-0 items-center justify-center whitespace-nowrap rounded-lg px-2.5 text-[13px] font-medium transition duration-200 focus-esa xl:min-h-10 xl:px-3 xl:text-sm",
     active
-      ? "bg-esa-red-soft text-esa-red ring-1 ring-esa-red/15"
+      ? "bg-esa-red-soft text-esa-red shadow-sm ring-1 ring-esa-red/20"
       : "text-esa-navy/85 hover:bg-esa-soft hover:text-esa-navy",
   );
 
@@ -190,7 +190,7 @@ export function Navbar() {
 
   return (
     <header className="sticky top-0 z-40 border-b border-esa-border/70 bg-white/95 shadow-esa-soft backdrop-blur-md">
-      <div className="container-esa grid h-[4.25rem] grid-cols-[minmax(0,auto)_1fr_auto] items-center gap-3 sm:h-[4.5rem] sm:gap-4 lg:gap-6">
+      <div className="container-esa flex h-[4.25rem] items-center gap-3 sm:h-[4.5rem] sm:gap-4">
         {/* Brand */}
         <Link
           href="/"
@@ -201,81 +201,81 @@ export function Navbar() {
               window.scrollTo({ top: 0, behavior: "smooth" });
             }
           }}
-          className="group flex min-w-0 items-center gap-2 focus-esa sm:gap-2.5"
+          className="group flex min-w-0 shrink-0 items-center gap-2 focus-esa sm:gap-2.5"
         >
           <BrandLogo size="nav" priority />
           <span className="hidden min-w-0 leading-tight md:block">
-            <span className="block truncate text-[0.9375rem] font-bold text-esa-navy lg:text-base">
+            <span className="block max-w-[9.5rem] truncate text-[0.9375rem] font-bold text-esa-navy lg:max-w-[10.5rem] lg:text-base xl:max-w-none">
               Easy Spanish Academy
             </span>
-            <span className="mt-0.5 hidden text-[11px] leading-snug text-esa-muted lg:block lg:text-xs">
+            <span className="mt-0.5 hidden text-[11px] leading-snug text-esa-muted xl:block xl:text-xs">
               {SITE.instituteTagline}
             </span>
           </span>
         </Link>
 
-        {/* Desktop nav — centered in middle column */}
+        {/* Desktop nav */}
         <nav
-          className="hidden min-w-0 items-center justify-center gap-0.5 lg:flex"
+          className="hidden min-w-0 flex-1 items-center justify-center lg:flex"
           aria-label="Primary"
         >
-          {NAV_LINKS.map((item) => {
-            if ("children" in item && item.children) {
-              return (
-                <div key={item.label} className="relative" ref={desktopCoursesRef}>
-                  <button
-                    type="button"
-                    className={cn(
-                      navLinkClass(courseActive || coursesOpen),
-                      "inline-flex items-center gap-1",
-                    )}
-                    aria-expanded={coursesOpen}
-                    aria-current={courseActive ? "page" : undefined}
-                    onClick={() => setCoursesOpen((v) => !v)}
-                  >
-                    Courses
-                    <ChevronDown
+          <div className="flex max-w-full items-center justify-center gap-0.5 xl:gap-1">
+            {NAV_LINKS.map((item) => {
+              if ("children" in item && item.children) {
+                return (
+                  <div key={item.label} className="relative shrink-0" ref={desktopCoursesRef}>
+                    <button
+                      type="button"
                       className={cn(
-                        "h-4 w-4 transition duration-200",
-                        coursesOpen && "rotate-180",
+                        navLinkClass(courseActive || coursesOpen),
+                        "gap-1",
                       )}
-                      aria-hidden
-                    />
-                  </button>
-                  {coursesOpen ? renderDesktopCourseMenu() : null}
-                </div>
-              );
-            }
+                      aria-expanded={coursesOpen}
+                      aria-current={courseActive ? "page" : undefined}
+                      onClick={() => setCoursesOpen((v) => !v)}
+                    >
+                      Courses
+                      <ChevronDown
+                        className={cn(
+                          "h-3.5 w-3.5 shrink-0 transition duration-200 xl:h-4 xl:w-4",
+                          coursesOpen && "rotate-180",
+                        )}
+                        aria-hidden
+                      />
+                    </button>
+                    {coursesOpen ? renderDesktopCourseMenu() : null}
+                  </div>
+                );
+              }
 
-            const active = isNavLinkActive(pathname, item.href);
-            return (
-              <Link
-                key={item.href}
-                href={item.href}
-                onClick={closeMenus}
-                className={navLinkClass(active)}
-                aria-current={active ? "page" : undefined}
-              >
-                {item.label}
-              </Link>
-            );
-          })}
+              const active = isNavLinkActive(pathname, item.href);
+              return (
+                <Link
+                  key={item.href}
+                  href={item.href}
+                  onClick={closeMenus}
+                  className={navLinkClass(active)}
+                  aria-current={active ? "page" : undefined}
+                >
+                  {item.href === "/why-choose-us" ? (
+                    <>
+                      <span className="xl:hidden">Why Us</span>
+                      <span className="hidden xl:inline">Why Choose Us</span>
+                    </>
+                  ) : (
+                    item.label
+                  )}
+                </Link>
+              );
+            })}
+          </div>
         </nav>
 
         {/* Actions */}
-        <div className="flex shrink-0 items-center justify-end gap-2 sm:gap-2.5">
-          <a
-            href={SITE.phoneHref}
-            className="hidden items-center gap-1.5 whitespace-nowrap text-sm font-medium text-esa-navy transition hover:text-esa-red focus-esa lg:inline-flex"
-          >
-            <span className="inline-flex h-9 w-9 items-center justify-center rounded-full bg-esa-red-soft">
-              <Phone className="h-4 w-4 text-esa-red" aria-hidden />
-            </span>
-            <span className="hidden xl:inline">{SITE.phoneDisplay}</span>
-          </a>
+        <div className="ml-auto flex shrink-0 items-center gap-2 sm:gap-2.5 lg:ml-0">
           <Link
             href="/book-demo"
-            className="esa-btn hidden rounded-lg bg-esa-red px-4 py-2.5 text-sm font-semibold text-white shadow-esa-soft transition hover:bg-esa-red-dark focus-esa lg:inline-flex lg:px-5 lg:py-3"
+            className="esa-btn hidden rounded-lg bg-esa-red px-4 py-2.5 text-sm font-semibold text-white shadow-esa-soft transition hover:bg-esa-red-dark focus-esa lg:inline-flex xl:px-5 xl:py-3"
             onClick={closeMenus}
           >
             Book a Demo

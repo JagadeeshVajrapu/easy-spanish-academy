@@ -7,11 +7,17 @@ import { whatsappUrl } from "@/lib/utils";
 type CTABannerProps = {
   title?: string;
   description?: string;
+  eyebrow?: string;
+  primaryLabel?: string;
+  primaryHref?: string;
 };
 
 export function CTABanner({
   title = "Ready to begin your language journey?",
   description = "Speak with our team to learn about current Spanish and German course options that fit your goals.",
+  eyebrow = "Start today",
+  primaryLabel = "Contact Us",
+  primaryHref = "/contact",
 }: CTABannerProps) {
   return (
     <Section
@@ -29,7 +35,7 @@ export function CTABanner({
       <div className="relative grid gap-8 rounded-3xl border border-esa-border bg-white/90 p-6 shadow-esa-soft sm:p-8 lg:grid-cols-[1.4fr_auto] lg:items-center lg:p-10">
         <div>
           <p className="mb-3 text-xs font-semibold uppercase tracking-[0.16em] text-esa-red">
-            Start today
+            {eyebrow}
           </p>
           <h2 className="text-section text-esa-navy">{title}</h2>
           <p className="mt-4 max-w-2xl text-sm leading-relaxed text-esa-muted sm:text-base md:text-lg">
@@ -37,8 +43,8 @@ export function CTABanner({
           </p>
         </div>
         <div className="flex w-full flex-col gap-2.5 sm:flex-row lg:w-auto lg:flex-col xl:flex-row">
-          <Button href="/contact" size="lg" className="w-full sm:w-auto">
-            Contact Us
+          <Button href={primaryHref} size="lg" className="w-full sm:w-auto">
+            {primaryLabel}
           </Button>
           <Button
             href={whatsappUrl(SITE.whatsappMessage)}

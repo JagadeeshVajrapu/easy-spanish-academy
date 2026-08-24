@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 600" role="img" aria-label="Spain flag">
+  <rect width="900" height="600" fill="#AA151B"/>
+  <rect y="150" width="900" height="300" fill="#F1BF00"/>
+  <g transform="translate(180,225)">
+    <rect x="0" y="0" width="120" height="150" fill="none"/>
+    <path fill="#AA151B" stroke="#F1BF00" stroke-width="2" d="M20 20h80v110H20z"/>
+    <path fill="#F1BF00" d="M20 20h40v55H20zm40 0h40v55H60zM20 75h40v55H20zm40 0h40v55H60z"/>
+    <path fill="#AA151B" d="M50 45h20v30H50z"/>
+    <path fill="#F1BF00" stroke="#AA151B" stroke-width="1.5" d="M35 8l15-8 15 8-4 12H39z"/>
+    <path fill="#AA151B" d="M10 130h100v8H10z"/>
+    <path fill="#F1BF00" stroke="#AA151B" stroke-width="1.5" d="M15 130h12v28H15zm78 0h12v28H93z"/>
+    <path fill="#AA151B" d="M52 130h16v28H52z"/>
+  </g>
+</svg>

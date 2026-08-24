@@ -12,7 +12,9 @@ export const SITE = {
   whatsappHref: "https://wa.me/919971627900",
   whatsappMessage:
     "Hello! I would like to book a demo / enquire about language courses at Easy Spanish Academy.",
-  youtubeHref: "/contact",
+  youtubeHref: "https://www.youtube.com/@easyspanishacademy.official",
+  instagramHref: "https://www.instagram.com/easyspanishacademy.official/",
+  facebookHref: "https://www.facebook.com/share/17SLEpaXeR/",
   url: "https://easyspanishacademy.com",
   addressLine1: "C1, Madhuban Chowk, Pitampura",
   addressLine2: "New Delhi - 110034",
@@ -75,6 +77,7 @@ export const NAV_LINKS = [
     href: "/courses",
     children: COURSE_NAV,
   },
+  { label: "Why Choose Us", href: "/why-choose-us" },
   { label: "Blog", href: "/blog" },
   { label: "Contact", href: "/contact" },
 ] as const;
@@ -83,15 +86,15 @@ export const FOOTER_LINKS = {
   explore: [
     { label: "Home", href: "/" },
     { label: "About Us", href: "/about" },
+    { label: "Why Choose Us", href: "/why-choose-us" },
     { label: "Courses", href: "/courses" },
     { label: "Blog", href: "/blog" },
     { label: "Contact", href: "/contact" },
     { label: "Privacy Policy", href: "/privacy" },
   ],
   courses: [
-    { label: "Spanish — Certificate", href: "/courses/spanish/certificate-diploma" },
-    { label: "Spanish — School Oriented", href: "/courses/spanish/school-course" },
-    { label: "German", href: "/courses/german" },
+    { label: "Spanish Certificate", href: "/courses/spanish/certificate-diploma" },
+    { label: "Spanish School Course", href: "/courses/spanish/school-course" },
+    { label: "German Courses", href: "/courses/german" },
   ],
-  support: [{ label: "Book a Demo", href: "/book-demo" }],
 } as const;

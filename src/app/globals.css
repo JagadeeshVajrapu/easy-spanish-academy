@@ -114,6 +114,13 @@
     height: auto;
   }
 
+  .esa-flag svg {
+    display: block;
+    height: 100%;
+    width: 100%;
+    max-width: none;
+  }
+
   ::selection {
     background: color-mix(in oklab, var(--esa-red) 22%, white);
     color: var(--esa-navy);

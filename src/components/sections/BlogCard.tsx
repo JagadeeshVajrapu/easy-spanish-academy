@@ -46,6 +46,19 @@ export function BlogCard({ post, className }: BlogCardProps) {
           {post.excerpt}
         </p>
 
+        {post.keywords?.length ? (
+          <div className="mt-3 flex flex-wrap gap-1.5">
+            {post.keywords.map((keyword) => (
+              <span
+                key={keyword}
+                className="rounded-md bg-esa-soft px-2 py-0.5 text-[11px] font-medium text-esa-navy/80"
+              >
+                {keyword}
+              </span>
+            ))}
+          </div>
+        ) : null}
+
         <div className="mt-4 flex-1 border-t border-esa-border/80 pt-4">
           <p className="text-xs font-semibold uppercase tracking-wider text-esa-red">
             Key points

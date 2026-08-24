@@ -6,6 +6,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const staticRoutes = [
     "",
     "/about",
+    "/why-choose-us",
     "/courses",
     "/courses/spanish",
     "/courses/german",

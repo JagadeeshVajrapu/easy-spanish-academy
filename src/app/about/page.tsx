@@ -3,6 +3,7 @@ import Image from "next/image";
 import {
   BookOpenCheck,
   Flag,
+  MessageCircle,
   MessageSquare,
   Sparkles,
   Users,
@@ -10,13 +11,12 @@ import {
 import { AnimateIn } from "@/components/ui/AnimateIn";
 import { Breadcrumbs } from "@/components/ui/Breadcrumbs";
 import { Button } from "@/components/ui/Button";
-import { FlagAccent } from "@/components/ui/FlagAccent";
 import { Section } from "@/components/ui/Section";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { StaggerGroup, StaggerItem } from "@/components/ui/Stagger";
 import { BodyText, Label } from "@/components/ui/Typography";
-import { CTABanner } from "@/components/sections/CTABanner";
 import { SITE } from "@/lib/constants";
+import { whatsappUrl } from "@/lib/utils";
 
 export const metadata: Metadata = {
   title: "About Us",
@@ -61,7 +61,6 @@ const focusAreas = [
 export default function AboutPage() {
   return (
     <>
-      {/* Solid navy hero — readable text, no overlay on photo */}
       <section className="border-b border-esa-border bg-esa-navy text-white">
         <div className="container-esa py-10 sm:py-12 lg:py-14">
           <Breadcrumbs
@@ -121,67 +120,6 @@ export default function AboutPage() {
         </div>
       </Section>
 
-      <Section tone="mesh">
-        <AnimateIn>
-          <SectionHeading
-            eyebrow="Programs"
-            title="Spanish and German under one online academy."
-            description="Certificate & Diploma courses from A1 to B2, plus school-oriented programs for young learners."
-          />
-        </AnimateIn>
-        <div className="mt-10 grid auto-rows-fr gap-5 lg:grid-cols-2">
-          <AnimateIn>
-            <div className="group flex h-full flex-col rounded-3xl border border-esa-border bg-white p-6 shadow-esa-soft transition duration-300 hover:-translate-y-1.5 hover:border-esa-red/25 hover:shadow-esa-card sm:p-8">
-              <div className="inline-flex w-fit items-center gap-2 rounded-xl bg-esa-red-soft px-3 py-2 text-sm font-semibold text-esa-red transition duration-300 group-hover:scale-[1.03]">
-                <FlagAccent country="ES" /> Spanish
-              </div>
-              <h3 className="mt-4 font-display text-xl font-semibold text-esa-navy transition-colors duration-300 group-hover:text-esa-red sm:text-2xl">
-                Spanish A1 to B2 — Certificate & School Programs
-              </h3>
-              <BodyText className="mt-3 flex-1">
-                Certificate & Diploma pathway from A1 to B2 covering grammar,
-                vocabulary, speaking, listening, reading, and writing. We also
-                offer a school-oriented course for students aged 5–16 (up to
-                Class 10).
-              </BodyText>
-              <ul className="mt-4 space-y-2 text-sm text-esa-muted">
-                <li>• A1 → A2 → B1 → B2 level progression</li>
-                <li>• Certificate / Diploma course</li>
-                <li>• Crash course for focused learning</li>
-                <li>• School-oriented program for young learners</li>
-              </ul>
-              <Button href="/courses/spanish" className="mt-6 w-full sm:w-auto" variant="secondary">
-                View Spanish Courses
-              </Button>
-            </div>
-          </AnimateIn>
-          <AnimateIn delay={0.08}>
-            <div className="group flex h-full flex-col rounded-3xl border border-esa-border bg-white p-6 shadow-esa-soft transition duration-300 hover:-translate-y-1.5 hover:border-esa-gold/40 hover:shadow-esa-card sm:p-8">
-              <div className="inline-flex w-fit items-center gap-2 rounded-xl bg-esa-gold-soft px-3 py-2 text-sm font-semibold text-esa-navy transition duration-300 group-hover:scale-[1.03]">
-                <FlagAccent country="DE" /> German
-              </div>
-              <h3 className="mt-4 font-display text-xl font-semibold text-esa-navy transition-colors duration-300 group-hover:text-esa-gold-deep sm:text-2xl">
-                German A1 to B2 — Certificate & Diploma
-              </h3>
-              <BodyText className="mt-3 flex-1">
-                A structured online German journey from A1 to B2 with clear
-                foundations, pronunciation support, and practical communication
-                at every level.
-              </BodyText>
-              <ul className="mt-4 space-y-2 text-sm text-esa-muted">
-                <li>• A1 → A2 → B1 → B2 level progression</li>
-                <li>• Certificate & Diploma pathway</li>
-                <li>• Speaking and listening focus</li>
-                <li>• Guided online learning support</li>
-              </ul>
-              <Button href="/courses/german" className="mt-6 w-full sm:w-auto" variant="secondary">
-                View German Courses
-              </Button>
-            </div>
-          </AnimateIn>
-        </div>
-      </Section>
-
       <Section tone="navy">
         <AnimateIn>
           <SectionHeading
@@ -223,6 +161,8 @@ export default function AboutPage() {
                 "Beginner-friendly foundations",
                 "Level-based pathways from A1 to B2",
                 "Speaking woven into the learning journey",
+                "Weekday and weekend batch options",
+                "Study PDFs online and books delivered to your doorstep",
                 "Supportive guidance when you enquire and start",
               ].map((item) => (
                 <li key={item} className="flex gap-3">
@@ -241,18 +181,22 @@ export default function AboutPage() {
                 That promise guides our Spanish and German programs—helping
                 learners move from first lessons to meaningful communication.
               </BodyText>
-              <Button href="/book-demo" className="mt-6">
-                Book a Demo
-              </Button>
+              <div className="mt-6 flex flex-wrap gap-3">
+                <Button href="/book-demo">Book a Demo</Button>
+                <Button
+                  href={whatsappUrl(SITE.whatsappMessage)}
+                  variant="outline"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <MessageCircle className="h-4 w-4" aria-hidden />
+                  WhatsApp
+                </Button>
+              </div>
             </div>
           </AnimateIn>
         </div>
       </Section>
-
-      <CTABanner
-        title="Want to know if Easy Spanish Academy is right for you?"
-        description="Tell us your goals. We will help you understand current Spanish and German course options."
-      />
     </>
   );
 }
