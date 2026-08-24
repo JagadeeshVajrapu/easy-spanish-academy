@@ -3,7 +3,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { FlagAccent } from "@/components/ui/FlagAccent";
 import { CourseProgramCard } from "@/components/course/CourseDetailView";
-import { SPANISH_COURSES } from "@/lib/course-data";
+import { LANGUAGE_ADDONS, SPANISH_COURSES } from "@/lib/course-data";
 import { SITE } from "@/lib/constants";
 
 type Props = { params: Promise<{ language: string }> };
@@ -56,8 +56,16 @@ export default async function LanguageCoursesPage({ params }: Props) {
       <section className="bg-esa-navy text-white">
         <div className="container-esa py-12 sm:py-14">
           <p className="text-label text-esa-gold">Courses</p>
-          <div className="mt-3 inline-flex items-center gap-2 rounded-lg bg-white/10 px-3 py-2 text-sm font-semibold">
-            <FlagAccent country={flag} size="md" /> {label}
+          <div className="mt-3 inline-flex items-center gap-3 rounded-xl border border-white/20 bg-white/10 px-3.5 py-2.5 shadow-esa-soft backdrop-blur-sm">
+            <FlagAccent country={flag} size="xl" />
+            <span>
+              <span className="block text-xs font-semibold uppercase tracking-[0.14em] text-esa-gold">
+                Spain
+              </span>
+              <span className="block text-base font-bold text-white sm:text-lg">
+                {label} Language
+              </span>
+            </span>
           </div>
           <h1 className="text-hero mt-4 max-w-3xl text-white">
             {label} courses that fit your goal
@@ -66,6 +74,16 @@ export default async function LanguageCoursesPage({ params }: Props) {
             Certificate & Diploma, Crash, and School Orientation pathways—with clear
             levels and practical speaking practice.
           </p>
+          <ul className="mt-4 flex flex-wrap gap-2">
+            {LANGUAGE_ADDONS.Spanish.map((line) => (
+              <li
+                key={line}
+                className="rounded-full border border-white/15 bg-white/10 px-3 py-1.5 text-xs font-semibold text-white/95 sm:text-sm"
+              >
+                {line}
+              </li>
+            ))}
+          </ul>
           <div className="mt-7 flex flex-wrap gap-2.5">
             <Link
               href="/book-demo"

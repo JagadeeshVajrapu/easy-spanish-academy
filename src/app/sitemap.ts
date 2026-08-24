@@ -11,7 +11,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "/courses/spanish",
     "/courses/german/certificate-diploma",
     "/book-demo",
-    "/blog",
     "/contact",
     "/privacy",
   ];

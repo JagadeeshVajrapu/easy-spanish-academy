@@ -5,26 +5,26 @@ import { SITE } from "@/lib/constants";
 export function TopBar() {
   return (
     <div className="border-b border-esa-border/70 bg-white text-esa-navy">
-      <div className="container-esa flex h-11 items-center justify-between gap-3 sm:h-12">
-        <div className="flex min-w-0 items-center gap-3 overflow-hidden text-xs sm:gap-4 sm:text-[0.8125rem]">
+      <div className="container-esa flex h-12 items-center justify-between gap-4 sm:h-14 sm:gap-6">
+        <div className="flex min-w-0 items-center gap-3 overflow-hidden sm:gap-4">
           <a
             href={SITE.phoneHref}
-            className="inline-flex shrink-0 items-center gap-1.5 whitespace-nowrap text-esa-navy/85 transition hover:text-esa-red focus-esa"
+            className="inline-flex shrink-0 items-center gap-1.5 rounded-full bg-esa-red-soft px-2.5 py-1.5 text-[0.8125rem] font-bold text-esa-red transition hover:bg-esa-red hover:text-white focus-esa sm:px-3 sm:text-sm"
           >
-            <Phone className="h-3.5 w-3.5 shrink-0 text-esa-red sm:h-4 sm:w-4" aria-hidden />
+            <Phone className="h-4 w-4 shrink-0 sm:h-[1.125rem] sm:w-[1.125rem]" aria-hidden />
             {SITE.phoneDisplay}
           </a>
           <a
             href={SITE.emailHref}
             title={SITE.email}
-            className="hidden min-w-0 items-center gap-1.5 text-esa-navy/85 transition hover:text-esa-red focus-esa md:inline-flex"
+            className="hidden min-w-0 items-center gap-1.5 rounded-full bg-[#3B82F6]/12 px-3 py-1.5 text-sm font-bold text-[#2563EB] transition hover:bg-[#3B82F6] hover:text-white focus-esa md:inline-flex"
           >
-            <Mail className="h-3.5 w-3.5 shrink-0 text-esa-red sm:h-4 sm:w-4" aria-hidden />
+            <Mail className="h-4 w-4 shrink-0" aria-hidden />
             <span className="truncate">{SITE.email}</span>
           </a>
         </div>
 
-        <SocialLinks tone="light" />
+        <SocialLinks tone="light" size="lg" className="shrink-0" />
       </div>
     </div>
   );

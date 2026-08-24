@@ -4,7 +4,7 @@ import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import { useEffect, useId, useRef, useState } from "react";
 import { ChevronDown, Menu, X } from "lucide-react";
-import { BrandLogo } from "@/components/ui/BrandLogo";
+import { BrandLogo, BrandWordmark } from "@/components/ui/BrandLogo";
 import { FlagAccent } from "@/components/ui/FlagAccent";
 import { COURSE_NAV, NAV_LINKS, SITE } from "@/lib/constants";
 import { cn } from "@/lib/utils";
@@ -23,9 +23,9 @@ function isNavLinkActive(pathname: string, href: string) {
 
 const navLinkClass = (active: boolean) =>
   cn(
-    "inline-flex min-h-9 shrink-0 items-center justify-center whitespace-nowrap rounded-lg px-2.5 text-[13px] font-medium transition duration-200 focus-esa xl:min-h-10 xl:px-3 xl:text-sm",
+    "inline-flex min-h-9 shrink-0 items-center justify-center whitespace-nowrap rounded-lg px-2 text-[13px] font-medium transition duration-200 focus-esa xl:min-h-10 xl:px-2.5 xl:text-sm",
     active
-      ? "bg-esa-red-soft text-esa-red shadow-sm ring-1 ring-esa-red/20"
+      ? "bg-esa-red-soft text-esa-red ring-1 ring-esa-red/15"
       : "text-esa-navy/85 hover:bg-esa-soft hover:text-esa-navy",
   );
 
@@ -190,7 +190,7 @@ export function Navbar() {
 
   return (
     <header className="sticky top-0 z-40 border-b border-esa-border/70 bg-white/95 shadow-esa-soft backdrop-blur-md">
-      <div className="container-esa flex h-[4.25rem] items-center gap-3 sm:h-[4.5rem] sm:gap-4">
+      <div className="container-esa flex h-16 items-center gap-3 sm:h-[4.25rem] lg:gap-4">
         {/* Brand */}
         <Link
           href="/"
@@ -201,25 +201,18 @@ export function Navbar() {
               window.scrollTo({ top: 0, behavior: "smooth" });
             }
           }}
-          className="group flex min-w-0 shrink-0 items-center gap-2 focus-esa sm:gap-2.5"
+          className="group flex shrink-0 items-center gap-2 focus-esa sm:gap-2.5"
         >
           <BrandLogo size="nav" priority />
-          <span className="hidden min-w-0 leading-tight md:block">
-            <span className="block max-w-[9.5rem] truncate text-[0.9375rem] font-bold text-esa-navy lg:max-w-[10.5rem] lg:text-base xl:max-w-none">
-              Easy Spanish Academy
-            </span>
-            <span className="mt-0.5 hidden text-[11px] leading-snug text-esa-muted xl:block xl:text-xs">
-              {SITE.instituteTagline}
-            </span>
-          </span>
+          <BrandWordmark className="hidden sm:block" />
         </Link>
 
-        {/* Desktop nav */}
+        {/* Desktop nav — single row, no wrap */}
         <nav
           className="hidden min-w-0 flex-1 items-center justify-center lg:flex"
           aria-label="Primary"
         >
-          <div className="flex max-w-full items-center justify-center gap-0.5 xl:gap-1">
+          <div className="flex flex-nowrap items-center justify-center gap-1 xl:gap-1.5">
             {NAV_LINKS.map((item) => {
               if ("children" in item && item.children) {
                 return (
@@ -275,10 +268,11 @@ export function Navbar() {
         <div className="ml-auto flex shrink-0 items-center gap-2 sm:gap-2.5 lg:ml-0">
           <Link
             href="/book-demo"
-            className="esa-btn hidden rounded-lg bg-esa-red px-4 py-2.5 text-sm font-semibold text-white shadow-esa-soft transition hover:bg-esa-red-dark focus-esa lg:inline-flex xl:px-5 xl:py-3"
+            className="esa-btn hidden rounded-lg bg-esa-red px-3.5 py-2.5 text-sm font-semibold text-white shadow-esa-soft transition hover:bg-esa-red-dark focus-esa lg:inline-flex xl:px-5"
             onClick={closeMenus}
           >
-            Book a Demo
+            <span className="xl:hidden">Book a Demo</span>
+            <span className="hidden xl:inline">Book a Demo Today</span>
           </Link>
           <button
             type="button"
@@ -356,7 +350,7 @@ export function Navbar() {
             onClick={closeMenus}
             className="mt-2 rounded-lg bg-esa-red px-3 py-3 text-center text-base font-semibold text-white shadow-esa-soft focus-esa"
           >
-            Book a Demo
+            Book a Demo Today
           </Link>
           <a
             href={SITE.phoneHref}

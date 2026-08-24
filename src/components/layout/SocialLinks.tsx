@@ -64,11 +64,30 @@ type SocialLinksProps = {
   className?: string;
   iconClassName?: string;
   tone?: "dark" | "light";
+  size?: "md" | "lg";
 };
 
-export function SocialLinks({ className, iconClassName, tone = "dark" }: SocialLinksProps) {
+const sizeMap = {
+  md: {
+    button: "h-8 w-8 sm:h-9 sm:w-9",
+    icon: "h-4 w-4 sm:h-[1.125rem] sm:w-[1.125rem]",
+  },
+  lg: {
+    button: "h-9 w-9 sm:h-10 sm:w-10",
+    icon: "h-5 w-5 sm:h-[1.25rem] sm:w-[1.25rem]",
+  },
+} as const;
+
+export function SocialLinks({
+  className,
+  iconClassName,
+  tone = "dark",
+  size = "md",
+}: SocialLinksProps) {
+  const sizing = sizeMap[size];
+
   return (
-    <div className={cn("flex shrink-0 items-center gap-1.5", className)}>
+    <div className={cn("flex shrink-0 items-center gap-2", className)}>
       {SOCIAL_LINKS.map(({ label, href, Icon, color }) => (
         <a
           key={label}
@@ -77,7 +96,8 @@ export function SocialLinks({ className, iconClassName, tone = "dark" }: SocialL
           rel="noopener noreferrer"
           aria-label={`Open Easy Spanish Academy on ${label}`}
           className={cn(
-            "inline-flex h-8 w-8 items-center justify-center rounded-md transition hover:scale-105 focus-esa sm:h-9 sm:w-9",
+            "inline-flex items-center justify-center rounded-md transition hover:scale-105 focus-esa",
+            sizing.button,
             tone === "dark"
               ? "bg-white/8 hover:bg-white/15"
               : "border border-esa-border bg-esa-bg hover:bg-white",
@@ -85,7 +105,7 @@ export function SocialLinks({ className, iconClassName, tone = "dark" }: SocialL
           )}
         >
           <span style={{ color }} className="inline-flex">
-            <Icon className="h-4 w-4 sm:h-[1.125rem] sm:w-[1.125rem]" />
+            <Icon className={sizing.icon} />
           </span>
         </a>
       ))}

@@ -6,6 +6,7 @@ import { CourseProgramCard } from "@/components/course/CourseDetailView";
 import {
   ALL_COURSES,
   GERMAN_COURSES,
+  LANGUAGE_ADDONS,
   SPANISH_COURSES,
 } from "@/lib/course-data";
 import { SITE } from "@/lib/constants";
@@ -33,18 +34,20 @@ export default function CoursesIndexPage() {
             Structured Spanish and German pathways from A1 to B2—with speaking
             practice, clear levels, and guidance when you enquire.
           </p>
-          <div className="mt-7 flex flex-wrap gap-2.5">
+          <div className="mt-7 flex flex-wrap gap-3">
             <Link
               href="/courses/spanish"
-              className="inline-flex items-center gap-2 rounded-lg bg-esa-red px-5 py-3 text-sm font-semibold text-white transition hover:bg-esa-red-dark focus-esa"
+              className="inline-flex items-center gap-2.5 rounded-xl bg-esa-red px-5 py-3 text-sm font-semibold text-white shadow-esa-soft transition hover:bg-esa-red-dark focus-esa"
             >
-              <FlagAccent country="ES" /> Spanish Courses
+              <FlagAccent country="ES" size="lg" />
+              Spanish Language
             </Link>
             <Link
               href="/courses/german/certificate-diploma"
-              className="inline-flex items-center gap-2 rounded-lg border border-white/25 bg-white/10 px-5 py-3 text-sm font-semibold text-white transition hover:bg-white/15 focus-esa"
+              className="inline-flex items-center gap-2.5 rounded-xl border border-white/25 bg-white/10 px-5 py-3 text-sm font-semibold text-white transition hover:bg-white/15 focus-esa"
             >
-              <FlagAccent country="DE" /> German Courses
+              <FlagAccent country="DE" size="lg" />
+              German Language
             </Link>
           </div>
         </div>
@@ -54,10 +57,18 @@ export default function CoursesIndexPage() {
         <div className="container-esa">
           <div className="mb-6 flex flex-wrap items-end justify-between gap-3">
             <div>
-              <p className="inline-flex items-center gap-2 text-label text-esa-red">
-                <FlagAccent country="ES" /> Spanish
-              </p>
+              <p className="text-label text-esa-red">Spanish Language</p>
               <h2 className="text-section mt-2">Spanish programs</h2>
+              <ul className="mt-3 flex flex-wrap gap-2">
+                {LANGUAGE_ADDONS.Spanish.map((line) => (
+                  <li
+                    key={line}
+                    className="rounded-full border border-esa-border bg-white px-3 py-1 text-xs font-semibold text-esa-navy"
+                  >
+                    {line}
+                  </li>
+                ))}
+              </ul>
             </div>
             <Link
               href="/courses/spanish"
@@ -78,10 +89,18 @@ export default function CoursesIndexPage() {
         <div className="container-esa">
           <div className="mb-6 flex flex-wrap items-end justify-between gap-3">
             <div>
-              <p className="inline-flex items-center gap-2 text-label text-esa-red">
-                <FlagAccent country="DE" /> German
-              </p>
+              <p className="text-label text-esa-red">German Language</p>
               <h2 className="text-section mt-2">German program</h2>
+              <ul className="mt-3 flex flex-wrap gap-2">
+                {LANGUAGE_ADDONS.German.map((line) => (
+                  <li
+                    key={line}
+                    className="rounded-full border border-esa-border bg-esa-bg px-3 py-1 text-xs font-semibold text-esa-navy"
+                  >
+                    {line}
+                  </li>
+                ))}
+              </ul>
             </div>
             <Link
               href="/courses/german/certificate-diploma"

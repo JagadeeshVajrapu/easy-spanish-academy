@@ -112,35 +112,51 @@ export const LANGUAGE_HIGHLIGHTS = {
       text: "Spanish is spoken natively by hundreds of millions of people—second only to Mandarin—across Spain and Latin America.",
     },
     {
-      title: "Widely used worldwide",
-      text: "An official language in 20+ countries and a strong choice for travel, culture, hospitality, and international careers.",
+      title: "Official in 20+ countries",
+      text: "A strong choice for travel, hospitality, tourism, international business, and cultural exchange worldwide.",
     },
     {
-      title: "Clear sound system",
-      text: "Spanish spelling and pronunciation are relatively consistent, which helps beginners build speaking confidence faster.",
+      title: "Faster speaking confidence",
+      text: "Spanish spelling and pronunciation are relatively consistent, which helps beginners start speaking earlier.",
     },
     {
       title: "Growing demand in India",
-      text: "Useful for school electives, higher studies, tourism, BPOs, and global workplaces that value Spanish skills.",
+      text: "Useful for school electives, higher studies, BPOs, tourism, and global workplaces that value Spanish skills.",
     },
   ],
   German: [
     {
-      title: "Most spoken in the EU",
-      text: "German is the most widely spoken native language in the European Union and a key language for Europe’s largest economy.",
+      title: "Most spoken language in the EU",
+      text: "German is the most widely spoken native language in the European Union and a key language of Europe’s largest economy.",
     },
     {
       title: "Study & career advantage",
-      text: "Valued for higher education in Germany/Austria/Switzerland, engineering, research, and skilled migration pathways.",
+      text: "Valued for higher education in Germany, Austria, and Switzerland—plus engineering, research, and skilled pathways.",
     },
     {
-      title: "Business & technology",
-      text: "Useful across automotive, manufacturing, IT, logistics, and companies with strong German-speaking markets.",
+      title: "Business & technology edge",
+      text: "Useful across automotive, manufacturing, IT, logistics, and companies connected to German-speaking markets.",
     },
     {
-      title: "Structured CEFR pathway",
-      text: "Our A1–B2 German course builds grammar, vocabulary, pronunciation, and speaking step by step with live practice.",
+      title: "Clear A1–B2 learning path",
+      text: "Our German course builds grammar, vocabulary, pronunciation, and speaking step by step with live practice.",
     },
+  ],
+} as const;
+
+/** Short eye-catching lines shown next to flags on course pages */
+export const LANGUAGE_ADDONS = {
+  Spanish: [
+    "Spoken across Spain & Latin America",
+    "Great for travel, career & culture",
+    "Beginner-friendly pronunciation",
+    "Structured A1 to B2 pathways",
+  ],
+  German: [
+    "Key language of Europe’s largest economy",
+    "Strong for study abroad & careers",
+    "Useful in engineering, IT & business",
+    "Clear A1 to B2 certificate pathway",
   ],
 } as const;
 

@@ -17,6 +17,7 @@ import {
 import { Accordion } from "@/components/ui/Accordion";
 import { FlagAccent } from "@/components/ui/FlagAccent";
 import {
+  LANGUAGE_ADDONS,
   LANGUAGE_HIGHLIGHTS,
   SCHOOL_BOARDS,
   SCHOOL_STUDENT_GETS,
@@ -122,10 +123,18 @@ export function CourseDetailView({ course, breadcrumbs }: CourseDetailViewProps)
               <p className="text-label text-esa-gold">
                 {isSchool ? "Spanish tuition for school students" : "Course"}
               </p>
-              <p className="mt-3 text-sm font-semibold uppercase tracking-wide text-white/85">
-                {course.language}
-              </p>
-              <h1 className="text-hero mt-3 max-w-3xl text-white">{course.title}</h1>
+              <div className="mt-3 inline-flex items-center gap-3 rounded-xl border border-white/20 bg-white/10 px-3.5 py-2.5 shadow-esa-soft backdrop-blur-sm">
+                <FlagAccent country={course.flag} size="xl" />
+                <span className="min-w-0">
+                  <span className="block text-xs font-semibold uppercase tracking-[0.14em] text-esa-gold">
+                    {course.language === "Spanish" ? "Spain" : "Germany"}
+                  </span>
+                  <span className="block text-base font-bold text-white sm:text-lg">
+                    {course.language} Language
+                  </span>
+                </span>
+              </div>
+              <h1 className="text-hero mt-4 max-w-3xl text-white">{course.title}</h1>
               {course.audienceNote ? (
                 <p className="mt-3 text-sm font-medium text-esa-gold sm:text-base md:text-lg">
                   {course.audienceNote}
@@ -134,6 +143,16 @@ export function CourseDetailView({ course, breadcrumbs }: CourseDetailViewProps)
               <p className="mt-4 max-w-2xl text-base leading-relaxed text-white/80 sm:text-lg">
                 {course.overview}
               </p>
+              <ul className="mt-4 flex flex-wrap gap-2">
+                {LANGUAGE_ADDONS[course.language].map((line) => (
+                  <li
+                    key={line}
+                    className="rounded-full border border-white/15 bg-white/10 px-3 py-1.5 text-xs font-semibold text-white/95 sm:text-sm"
+                  >
+                    {line}
+                  </li>
+                ))}
+              </ul>
               {isSchool ? (
                 <div className="mt-5 flex flex-wrap gap-2">
                   {["Live online tuition", "All major boards", "Speaking-focused"].map(
@@ -530,10 +549,10 @@ export function CourseProgramCard({ course }: { course: CourseProgram }) {
           sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
         />
         <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-esa-navy/50 to-transparent" />
-        <div className="absolute left-3 top-3 flex items-center gap-1.5">
+        <div className="absolute left-3 top-3 inline-flex items-center gap-2 rounded-lg border border-white/40 bg-white/95 px-2.5 py-1.5 shadow-esa-soft backdrop-blur-sm">
           <FlagAccent country={course.flag} size="md" />
-          <span className="rounded bg-white/95 px-2 py-0.5 text-[11px] font-bold uppercase tracking-wide text-esa-navy">
-            {course.language}
+          <span className="text-[11px] font-bold uppercase tracking-wide text-esa-navy">
+            {course.language} Language
           </span>
         </div>
       </Link>
@@ -541,7 +560,7 @@ export function CourseProgramCard({ course }: { course: CourseProgram }) {
       <div className="flex flex-1 flex-col p-4">
         <div className="mb-2 flex flex-wrap items-center gap-1.5">
           <span className="rounded-md bg-esa-red-soft px-2 py-0.5 text-xs font-semibold uppercase tracking-wider text-esa-red">
-            {course.language}
+            {course.language} Language
           </span>
           {course.audienceNote ? (
             <span className="text-xs font-medium text-esa-muted">{course.audienceNote}</span>

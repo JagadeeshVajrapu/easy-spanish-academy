@@ -2,7 +2,7 @@ import type { ReactNode } from "react";
 import Link from "next/link";
 import { Mail, MapPin, Phone } from "lucide-react";
 import { SocialLinks } from "@/components/layout/SocialLinks";
-import { BrandLogo } from "@/components/ui/BrandLogo";
+import { BrandLogo, BrandWordmark } from "@/components/ui/BrandLogo";
 import { FlagAccent } from "@/components/ui/FlagAccent";
 import { FOOTER_LINKS, SITE } from "@/lib/constants";
 import { whatsappUrl } from "@/lib/utils";
@@ -59,24 +59,17 @@ export function Footer() {
           <div className="col-span-2 md:col-span-12 lg:col-span-4">
             <Link href="/" className="inline-flex items-start gap-3 focus-esa">
               <BrandLogo size="footer" />
-              <span className="min-w-0 pt-0.5">
-                <span className="block text-base font-bold leading-tight text-white sm:text-[1.05rem]">
-                  Easy Spanish Academy
-                </span>
-                <span className="mt-1 block text-xs leading-snug text-white/70">
-                  {SITE.instituteTagline}
-                </span>
-              </span>
+              <BrandWordmark tone="dark" className="pt-0.5" />
             </Link>
             <p className="mt-3 max-w-sm text-sm leading-relaxed text-white/75">
               {SITE.tagline}
             </p>
             <div className="mt-3 flex flex-wrap gap-2">
               <span className="inline-flex items-center gap-1.5 rounded-md border border-white/10 bg-white/5 px-2.5 py-1 text-xs text-white/90">
-                <FlagAccent country="ES" /> Spanish
+                <FlagAccent country="ES" /> Spanish Language
               </span>
               <span className="inline-flex items-center gap-1.5 rounded-md border border-white/10 bg-white/5 px-2.5 py-1 text-xs text-white/90">
-                <FlagAccent country="DE" /> German
+                <FlagAccent country="DE" /> German Language
               </span>
             </div>
             <SocialLinks className="mt-4" />

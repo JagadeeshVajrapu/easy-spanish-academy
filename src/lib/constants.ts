@@ -2,7 +2,7 @@ export const SITE = {
   name: "Easy Spanish Academy",
   shortName: "ESA",
   tagline: "Learn Today, Speak Tomorrow, Connect Forever",
-  instituteTagline: "Online Spanish and German Language Institute",
+  instituteTagline: "# Best Online Institute for Spanish & German Language",
   description:
     "Learn Spanish and German online with structured A1 to B2 certificate courses and school-oriented programs designed to build speaking confidence.",
   phoneDisplay: "+91 9971-627-900",
@@ -48,7 +48,7 @@ export type CourseNavItem = {
 
 export const COURSE_NAV: readonly CourseNavItem[] = [
   {
-    label: "Spanish",
+    label: "Spanish Language",
     href: "/courses/spanish",
     flag: "ES",
     children: [
@@ -63,7 +63,7 @@ export const COURSE_NAV: readonly CourseNavItem[] = [
     ],
   },
   {
-    label: "German",
+    label: "German Language",
     href: "/courses/german/certificate-diploma",
     flag: "DE",
   },
@@ -78,7 +78,6 @@ export const NAV_LINKS = [
     children: COURSE_NAV,
   },
   { label: "Why Choose Us", href: "/why-choose-us" },
-  { label: "Blog", href: "/blog" },
   { label: "Contact", href: "/contact" },
 ] as const;
 
@@ -88,7 +87,6 @@ export const FOOTER_LINKS = {
     { label: "About Us", href: "/about" },
     { label: "Why Choose Us", href: "/why-choose-us" },
     { label: "Courses", href: "/courses" },
-    { label: "Blog", href: "/blog" },
     { label: "Contact", href: "/contact" },
     { label: "Privacy Policy", href: "/privacy" },
   ],

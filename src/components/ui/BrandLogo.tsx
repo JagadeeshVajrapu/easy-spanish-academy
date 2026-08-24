@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { cn } from "@/lib/utils";
+import { SITE } from "@/lib/constants";
 
 type BrandLogoProps = {
   href?: string;
@@ -10,12 +11,57 @@ type BrandLogoProps = {
   onClick?: () => void;
 };
 
+type BrandWordmarkProps = {
+  /** `light` = dark text on white nav; `dark` = light text on navy footer */
+  tone?: "light" | "dark";
+  showTagline?: boolean;
+  className?: string;
+};
+
+/** Creative brand name + optional single-line institute tagline. */
+export function BrandWordmark({
+  tone = "light",
+  showTagline = true,
+  className,
+}: BrandWordmarkProps) {
+  const isLight = tone === "light";
+
+  return (
+    <span className={cn("min-w-0 leading-tight", className)}>
+      <span
+        className={cn(
+          "font-display block whitespace-nowrap text-base font-extrabold tracking-tight sm:text-[1.125rem] lg:text-[1.2rem] xl:text-[1.3rem]",
+          isLight ? "text-esa-navy" : "text-white",
+        )}
+      >
+        Easy{" "}
+        <span className={isLight ? "text-esa-red" : "text-esa-gold"}>Spanish</span>{" "}
+        Academy
+      </span>
+      {showTagline ? (
+        <span
+          className={cn(
+            "mt-0.5 block text-[10px] font-semibold tracking-[0.01em] sm:text-[11px]",
+            // Keep tagline out of the crowded nav row; footer can show it.
+            isLight
+              ? "hidden text-esa-red"
+              : "whitespace-normal text-esa-gold sm:whitespace-nowrap",
+          )}
+          title={SITE.instituteTagline}
+        >
+          {SITE.instituteTagline}
+        </span>
+      ) : null}
+    </span>
+  );
+}
+
 /** Nav mark is landscape ~900×507 (aspect 1.775). */
 const NAV = {
   src: "/esa-mark.png",
   width: 900,
   height: 507,
-  className: "h-10 w-auto sm:h-11 md:h-12 max-w-[7rem] sm:max-w-[7.75rem] md:max-w-[8.5rem]",
+  className: "h-9 w-auto sm:h-10 md:h-11 max-w-[6.5rem] sm:max-w-[7.25rem] md:max-w-[7.75rem]",
 } as const;
 
 const FOOTER = {

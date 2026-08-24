@@ -108,36 +108,36 @@ export default function HomePage() {
       <section className="esa-surface-warm border-b border-esa-border/60">
         <div className="container-esa grid items-center gap-10 py-14 sm:py-16 lg:grid-cols-2 lg:gap-14 lg:py-20">
           <div className="min-w-0">
-            <p className="inline-flex items-center gap-2 rounded-full border border-esa-border bg-white/90 px-3 py-1.5 text-xs font-medium text-esa-muted shadow-esa-soft">
-              <span className="h-1.5 w-1.5 rounded-full bg-esa-red" aria-hidden />
-              {SITE.instituteTagline}
+            <p className="inline-flex max-w-full items-center gap-2 rounded-full border border-esa-red/25 bg-esa-red-soft px-3.5 py-2 text-sm font-bold text-esa-red shadow-esa-soft sm:text-[0.95rem]">
+              <span className="h-2 w-2 shrink-0 rounded-full bg-esa-red" aria-hidden />
+              <span className="leading-snug">{SITE.instituteTagline}</span>
             </p>
-            <h1 className="text-hero mt-5 max-w-2xl text-esa-navy">
+            <h1 className="text-hero mt-5 max-w-2xl font-bold text-esa-navy">
               Learn Today. Speak Tomorrow.{" "}
               <span className="text-esa-red">Connect Forever.</span>
             </h1>
-            <p className="mt-4 max-w-xl text-base leading-relaxed text-esa-muted sm:text-[1.05rem]">
+            <p className="mt-4 max-w-xl text-[1.05rem] font-medium leading-relaxed text-esa-navy/75 sm:text-lg">
               Online Spanish and German programs from A1 to B2—with live classes,
               weekday and weekend batches, and guided speaking practice.
             </p>
             <div className="mt-6 flex flex-wrap gap-2.5" aria-label="Languages offered">
-              <span className="inline-flex cursor-default select-none items-center gap-2 rounded-lg border border-esa-border bg-white px-3.5 py-2 text-sm font-semibold text-esa-navy shadow-esa-soft">
-                <FlagAccent country="ES" size="md" /> Spanish
+              <span className="inline-flex cursor-default select-none items-center gap-2.5 rounded-lg border border-esa-border bg-white px-4 py-2.5 text-base font-bold text-esa-navy shadow-esa-soft">
+                <FlagAccent country="ES" size="lg" /> Spanish Language
               </span>
-              <span className="inline-flex cursor-default select-none items-center gap-2 rounded-lg border border-esa-border bg-white px-3.5 py-2 text-sm font-semibold text-esa-navy shadow-esa-soft">
-                <FlagAccent country="DE" size="md" /> German
+              <span className="inline-flex cursor-default select-none items-center gap-2.5 rounded-lg border border-esa-border bg-white px-4 py-2.5 text-base font-bold text-esa-navy shadow-esa-soft">
+                <FlagAccent country="DE" size="lg" /> German Language
               </span>
             </div>
             <div className="mt-8 flex flex-col gap-2.5 sm:flex-row">
               <Link
                 href="/book-demo"
-                className="esa-btn inline-flex items-center justify-center rounded-lg bg-esa-red px-5 py-3 text-sm font-semibold text-white shadow-esa-soft hover:bg-esa-red-dark focus-esa"
+                className="esa-btn inline-flex items-center justify-center rounded-lg bg-esa-red px-5 py-3.5 text-base font-bold text-white shadow-esa-soft hover:bg-esa-red-dark focus-esa"
               >
-                Book a Demo
+                Book a Demo Today
               </Link>
               <Link
                 href="/courses"
-                className="group esa-btn inline-flex items-center justify-center gap-1.5 rounded-lg border border-esa-border bg-white px-5 py-3 text-sm font-semibold text-esa-navy hover:border-esa-red/25 hover:bg-esa-soft focus-esa"
+                className="group esa-btn inline-flex items-center justify-center gap-1.5 rounded-lg border border-esa-border bg-white px-5 py-3.5 text-base font-semibold text-esa-navy hover:border-esa-red/25 hover:bg-esa-soft focus-esa"
               >
                 Explore Courses
                 <ArrowRight className="h-4 w-4 transition duration-200 group-hover:translate-x-1" />
@@ -172,7 +172,7 @@ export default function HomePage() {
             <h2 className="text-section mt-2">
               Language Learning Built for Real Progress
             </h2>
-            <p className="mt-3 text-esa-muted">
+            <p className="mt-3 text-base leading-relaxed text-esa-muted sm:text-lg">
               One academy, two languages, and a clear path from your first words to
               confident conversations.
             </p>
@@ -186,7 +186,7 @@ export default function HomePage() {
               >
                 <div className="mb-4">
                   {item.icon === "flags" ? (
-                    <span className="inline-flex items-center gap-2">
+                    <span className="inline-flex items-center gap-2.5">
                       <FlagAccent country="ES" size="lg" />
                       <FlagAccent country="DE" size="lg" />
                     </span>
@@ -196,8 +196,8 @@ export default function HomePage() {
                     </span>
                   )}
                 </div>
-                <h3 className="text-base font-bold text-esa-navy sm:text-lg">{item.title}</h3>
-                <p className="mt-2 flex-1 text-sm leading-relaxed text-esa-muted">
+                <h3 className="text-lg font-bold text-esa-navy">{item.title}</h3>
+                <p className="mt-2 flex-1 text-base leading-relaxed text-esa-muted">
                   {item.detail}
                 </p>
               </article>
@@ -250,7 +250,7 @@ export default function HomePage() {
                 </span>
                 <div>
                   <h3 className="font-bold text-esa-navy">{item.title}</h3>
-                  <p className="mt-1 text-sm leading-relaxed text-esa-muted">
+                  <p className="mt-1 text-base leading-relaxed text-esa-muted">
                     {item.text}
                   </p>
                 </div>
@@ -280,7 +280,7 @@ export default function HomePage() {
                   {item.step}
                 </span>
                 <h3 className="mt-3 text-base font-bold text-esa-navy">{item.title}</h3>
-                <p className="mt-1.5 text-sm leading-relaxed text-esa-muted">{item.text}</p>
+                <p className="mt-1.5 text-base leading-relaxed text-esa-muted">{item.text}</p>
               </li>
             ))}
           </ol>
@@ -302,7 +302,7 @@ export default function HomePage() {
           <div className="mt-8 grid gap-5 lg:grid-cols-2">
             <PathCard
               flag="ES"
-              label="Learn Spanish"
+              label="Spanish Language"
               title="Spanish Programs"
               text="Certificate & Diploma from A1 to B2, plus crash and school-oriented programs."
               href="/courses/spanish"
@@ -310,7 +310,7 @@ export default function HomePage() {
             />
             <PathCard
               flag="DE"
-              label="Learn German"
+              label="German Language"
               title="German Programs"
               text="Structured Certificate & Diploma pathway from A1 to B2."
               href="/courses/german/certificate-diploma"

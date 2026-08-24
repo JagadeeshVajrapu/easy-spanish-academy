@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 import { Clock3 } from "lucide-react";
 import type { BlogPost } from "@/lib/blog-data";
 import { cn } from "@/lib/utils";
@@ -8,7 +9,6 @@ type BlogCardProps = {
   className?: string;
 };
 
-/** Read-only blog card — full summary and key points shown on the blog page (no separate article URLs). */
 export function BlogCard({ post, className }: BlogCardProps) {
   return (
     <article
@@ -17,7 +17,10 @@ export function BlogCard({ post, className }: BlogCardProps) {
         className,
       )}
     >
-      <div className="relative aspect-[16/10] overflow-hidden">
+      <Link
+        href={`/blog/${post.slug}`}
+        className="relative block aspect-[16/10] overflow-hidden focus-esa"
+      >
         <Image
           src={post.image}
           alt={post.imageAlt}
@@ -30,7 +33,7 @@ export function BlogCard({ post, className }: BlogCardProps) {
         <span className="absolute left-4 top-4 rounded-lg bg-white/95 px-2.5 py-1 text-xs font-semibold uppercase tracking-wider text-esa-red shadow-esa-soft transition duration-300 group-hover:scale-[1.03]">
           {post.category}
         </span>
-      </div>
+      </Link>
 
       <div className="flex flex-1 flex-col p-5 sm:p-6">
         <div className="mb-2 inline-flex items-center gap-1.5 text-sm font-medium text-esa-muted">
@@ -39,7 +42,9 @@ export function BlogCard({ post, className }: BlogCardProps) {
         </div>
 
         <h3 className="font-display text-xl font-semibold leading-snug text-esa-navy transition-colors duration-300 group-hover:text-esa-red sm:text-[1.35rem]">
-          {post.title}
+          <Link href={`/blog/${post.slug}`} className="focus-esa">
+            {post.title}
+          </Link>
         </h3>
 
         <p className="mt-3 text-sm leading-relaxed text-esa-muted sm:text-[0.95rem]">
@@ -64,7 +69,7 @@ export function BlogCard({ post, className }: BlogCardProps) {
             Key points
           </p>
           <ul className="mt-2.5 space-y-2">
-            {post.outline.map((item) => (
+            {post.outline.slice(0, 3).map((item) => (
               <li key={item} className="flex gap-2.5 text-sm leading-relaxed text-esa-navy/85">
                 <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-esa-red" aria-hidden />
                 <span>{item}</span>
@@ -72,6 +77,13 @@ export function BlogCard({ post, className }: BlogCardProps) {
             ))}
           </ul>
         </div>
+
+        <Link
+          href={`/blog/${post.slug}`}
+          className="mt-5 inline-flex text-sm font-bold text-esa-red transition hover:text-esa-red-dark focus-esa"
+        >
+          Read full guide →
+        </Link>
       </div>
     </article>
   );

@@ -25,6 +25,16 @@ const nextConfig: NextConfig = {
         destination: "/courses/german/certificate-diploma",
         permanent: true,
       },
+      {
+        source: "/blog",
+        destination: "/",
+        permanent: false,
+      },
+      {
+        source: "/blog/:slug",
+        destination: "/",
+        permanent: false,
+      },
     ];
   },
 };

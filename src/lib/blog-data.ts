@@ -2,7 +2,7 @@ export type BlogPost = {
   slug: string;
   title: string;
   excerpt: string;
-  category: "Spanish" | "German" | "Learning Tips";
+  category: "Spanish Language" | "German Language" | "Learning Tips";
   date: string;
   readTime: string;
   image: string;
@@ -47,7 +47,7 @@ export const BLOG_POSTS: BlogPost[] = [
       "Why Learning Spanish Can Boost Your Career and Travel Opportunities",
     excerpt:
       "See how a Spanish language course can open career paths, travel ease, and global connections—especially with Spanish classes online in India.",
-    category: "Spanish",
+    category: "Spanish Language",
     date: "2026-03-10",
     readTime: "6 min read",
     image:
@@ -74,7 +74,7 @@ export const BLOG_POSTS: BlogPost[] = [
       "German A1 for Beginners: Complete Guide to Starting Your German Learning Journey",
     excerpt:
       "A clear German A1 course overview for beginners—what to expect, how online German classes work, and how to start learning German online in India.",
-    category: "German",
+    category: "German Language",
     date: "2026-03-05",
     readTime: "8 min read",
     image:
