@@ -45,12 +45,12 @@ export default function ContactPage() {
       <section className="section-pad bg-esa-bg">
         <div className="container-esa grid gap-8 lg:grid-cols-2 lg:items-stretch lg:gap-10">
           {/* Enquiry form — left on desktop */}
-          <div className="order-2 flex h-full lg:order-1">
-            <ContactForm className="h-full" />
+          <div className="order-2 flex lg:order-1">
+            <ContactForm className="h-full w-full" />
           </div>
 
           {/* Primary contact area */}
-          <aside className="order-1 flex h-full lg:order-2">
+          <aside className="order-1 flex lg:order-2">
             <div className="flex h-full w-full flex-col rounded-xl border border-esa-border bg-white p-6 shadow-esa-soft sm:p-8">
               <div className="mb-6 border-b border-esa-border pb-6">
                 <p className="text-label text-esa-red">Contact information</p>

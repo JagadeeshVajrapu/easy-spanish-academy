@@ -145,13 +145,13 @@ function ContactFormFields({ className }: { className?: string }) {
     return (
       <div
         className={cn(
-          "flex h-full flex-col justify-center rounded-xl border border-esa-border bg-white p-6 text-center shadow-esa-soft sm:p-8",
+          "flex h-full w-full flex-col items-center justify-center rounded-xl border border-esa-border bg-white p-6 text-center shadow-esa-soft sm:p-8",
           className,
         )}
       >
         <CheckCircle2 className="mx-auto h-11 w-11 text-esa-red" aria-hidden />
         <h3 className="mt-4 text-xl font-bold text-esa-navy">Enquiry sent</h3>
-        <p className="mt-2 text-sm text-esa-muted">
+        <p className="mt-2 max-w-md text-sm text-esa-muted">
           Thank you. We will get back to you soon at{" "}
           <a href={SITE.emailHref} className="font-semibold text-esa-red focus-esa">
             {SITE.email}
@@ -187,19 +187,21 @@ function ContactFormFields({ className }: { className?: string }) {
     <form
       onSubmit={handleSubmit}
       className={cn(
-        "flex h-full flex-col rounded-xl border border-esa-border bg-white p-6 shadow-esa-soft sm:p-8",
+        "flex h-full w-full flex-col rounded-xl border border-esa-border bg-white p-6 shadow-esa-soft sm:p-8",
         className,
       )}
       noValidate
     >
-      <h2 className="text-xl font-bold text-esa-navy sm:text-2xl">
-        Send us an enquiry
-      </h2>
-      <p className="mt-1.5 text-sm text-esa-muted">
-        We usually respond within a few hours.
-      </p>
+      <div className="shrink-0">
+        <h2 className="text-xl font-bold text-esa-navy sm:text-2xl">
+          Send us an enquiry
+        </h2>
+        <p className="mt-1.5 text-sm text-esa-muted">
+          We usually respond within a few hours.
+        </p>
+      </div>
 
-      <div className="mt-6 space-y-4">
+      <div className="mt-5 flex min-h-0 flex-1 flex-col gap-4">
         <Field
           label="Name"
           id="contact-name"
@@ -257,27 +259,30 @@ function ContactFormFields({ className }: { className?: string }) {
           />
         </div>
 
-        <div>
+        <div className="flex min-h-[8rem] flex-1 flex-col">
           <label
             htmlFor="contact-message"
-            className="mb-1.5 block text-sm font-semibold text-esa-navy"
+            className="mb-1.5 block shrink-0 text-sm font-semibold text-esa-navy"
           >
             Message
           </label>
           <textarea
             id="contact-message"
-            rows={4}
+            rows={5}
             value={form.message}
             onChange={(event) =>
               setForm((prev) => ({ ...prev, message: event.target.value }))
             }
             placeholder="Tell us your goal, level, or any questions."
-            className={inputClass()}
+            className={cn(
+              inputClass(),
+              "min-h-[8rem] flex-1 resize-none lg:min-h-0",
+            )}
           />
         </div>
       </div>
 
-      <div className="mt-6 flex flex-col gap-2.5 sm:mt-auto sm:flex-row sm:flex-wrap sm:pt-4">
+      <div className="mt-5 flex shrink-0 flex-col gap-2.5 sm:flex-row sm:flex-wrap">
         <button
           type="submit"
           disabled={submitting}
@@ -305,7 +310,7 @@ export function ContactForm({ className }: { className?: string }) {
       fallback={
         <div
           className={cn(
-            "rounded-xl border border-esa-border bg-white p-8 text-sm text-esa-muted shadow-esa-soft",
+            "flex h-full w-full items-center rounded-xl border border-esa-border bg-white p-8 text-sm text-esa-muted shadow-esa-soft",
             className,
           )}
         >
