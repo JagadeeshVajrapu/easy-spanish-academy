@@ -64,7 +64,7 @@ export default function ContactPage() {
 
               <div className="flex flex-1 flex-col">
               <div className="flex items-start gap-3">
-                <span className="inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-esa-navy text-white">
+                <span className="inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-[#3B82F6] text-white">
                   <Phone className="h-4 w-4" aria-hidden />
                 </span>
                 <div className="min-w-0 flex-1">

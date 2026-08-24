@@ -2,10 +2,8 @@ import type { Metadata } from "next";
 import {
   BookOpen,
   CalendarDays,
-  CheckCircle2,
   FileText,
   GraduationCap,
-  Headphones,
   MessageCircle,
   MonitorPlay,
   Package,
@@ -18,7 +16,6 @@ import { Button } from "@/components/ui/Button";
 import { Section } from "@/components/ui/Section";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { StaggerGroup, StaggerItem } from "@/components/ui/Stagger";
-import { CTABanner } from "@/components/sections/CTABanner";
 import { PageHero } from "@/components/sections/PageHero";
 import { SITE } from "@/lib/constants";
 import { whatsappUrl } from "@/lib/utils";
@@ -45,11 +42,6 @@ const whyChoosePoints = [
     icon: CalendarDays,
     title: "Weekday & Weekend Batches",
     text: "Flexible class timings with weekday and weekend batches for students and working professionals.",
-  },
-  {
-    icon: Headphones,
-    title: "Access to Recorded Classes",
-    text: "Revisit lessons anytime with recorded class access so you never miss an important concept.",
   },
   {
     icon: FileText,
@@ -85,11 +77,6 @@ const whyChoosePoints = [
     icon: Users,
     title: "Expert Spanish & German Trainers",
     text: "Learn with experienced Spanish and German language trainers focused on clear teaching and speaking practice.",
-  },
-  {
-    icon: CheckCircle2,
-    title: "Career & Study Abroad Guidance",
-    text: "Post-course guidance for career growth and study abroad goals related to Spanish and German.",
   },
 ];
 
@@ -168,7 +155,7 @@ export default function WhyChooseUsPage() {
                 href={whatsappUrl(
                   "Hello! I would like to book a free demo session at Easy Spanish Academy.",
                 )}
-                variant="gold"
+                variant="whatsapp"
                 size="lg"
                 className="w-full sm:w-auto"
                 target="_blank"
@@ -179,7 +166,7 @@ export default function WhyChooseUsPage() {
               </Button>
               <Button
                 href={SITE.phoneHref}
-                variant="outline"
+                variant="call"
                 size="lg"
                 className="w-full sm:w-auto"
               >
@@ -190,14 +177,6 @@ export default function WhyChooseUsPage() {
           </AnimateIn>
         </div>
       </Section>
-
-      <CTABanner
-        eyebrow="Explore courses"
-        title="Start your language journey today"
-        description="Browse our Spanish and German courses—structured from A1 to B2 with live classes, study materials, and speaking practice."
-        primaryLabel="View Courses"
-        primaryHref="/courses"
-      />
     </>
   );
 }

@@ -1,14 +1,65 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 600" role="img" aria-label="Spain flag">
-  <rect width="900" height="600" fill="#AA151B"/>
-  <rect y="150" width="900" height="300" fill="#F1BF00"/>
-  <g transform="translate(180,225)">
-    <rect x="0" y="0" width="120" height="150" fill="none"/>
-    <path fill="#AA151B" stroke="#F1BF00" stroke-width="2" d="M20 20h80v110H20z"/>
-    <path fill="#F1BF00" d="M20 20h40v55H20zm40 0h40v55H60zM20 75h40v55H20zm40 0h40v55H60z"/>
-    <path fill="#AA151B" d="M50 45h20v30H50z"/>
-    <path fill="#F1BF00" stroke="#AA151B" stroke-width="1.5" d="M35 8l15-8 15 8-4 12H39z"/>
-    <path fill="#AA151B" d="M10 130h100v8H10z"/>
-    <path fill="#F1BF00" stroke="#AA151B" stroke-width="1.5" d="M15 130h12v28H15zm78 0h12v28H93z"/>
-    <path fill="#AA151B" d="M52 130h16v28H52z"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 750 500" role="img" aria-label="Flag of Spain">
+  <!-- Official proportions: red / yellow / red = 1 : 2 : 1 -->
+  <rect width="750" height="500" fill="#AA151B"/>
+  <rect y="125" width="750" height="250" fill="#F1BF00"/>
+
+  <!-- Coat of arms (hoist side on yellow band) -->
+  <g transform="translate(175 152)">
+    <!-- Pillars -->
+    <g fill="#C8B100" stroke="#8B6914" stroke-width="1.2">
+      <rect x="-30" y="20" width="16" height="100" rx="1.5"/>
+      <rect x="114" y="20" width="16" height="100" rx="1.5"/>
+      <rect x="-34" y="14" width="24" height="10" rx="1"/>
+      <rect x="110" y="14" width="24" height="10" rx="1"/>
+      <rect x="-34" y="114" width="24" height="9" rx="1"/>
+      <rect x="110" y="114" width="24" height="9" rx="1"/>
+    </g>
+
+    <!-- Red ribbons -->
+    <rect x="-36" y="44" width="28" height="11" rx="1" fill="#AA151B" stroke="#7A1014" stroke-width="0.8"/>
+    <rect x="108" y="44" width="28" height="11" rx="1" fill="#AA151B" stroke="#7A1014" stroke-width="0.8"/>
+    <rect x="-36" y="80" width="28" height="11" rx="1" fill="#AA151B" stroke="#7A1014" stroke-width="0.8"/>
+    <rect x="108" y="80" width="28" height="11" rx="1" fill="#AA151B" stroke="#7A1014" stroke-width="0.8"/>
+
+    <!-- Crown -->
+    <g fill="#C8B100" stroke="#8B6914" stroke-width="1">
+      <path d="M20 10h60l7 18H13z"/>
+      <rect x="26" y="2" width="9" height="12" rx="1"/>
+      <rect x="45.5" y="-2" width="9" height="16" rx="1"/>
+      <rect x="65" y="2" width="9" height="12" rx="1"/>
+      <circle cx="30.5" cy="2" r="3.8" fill="#AA151B"/>
+      <circle cx="50" cy="-2" r="3.8" fill="#AA151B"/>
+      <circle cx="69.5" cy="2" r="3.8" fill="#AA151B"/>
+    </g>
+
+    <!-- Shield body -->
+    <path d="M18 28h64v50c0 24-32 40-32 40S18 102 18 78z" fill="#F7F1E1" stroke="#8B6914" stroke-width="2.8"/>
+
+    <!-- Castile -->
+    <rect x="22" y="32" width="26" height="22" fill="#AA151B"/>
+    <path fill="#C8B100" d="M25 44v-8h4.5v-4.5h3.5V36H37v-4.5h3.5V36H45v8z"/>
+    <rect x="28" y="46" width="4.5" height="5" fill="#C8B100"/>
+    <rect x="38" y="46" width="4.5" height="5" fill="#C8B100"/>
+
+    <!-- Leon -->
+    <rect x="52" y="32" width="26" height="22" fill="#F7F1E1"/>
+    <path fill="#AA151B" d="M60 48c0-6.5 4.5-11 9-11 2.2 0 4.2 1.2 5.2 3.2l2.2-2.2 1.2 3.2-2.3 1.1c1.1 2.2 1.1 5.2-1.1 7.5h-4.2c-1.1-2.2-2.2-3.2-3.3-3.2s-2.2 1.1-3.3 3.2H60z"/>
+
+    <!-- Aragon -->
+    <rect x="22" y="58" width="26" height="22" fill="#F1BF00"/>
+    <rect x="22" y="58" width="26" height="4" fill="#AA151B"/>
+    <rect x="22" y="66" width="26" height="4" fill="#AA151B"/>
+    <rect x="22" y="74" width="26" height="4" fill="#AA151B"/>
+
+    <!-- Navarre -->
+    <rect x="52" y="58" width="26" height="22" fill="#AA151B"/>
+    <g fill="none" stroke="#C8B100" stroke-width="1.5">
+      <circle cx="65" cy="69" r="7"/>
+      <path d="M65 62v14M58 69h14M59.5 63.5l11 11M70.5 63.5l-11 11"/>
+    </g>
+
+    <!-- Granada -->
+    <path d="M50 96c-5-5-10-10-10-15h20c0 5-5 10-10 15z" fill="#2E7D32"/>
+    <circle cx="50" cy="85" r="2.8" fill="#AA151B"/>
   </g>
 </svg>

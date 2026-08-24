@@ -27,7 +27,7 @@ export function ContactFab() {
         aria-label={`Call ${SITE.phoneDisplay}`}
         className={cn(
           fabBase,
-          "bg-gradient-to-br from-esa-red to-esa-red-dark hover:from-esa-red-dark hover:to-esa-red",
+          "bg-gradient-to-br from-[#3B82F6] to-[#2563EB] hover:from-[#2563EB] hover:to-[#1D4ED8]",
         )}
       >
         <Phone className="h-[1.45rem] w-[1.45rem] sm:h-[1.65rem] sm:w-[1.65rem]" strokeWidth={2.25} aria-hidden />

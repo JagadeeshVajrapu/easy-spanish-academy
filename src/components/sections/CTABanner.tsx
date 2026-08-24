@@ -48,7 +48,7 @@ export function CTABanner({
           </Button>
           <Button
             href={whatsappUrl(SITE.whatsappMessage)}
-            variant="gold"
+            variant="whatsapp"
             size="lg"
             className="w-full sm:w-auto"
             target="_blank"
@@ -59,7 +59,7 @@ export function CTABanner({
           </Button>
           <Button
             href={SITE.phoneHref}
-            variant="outline"
+            variant="call"
             size="lg"
             className="w-full sm:w-auto"
           >

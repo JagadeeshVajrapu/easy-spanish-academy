@@ -39,13 +39,13 @@ export const FEATURED_COURSES: FeaturedCourse[] = [
     id: "es-school",
     language: "Spanish",
     flag: "ES",
-    title: "School-Oriented Course",
-    level: "A1 – B2",
+    title: "School Orientation Program",
+    level: "Beginner – Advanced",
     description:
-      "Spanish support for school students aged 5 to 16 (up to Class 10)—clarity, confidence, and consistent practice.",
-    focus: "School-aligned understanding and communication skills",
-    href: "/spanish-courses#school",
-    interest: "Spanish School-Oriented Course",
+      "Interactive Spanish programs for school students across major boards—learn Spanish, speak with confidence, go global.",
+    focus: "School orientation, speaking practice, and curriculum-focused learning",
+    href: "/courses/spanish/school-course",
+    interest: "School Orientation Program",
   },
   {
     id: "de-certificate",
@@ -56,7 +56,7 @@ export const FEATURED_COURSES: FeaturedCourse[] = [
     description:
       "A clear German learning path from beginner foundations toward more confident communication.",
     focus: "Structured progression with pronunciation and speaking support",
-    href: "/german-courses#certificate",
+    href: "/courses/german/certificate-diploma",
     interest: "German Certificate / Diploma Course",
   },
 ];

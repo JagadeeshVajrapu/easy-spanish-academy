@@ -57,14 +57,14 @@ export const COURSE_NAV: readonly CourseNavItem[] = [
         href: "/courses/spanish/certificate-diploma",
       },
       {
-        label: "School Oriented Course",
+        label: "School Orientation Program",
         href: "/courses/spanish/school-course",
       },
     ],
   },
   {
     label: "German",
-    href: "/courses/german",
+    href: "/courses/german/certificate-diploma",
     flag: "DE",
   },
 ];
@@ -94,7 +94,7 @@ export const FOOTER_LINKS = {
   ],
   courses: [
     { label: "Spanish Certificate", href: "/courses/spanish/certificate-diploma" },
-    { label: "Spanish School Course", href: "/courses/spanish/school-course" },
-    { label: "German Courses", href: "/courses/german" },
+    { label: "School Orientation Program", href: "/courses/spanish/school-course" },
+    { label: "German Certificate", href: "/courses/german/certificate-diploma" },
   ],
 } as const;

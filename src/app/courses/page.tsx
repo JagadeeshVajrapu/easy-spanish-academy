@@ -41,7 +41,7 @@ export default function CoursesIndexPage() {
               <FlagAccent country="ES" /> Spanish Courses
             </Link>
             <Link
-              href="/courses/german"
+              href="/courses/german/certificate-diploma"
               className="inline-flex items-center gap-2 rounded-lg border border-white/25 bg-white/10 px-5 py-3 text-sm font-semibold text-white transition hover:bg-white/15 focus-esa"
             >
               <FlagAccent country="DE" /> German Courses
@@ -84,7 +84,7 @@ export default function CoursesIndexPage() {
               <h2 className="text-section mt-2">German program</h2>
             </div>
             <Link
-              href="/courses/german"
+              href="/courses/german/certificate-diploma"
               className="text-sm font-semibold text-esa-red focus-esa"
             >
               View German →
@@ -113,8 +113,8 @@ export default function CoursesIndexPage() {
                 Intensive learning with a speaking focus.
               </li>
               <li>
-                <span className="font-semibold text-esa-navy">School-Oriented — </span>
-                Ages 5–16, up to Class 10.
+                <span className="font-semibold text-esa-navy">School Orientation — </span>
+                Interactive Spanish for school students across major boards.
               </li>
               <li>
                 <span className="font-semibold text-esa-navy">German Certificate — </span>

@@ -56,7 +56,7 @@ export function CourseCTA({
             </Button>
             <Button
               href={whatsappUrl(message)}
-              variant="gold"
+              variant="whatsapp"
               size="lg"
               className="w-full sm:w-auto"
               target="_blank"
@@ -67,7 +67,7 @@ export function CourseCTA({
             </Button>
             <Button
               href={SITE.phoneHref}
-              variant="outline"
+              variant="call"
               size="lg"
               className="w-full sm:w-auto"
             >

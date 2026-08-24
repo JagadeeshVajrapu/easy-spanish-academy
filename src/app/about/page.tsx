@@ -100,7 +100,7 @@ export default function AboutPage() {
             </BodyText>
             <div className="mt-8 flex flex-wrap gap-3">
               <Button href="/courses/spanish">Explore Spanish</Button>
-              <Button href="/courses/german" variant="outline">
+              <Button href="/courses/german/certificate-diploma" variant="outline">
                 Explore German
               </Button>
             </div>
@@ -185,7 +185,7 @@ export default function AboutPage() {
                 <Button href="/book-demo">Book a Demo</Button>
                 <Button
                   href={whatsappUrl(SITE.whatsappMessage)}
-                  variant="outline"
+                  variant="whatsapp"
                   target="_blank"
                   rel="noopener noreferrer"
                 >

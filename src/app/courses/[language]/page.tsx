@@ -3,35 +3,53 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { FlagAccent } from "@/components/ui/FlagAccent";
 import { CourseProgramCard } from "@/components/course/CourseDetailView";
-import { GERMAN_COURSES, SPANISH_COURSES } from "@/lib/course-data";
+import { SPANISH_COURSES } from "@/lib/course-data";
 import { SITE } from "@/lib/constants";
 
 type Props = { params: Promise<{ language: string }> };
 
 export async function generateStaticParams() {
-  return [{ language: "spanish" }, { language: "german" }];
+  // German has no listing page — it redirects to the A1–B2 certificate course.
+  return [{ language: "spanish" }];
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { language } = await params;
-  const label = language === "german" ? "German" : "Spanish";
+  if (language !== "spanish") {
+    return { title: "Courses" };
+  }
   return {
-    title: `${label} Courses`,
-    description: `${label} courses at ${SITE.name}. Structured A1–B2 pathways with speaking practice.`,
+    title: "Spanish Courses",
+    description: `Spanish courses at ${SITE.name}. Structured A1–B2 pathways with speaking practice.`,
     openGraph: {
-      title: `${label} Courses | ${SITE.name}`,
-      url: `${SITE.url}/courses/${language}`,
+      title: `Spanish Courses | ${SITE.name}`,
+      url: `${SITE.url}/courses/spanish`,
     },
   };
 }
 
 export default async function LanguageCoursesPage({ params }: Props) {
   const { language } = await params;
-  if (language !== "spanish" && language !== "german") notFound();
+  if (language !== "spanish") notFound();
 
-  const courses = language === "german" ? GERMAN_COURSES : SPANISH_COURSES;
-  const label = language === "german" ? "German" : "Spanish";
-  const flag = language === "german" ? "DE" : "ES";
+  const courses = SPANISH_COURSES;
+  const label = "Spanish";
+  const flag = "ES";
+
+  const languageHighlights = [
+    {
+      title: "2nd most spoken language",
+      text: "Spanish is the world’s second-most spoken native language, used by hundreds of millions of people across Spain and Latin America.",
+    },
+    {
+      title: "Global career & travel value",
+      text: "Useful for hospitality, tourism, international business, study abroad, and cultural exchange across many countries.",
+    },
+    {
+      title: "Clear learning pathway",
+      text: "Our Certificate, Crash, and School Orientation programs follow a structured A1–B2 route with live speaking practice.",
+    },
+  ];
 
   return (
     <>
@@ -45,9 +63,8 @@ export default async function LanguageCoursesPage({ params }: Props) {
             {label} courses that fit your goal
           </h1>
           <p className="mt-4 max-w-2xl text-white/75">
-            {language === "spanish"
-              ? "Certificate & Diploma, Crash, and School-Oriented pathways—with clear levels and practical speaking practice."
-              : "Certificate & Diploma pathway from A1 to B2—with pronunciation support and practical speaking practice."}
+            Certificate & Diploma, Crash, and School Orientation pathways—with clear
+            levels and practical speaking practice.
           </p>
           <div className="mt-7 flex flex-wrap gap-2.5">
             <Link
@@ -66,14 +83,40 @@ export default async function LanguageCoursesPage({ params }: Props) {
         </div>
       </section>
 
+      <section className="section-pad bg-white">
+        <div className="container-esa mx-auto max-w-6xl">
+          <div className="max-w-2xl">
+            <p className="text-label text-esa-red">Why Spanish</p>
+            <h2 className="text-section mt-2">Language highlights</h2>
+            <p className="mt-3 text-esa-muted">
+              A few reasons learners choose Spanish—and how Easy Spanish Academy
+              helps you build real speaking confidence.
+            </p>
+          </div>
+          <div className="mt-8 grid gap-4 sm:grid-cols-3">
+            {languageHighlights.map((item) => (
+              <article
+                key={item.title}
+                className="rounded-xl border border-esa-border bg-esa-bg p-5 shadow-esa-soft"
+              >
+                <h3 className="text-base font-bold text-esa-navy">{item.title}</h3>
+                <p className="mt-2 text-sm leading-relaxed text-esa-muted">
+                  {item.text}
+                </p>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+
       <section className="section-pad bg-esa-bg">
         <div className="container-esa mx-auto max-w-6xl">
           <div className="max-w-2xl">
-            <p className="text-label text-esa-red">Programs</p>
+            <p className="text-label text-esa-red">Pathways</p>
             <h2 className="text-section mt-2">Pick your {label} pathway</h2>
             <p className="mt-3 text-esa-muted">
-              Compare programs, explore full course details, and book a demo when you are
-              ready to start.
+              Compare programs, explore full course details, and book a demo when
+              you are ready to start.
             </p>
           </div>
           <div className="mt-8 grid auto-rows-fr gap-4 sm:grid-cols-2 xl:grid-cols-3">

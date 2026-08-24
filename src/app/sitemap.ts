@@ -9,7 +9,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "/why-choose-us",
     "/courses",
     "/courses/spanish",
-    "/courses/german",
+    "/courses/german/certificate-diploma",
     "/book-demo",
     "/blog",
     "/contact",

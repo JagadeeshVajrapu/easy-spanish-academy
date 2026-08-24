@@ -69,6 +69,81 @@ export const CORE_TOPIC_AREAS: SkillFocus[] = [
 
 export const LEARNING_AREAS = CORE_TOPIC_AREAS;
 
+export const SCHOOL_BOARDS = [
+  "CBSE",
+  "ICSE",
+  "State Boards",
+  "IB",
+  "IGCSE / Cambridge",
+  "International Schools",
+] as const;
+
+export const SCHOOL_STUDENT_GETS = [
+  {
+    title: "Live & interactive Spanish tuition",
+    text: "Engaging live classes that keep school students active, curious, and speaking from day one.",
+  },
+  {
+    title: "Expert language trainers",
+    text: "Experienced trainers who understand school learners and teach with clarity and patience.",
+  },
+  {
+    title: "Speaking & pronunciation practice",
+    text: "Focused speaking and pronunciation work so students build real confidence to communicate.",
+  },
+  {
+    title: "School-focused curriculum",
+    text: "Learning designed around age groups and academic requirements across major school boards.",
+  },
+  {
+    title: "Spanish culture & global opportunities",
+    text: "An introduction to Spanish culture and the wider opportunities that language skills can open.",
+  },
+  {
+    title: "Beginner to advanced pathway",
+    text: "Structured learning from beginner foundations toward more advanced levels with clear progress.",
+  },
+] as const;
+
+export const LANGUAGE_HIGHLIGHTS = {
+  Spanish: [
+    {
+      title: "2nd most spoken native language",
+      text: "Spanish is spoken natively by hundreds of millions of people—second only to Mandarin—across Spain and Latin America.",
+    },
+    {
+      title: "Widely used worldwide",
+      text: "An official language in 20+ countries and a strong choice for travel, culture, hospitality, and international careers.",
+    },
+    {
+      title: "Clear sound system",
+      text: "Spanish spelling and pronunciation are relatively consistent, which helps beginners build speaking confidence faster.",
+    },
+    {
+      title: "Growing demand in India",
+      text: "Useful for school electives, higher studies, tourism, BPOs, and global workplaces that value Spanish skills.",
+    },
+  ],
+  German: [
+    {
+      title: "Most spoken in the EU",
+      text: "German is the most widely spoken native language in the European Union and a key language for Europe’s largest economy.",
+    },
+    {
+      title: "Study & career advantage",
+      text: "Valued for higher education in Germany/Austria/Switzerland, engineering, research, and skilled migration pathways.",
+    },
+    {
+      title: "Business & technology",
+      text: "Useful across automotive, manufacturing, IT, logistics, and companies with strong German-speaking markets.",
+    },
+    {
+      title: "Structured CEFR pathway",
+      text: "Our A1–B2 German course builds grammar, vocabulary, pronunciation, and speaking step by step with live practice.",
+    },
+  ],
+} as const;
+
 const SPANISH_LEVELS: CourseLevelDetail[] = [
   {
     code: "A1",
@@ -325,74 +400,107 @@ export const SPANISH_COURSES: CourseProgram[] = [
     slug: "school-course",
     language: "Spanish",
     flag: "ES",
-    title: "Spanish School-Oriented Course",
-    shortTitle: "School-Oriented",
-    levels: "A1 → B2",
+    title: "School Orientation Program",
+    shortTitle: "School Orientation",
+    levels: "Beginner → Advanced",
     levelList: ["A1", "A2", "B1", "B2"],
     levelDetails: SPANISH_LEVELS,
     overview:
-      "Spanish support for school students aged 5 to 16 (up to Class 10)—clarity, confidence, and consistent practice aligned with school learning needs.",
+      "Easy Spanish Academy offers interactive Spanish tuition for school students—designed for different age groups and academic requirements across major boards.",
     introduction:
-      "The Spanish School-Oriented Course supports school students aged 5 to 16 (up to Class 10). Lessons focus on clarity, confidence, and steady practice so young learners can strengthen understanding for classwork while building speaking and communication skills.",
-    whoFor: "School students and parents seeking structured Spanish support.",
-    audienceNote: "Ages 5–16 · Up to Class 10",
+      "We help school students learn Spanish through live interactive classes and guided practice. In a free demo, students can experience Spanish, learn their first words, and see how they can progress with confidence.",
+    whoFor:
+      "School students and parents looking for Spanish tuition and interactive language support across major boards.",
+    audienceNote: "Learn Spanish. Speak with Confidence. Go Global.",
     outcomes: [
-      "Strengthen school-aligned Spanish understanding",
-      "Build confidence in speaking and listening",
-      "Improve reading and writing for classwork",
-      "Develop steady practice habits with guidance",
+      "Live Spanish tuition designed for school students",
+      "Learn first words and build speaking confidence early",
+      "Follow a clear path from beginner to advanced levels",
+      "Connect language learning with culture and global opportunities",
     ],
     benefits: [
-      "Designed for school-age learners (5–16)",
-      "Support up to Class 10 pathways",
-      "Age-appropriate vocabulary and practice",
-      "Speaking confidence for class and conversation",
-      "Reading and writing for school tasks",
-      "Encouraging, structured guidance",
+      "Live & interactive Spanish classes",
+      "Expert language trainers",
+      "Speaking & pronunciation practice",
+      "School-focused curriculum",
+      "Introduction to Spanish culture & global opportunities",
+      "Structured learning from beginner to advanced levels",
     ],
     skills: CORE_TOPIC_AREAS,
     topics: [
-      "Age-appropriate vocabulary and phrases",
-      "School-aligned grammar support",
-      "Listening and pronunciation practice",
-      "Speaking confidence for class and conversation",
-      "Reading and writing for school tasks",
-      "Regular revision and encouragement",
+      "Live interactive Spanish classes",
+      "Speaking and pronunciation practice",
+      "School-focused curriculum support",
+      "Spanish culture introduction",
+      "Beginner to advanced pathway",
+      "Free demo for school students",
     ],
     topicDetails: [
       {
-        title: "School-Aligned Support",
-        description: "Practice that supports classroom understanding and school learning needs.",
+        title: "Live & Interactive Classes",
+        description:
+          "Engaging live tuition sessions designed for school students across different age groups.",
       },
       {
-        title: "Age-Appropriate Learning",
-        description: "Vocabulary, examples, and pacing suited to learners aged 5–16.",
+        title: "Expert Trainers",
+        description:
+          "Language trainers who guide school learners with clear teaching and speaking practice.",
       },
       {
-        title: "Speaking Confidence",
-        description: "Gentle speaking practice that helps students participate more confidently.",
+        title: "Speaking Practice",
+        description:
+          "Pronunciation and conversation practice so students speak with growing confidence.",
       },
       {
-        title: "Listening & Pronunciation",
-        description: "Clear listening work that builds recognition and accurate speech habits.",
+        title: "School-Focused Curriculum",
+        description:
+          "Tuition aligned with academic needs across CBSE, ICSE, State Boards, IB, IGCSE/Cambridge, and International Schools.",
       },
       {
-        title: "Reading & Writing",
-        description: "Support for school-related reading and writing tasks.",
+        title: "Culture & Global Opportunities",
+        description:
+          "An introduction to Spanish culture and the wider opportunities language skills can open.",
       },
       {
-        title: "Steady Revision",
-        description: "Regular review so progress feels consistent and encouraging.",
+        title: "Clear Progress Path",
+        description:
+          "Structured learning from beginner foundations toward more advanced levels.",
       },
     ],
     certification:
-      "Contact us for current school-oriented options, formats, and how we support Class 10 pathways.",
+      "Start Spanish tuition for your child with Easy Spanish Academy. Book a free demo and help your student experience Spanish with confidence.",
     image:
-      "https://images.unsplash.com/photo-1509062522246-3755977927d7?auto=format&fit=crop&w=1200&q=80",
-    imageAlt: "Young learners in a friendly classroom setting",
-    ctaLabel: "View Course",
-    enquiryInterest: "Spanish School-Oriented Course",
-    faq: courseFaq("Spanish", "Spanish School-Oriented Course"),
+      "https://images.unsplash.com/photo-1503676260728-1c00da094a0b?auto=format&fit=crop&w=1600&q=80",
+    imageAlt: "Happy school students learning together in class",
+    ctaLabel: "View Program",
+    enquiryInterest: "Spanish Tuition for School Students",
+    faq: [
+      {
+        question: "What is the School Orientation Program?",
+        answer:
+          "It is interactive Spanish tuition for school students—designed for different age groups and academic requirements—with a free demo so learners can experience Spanish and take their first steps in the language.",
+      },
+      {
+        question: "Which school boards do you support?",
+        answer:
+          "We support students from all major school boards: CBSE, ICSE, State Boards, IB, IGCSE/Cambridge, and International Schools.",
+      },
+      {
+        question: "What do students get in this program?",
+        answer:
+          "Live interactive Spanish classes, expert trainers, speaking and pronunciation practice, a school-focused curriculum, cultural exposure, and a structured path from beginner to advanced levels.",
+      },
+      {
+        question: "Do you provide Spanish tuition for school students?",
+        answer:
+          "Yes. Easy Spanish Academy provides Spanish tuition for school students through live interactive classes aligned with their age group and academic needs.",
+      },
+      {
+        question: "How can I book a free demo?",
+        answer:
+          "Use Book a Demo, message us on WhatsApp, or contact us. Share your child’s class, board, and goals—we will help you start.",
+      },
+    ],
   },
 ];
 

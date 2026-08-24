@@ -21,7 +21,7 @@ const LANGUAGE_OPTIONS = ["Spanish", "German", "Both", "Not sure yet"] as const;
 const COURSE_OPTIONS = [
   "Spanish Certificate & Diploma",
   "Spanish Crash Course",
-  "Spanish School-Oriented",
+  "Spanish School Orientation",
   "German Certificate & Diploma",
   "Not sure yet",
   "General enquiry",
@@ -41,7 +41,7 @@ function resolveCourse(raw: string | null) {
   const lower = raw.toLowerCase();
   if (lower.includes("german")) return "German Certificate & Diploma";
   if (lower.includes("crash")) return "Spanish Crash Course";
-  if (lower.includes("school")) return "Spanish School-Oriented";
+  if (lower.includes("school")) return "Spanish School Orientation";
   if (lower.includes("certificate") || lower.includes("diploma")) {
     return "Spanish Certificate & Diploma";
   }

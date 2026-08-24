@@ -151,7 +151,7 @@ export function HomeChooseLanguage() {
             title="German"
             headline="Build German step by step"
             description="A structured A1–B2 journey with pronunciation support and practical communication."
-            href="/german-courses"
+            href="/courses/german/certificate-diploma"
             cta="Explore German"
             image="https://images.unsplash.com/photo-1467269204594-9661b134dd2b?auto=format&fit=crop&w=1400&q=80"
             imageAlt="European architecture reflecting German language and culture"
@@ -477,7 +477,7 @@ export function HomeFinalCta() {
               <FlagAccent country="ES" />
               Learn Spanish
             </Button>
-            <Button href="/german-courses" variant="gold" size="lg" className="w-full sm:w-auto">
+            <Button href="/courses/german/certificate-diploma" variant="secondary" size="lg" className="w-full sm:w-auto">
               <FlagAccent country="DE" />
               Learn German
             </Button>

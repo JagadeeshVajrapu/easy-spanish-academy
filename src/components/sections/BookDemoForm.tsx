@@ -7,7 +7,7 @@ const LANGUAGES = ["Spanish", "German", "Not sure yet"] as const;
 const COURSES = [
   "Spanish Certificate & Diploma",
   "Spanish Crash Course",
-  "Spanish School-Oriented",
+  "Spanish School Orientation",
   "German Certificate & Diploma",
   "Not sure yet",
 ] as const;

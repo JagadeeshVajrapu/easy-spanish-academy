@@ -49,14 +49,14 @@ export function HomeHero() {
 
           <div className="mt-6 flex flex-wrap gap-2.5 sm:mt-7 sm:gap-3">
             <Link
-              href="/spanish-courses"
+              href="/courses/spanish"
               className="inline-flex items-center gap-2 rounded-xl bg-white/12 px-3.5 py-2.5 text-sm font-semibold text-white backdrop-blur-sm transition hover:bg-white/18 focus-esa"
             >
               <FlagAccent country="ES" size="md" />
               Spanish
             </Link>
             <Link
-              href="/german-courses"
+              href="/courses/german/certificate-diploma"
               className="inline-flex items-center gap-2 rounded-xl bg-white/12 px-3.5 py-2.5 text-sm font-semibold text-white backdrop-blur-sm transition hover:bg-white/18 focus-esa"
             >
               <FlagAccent country="DE" size="md" />

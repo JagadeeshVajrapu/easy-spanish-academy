@@ -10,7 +10,10 @@ import { COURSE_NAV, NAV_LINKS, SITE } from "@/lib/constants";
 import { cn } from "@/lib/utils";
 
 function isCoursePathActive(pathname: string, href: string) {
-  return pathname === href || pathname.startsWith(`${href}/`);
+  if (pathname === href || pathname.startsWith(`${href}/`)) return true;
+  // German nav points at the certificate page, but any /courses/german/* should highlight it.
+  if (href.includes("/german") && pathname.startsWith("/courses/german")) return true;
+  return false;
 }
 
 function isNavLinkActive(pathname: string, href: string) {
@@ -113,9 +116,6 @@ export function Navbar() {
 
             {group.children?.length ? (
               <div className="mb-1 mt-0.5 space-y-0.5 pl-3">
-                <p className="px-3 py-1 text-xs font-semibold uppercase tracking-wider text-esa-muted">
-                  Programs
-                </p>
                 {group.children.map((sub) => (
                   <Link
                     key={sub.href}

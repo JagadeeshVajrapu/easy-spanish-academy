@@ -13,7 +13,20 @@ const nextConfig: NextConfig = {
       },
     ],
   },
+  async redirects() {
+    return [
+      {
+        source: "/courses/german",
+        destination: "/courses/german/certificate-diploma",
+        permanent: true,
+      },
+      {
+        source: "/german-courses",
+        destination: "/courses/german/certificate-diploma",
+        permanent: true,
+      },
+    ];
+  },
 };
 
 export default nextConfig;
-

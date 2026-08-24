@@ -1,7 +1,14 @@
 import Link from "next/link";
 import { cn } from "@/lib/utils";
 
-type ButtonVariant = "primary" | "secondary" | "outline" | "ghost" | "gold";
+type ButtonVariant =
+  | "primary"
+  | "secondary"
+  | "outline"
+  | "ghost"
+  | "gold"
+  | "whatsapp"
+  | "call";
 type ButtonSize = "sm" | "md" | "lg";
 
 const variantClasses: Record<ButtonVariant, string> = {
@@ -13,6 +20,9 @@ const variantClasses: Record<ButtonVariant, string> = {
     "border border-esa-border bg-white/90 text-esa-navy hover:border-esa-navy/30 hover:bg-white hover:shadow-esa-soft",
   ghost: "bg-transparent text-esa-navy hover:bg-esa-navy/5",
   gold: "bg-esa-gold text-esa-navy shadow-esa-soft hover:bg-esa-gold-deep hover:text-white",
+  whatsapp:
+    "bg-[#25D366] text-white shadow-esa-soft hover:bg-[#1da851] hover:shadow-esa-card",
+  call: "bg-[#3B82F6] text-white shadow-esa-soft hover:bg-[#2563EB] hover:shadow-esa-card",
 };
 
 const sizeClasses: Record<ButtonSize, string> = {

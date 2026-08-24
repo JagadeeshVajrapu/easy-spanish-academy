@@ -313,7 +313,7 @@ export default function HomePage() {
               label="Learn German"
               title="German Programs"
               text="Structured Certificate & Diploma pathway from A1 to B2."
-              href="/courses/german"
+              href="/courses/german/certificate-diploma"
               cta="Explore German"
             />
           </div>
@@ -441,7 +441,7 @@ export default function HomePage() {
               href={SITE.phoneHref}
               className="inline-flex items-center gap-2 transition hover:text-esa-red focus-esa"
             >
-              <Phone className="h-4 w-4 text-esa-red" aria-hidden />
+              <Phone className="h-4 w-4 text-[#3B82F6]" aria-hidden />
               {SITE.phoneDisplay}
             </a>
             <a
