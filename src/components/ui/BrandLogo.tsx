@@ -41,11 +41,9 @@ export function BrandWordmark({
       {showTagline ? (
         <span
           className={cn(
-            "mt-0.5 block text-[10px] font-semibold tracking-[0.01em] sm:text-[11px]",
-            // Keep tagline out of the crowded nav row; footer can show it.
-            isLight
-              ? "hidden text-esa-red"
-              : "whitespace-normal text-esa-gold sm:whitespace-nowrap",
+            "mt-0.5 block max-w-full text-[10px] font-semibold leading-snug tracking-[0.01em] sm:text-[11px]",
+            // Nav: hide tagline. Footer: always wrap so it never spills into other columns.
+            isLight ? "hidden text-esa-red" : "whitespace-normal text-esa-gold",
           )}
           title={SITE.instituteTagline}
         >
