@@ -1,7 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { Clock3 } from "lucide-react";
-import { shouldUnoptimizeImage } from "@/lib/blog-media";
+import { resolveBlogImage, shouldUnoptimizeImage } from "@/lib/blog-media";
 import type { PublicBlog } from "@/lib/blog-service";
 import { cn } from "@/lib/utils";
 
@@ -21,9 +21,7 @@ function formatDate(value: string | null) {
 
 /** Hablo-style horizontal row: image left, title / excerpt / read more right */
 export function BlogCard({ post, className }: BlogCardProps) {
-  const imageSrc =
-    post.featuredImage ||
-    "https://images.unsplash.com/photo-1434030216411-0b793f4b4173?auto=format&fit=crop&w=1200&q=80";
+  const imageSrc = resolveBlogImage(post.featuredImage);
 
   return (
     <article

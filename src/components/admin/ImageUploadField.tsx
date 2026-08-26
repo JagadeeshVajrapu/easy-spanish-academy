@@ -44,7 +44,7 @@ export function ImageUploadField({ value, onChange }: ImageUploadFieldProps) {
         className="block w-full text-sm text-esa-muted file:mr-3 file:rounded-lg file:border-0 file:bg-esa-red file:px-3 file:py-2 file:text-sm file:font-semibold file:text-white hover:file:bg-esa-red-dark"
       />
       <p className="text-xs text-esa-muted">
-        JPG, PNG, WEBP or GIF · max 5MB · Cloudinary when available (local fallback otherwise)
+        JPG, PNG, WEBP or GIF · max 5MB · uploaded to Cloudinary
       </p>
       {uploading ? <p className="text-sm text-esa-navy">Uploading…</p> : null}
       {error ? <p className="text-sm text-esa-red">{error}</p> : null}
@@ -64,7 +64,7 @@ export function ImageUploadField({ value, onChange }: ImageUploadFieldProps) {
         type="text"
         value={value}
         onChange={(e) => onChange(e.target.value)}
-        placeholder="https://… or /uploads/blogs/…"
+        placeholder="https://res.cloudinary.com/…"
         className="w-full rounded-lg border border-esa-border bg-white px-3 py-2 text-sm focus-esa"
       />
     </div>

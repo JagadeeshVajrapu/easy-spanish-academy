@@ -63,7 +63,20 @@ CLOUDINARY_API_SECRET=
 
 Find them in the Cloudinary console → **Dashboard** → API Keys.
 
-## Production notes
+## Production (Vercel) checklist
 
-- SQLite is ideal for local/VPS Node hosting. For serverless, move `DATABASE_URL` to Postgres/Turso.
-- Do not commit `.env` or `prisma/*.db`.
+`/blog` needs these **Environment Variables** in Vercel (Production **and** Preview), then **Redeploy**:
+
+| Variable | Purpose |
+|---|---|
+| `DATABASE_URL` | Neon pooled Postgres URL (`sslmode=require&connect_timeout=15`) |
+| `ADMIN_USERNAME` | Admin login email/username |
+| `ADMIN_PASSWORD` | Admin login password |
+| `AUTH_SECRET` | Session signing secret (min 16 chars) |
+| `CLOUDINARY_CLOUD_NAME` | Blog image uploads |
+| `CLOUDINARY_API_KEY` | Blog image uploads |
+| `CLOUDINARY_API_SECRET` | Blog image uploads |
+
+Without `DATABASE_URL`, the live `/api/blogs` endpoint returns: `Environment variable not found: DATABASE_URL`.
+
+After adding vars: Vercel → Deployments → Redeploy (or push a commit). Build runs `prisma migrate deploy` automatically.

@@ -88,42 +88,57 @@ async function assertUniqueSlug(slug: string, excludeId?: string) {
 }
 
 export async function listPublishedBlogs() {
-  const blogs = await prisma.blog.findMany({
-    where: { status: BlogStatus.PUBLISHED },
-    orderBy: [{ publishedAt: "desc" }, { createdAt: "desc" }],
-  });
-  return blogs.map(serializeBlog);
+  try {
+    const blogs = await prisma.blog.findMany({
+      where: { status: BlogStatus.PUBLISHED },
+      orderBy: [{ publishedAt: "desc" }, { createdAt: "desc" }],
+    });
+    return blogs.map(serializeBlog);
+  } catch (error) {
+    console.error("[blog] listPublishedBlogs failed:", error);
+    return [];
+  }
 }
 
 export async function getPublishedBlogBySlug(slug: string) {
-  const blog = await prisma.blog.findFirst({
-    where: { slug, status: BlogStatus.PUBLISHED },
-  });
-  return blog ? serializeBlog(blog) : null;
+  try {
+    const blog = await prisma.blog.findFirst({
+      where: { slug, status: BlogStatus.PUBLISHED },
+    });
+    return blog ? serializeBlog(blog) : null;
+  } catch (error) {
+    console.error("[blog] getPublishedBlogBySlug failed:", error);
+    return null;
+  }
 }
 
 export async function listRelatedBlogs(slug: string, category: string, take = 3) {
-  const blogs = await prisma.blog.findMany({
-    where: {
-      status: BlogStatus.PUBLISHED,
-      slug: { not: slug },
-      category,
-    },
-    orderBy: [{ publishedAt: "desc" }],
-    take,
-  });
-  if (blogs.length >= take) return blogs.map(serializeBlog);
+  try {
+    const blogs = await prisma.blog.findMany({
+      where: {
+        status: BlogStatus.PUBLISHED,
+        slug: { not: slug },
+        category,
+      },
+      orderBy: [{ publishedAt: "desc" }],
+      take,
+    });
+    if (blogs.length >= take) return blogs.map(serializeBlog);
 
-  const exclude = [slug, ...blogs.map((b) => b.slug)];
-  const extras = await prisma.blog.findMany({
-    where: {
-      status: BlogStatus.PUBLISHED,
-      slug: { notIn: exclude },
-    },
-    orderBy: [{ publishedAt: "desc" }],
-    take: take - blogs.length,
-  });
-  return [...blogs, ...extras].map(serializeBlog);
+    const exclude = [slug, ...blogs.map((b) => b.slug)];
+    const extras = await prisma.blog.findMany({
+      where: {
+        status: BlogStatus.PUBLISHED,
+        slug: { notIn: exclude },
+      },
+      orderBy: [{ publishedAt: "desc" }],
+      take: take - blogs.length,
+    });
+    return [...blogs, ...extras].map(serializeBlog);
+  } catch (error) {
+    console.error("[blog] listRelatedBlogs failed:", error);
+    return [];
+  }
 }
 
 export async function listAdminBlogs() {

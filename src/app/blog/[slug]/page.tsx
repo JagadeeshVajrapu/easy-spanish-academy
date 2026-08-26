@@ -9,7 +9,7 @@ import {
   listPublishedBlogs,
   listRelatedBlogs,
 } from "@/lib/blog-service";
-import { shouldUnoptimizeImage } from "@/lib/blog-media";
+import { resolveBlogImage, shouldUnoptimizeImage } from "@/lib/blog-media";
 import { SITE } from "@/lib/constants";
 
 export const dynamic = "force-dynamic";
@@ -33,6 +33,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   if (!post) return { title: "Blog" };
 
   const url = `${SITE.url}/blog/${post.slug}`;
+  const image = resolveBlogImage(post.featuredImage);
 
   return {
     title: post.title,
@@ -43,7 +44,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
       title: post.title,
       description: post.excerpt,
       url,
-      images: [{ url: post.featuredImage, alt: post.title }],
+      images: [{ url: image, alt: post.title }],
       publishedTime: post.publishedAt ?? undefined,
       authors: [post.author],
     },
@@ -51,7 +52,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
       card: "summary_large_image",
       title: post.title,
       description: post.excerpt,
-      images: [post.featuredImage],
+      images: [image],
     },
   };
 }
@@ -72,13 +73,14 @@ export default async function BlogPostPage({ params }: PageProps) {
 
   const related = await listRelatedBlogs(post.slug, post.category, 3);
   const pageUrl = `${SITE.url}/blog/${post.slug}`;
+  const featuredImage = resolveBlogImage(post.featuredImage);
 
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "BlogPosting",
     headline: post.title,
     description: post.excerpt,
-    image: [post.featuredImage],
+    image: [featuredImage],
     datePublished: post.publishedAt,
     dateModified: post.updatedAt,
     author: {
@@ -139,13 +141,13 @@ export default async function BlogPostPage({ params }: PageProps) {
         <div className="container-esa mx-auto max-w-4xl">
           <div className="relative mb-8 aspect-[16/9] overflow-hidden rounded-2xl border border-esa-border shadow-esa-soft">
             <Image
-              src={post.featuredImage}
+              src={featuredImage}
               alt={post.title}
               fill
               priority
               className="object-cover object-center"
               sizes="(max-width: 1024px) 100vw, 896px"
-              unoptimized={shouldUnoptimizeImage(post.featuredImage)}
+              unoptimized={shouldUnoptimizeImage(featuredImage)}
             />
           </div>
 

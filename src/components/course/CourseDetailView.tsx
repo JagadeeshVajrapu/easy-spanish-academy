@@ -354,10 +354,10 @@ export function CourseDetailView({ course, breadcrumbs }: CourseDetailViewProps)
                     {level.code}
                   </span>
                   <h3 className="mt-3 text-base font-bold text-esa-navy">{level.title}</h3>
-                  <p className="mt-3 flex-1 text-sm leading-relaxed text-esa-muted">
+                  <p className="mt-3 text-sm leading-relaxed text-esa-muted">
                     {level.description}
                   </p>
-                  <ul className="mt-4 space-y-2 border-t border-esa-border pt-4">
+                  <ul className="mt-4 flex-1 space-y-2 border-t border-esa-border pt-4">
                     {level.focus.map((item) => (
                       <li key={item} className="flex gap-2 text-sm text-esa-navy/85">
                         <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-esa-red" />
@@ -365,6 +365,18 @@ export function CourseDetailView({ course, breadcrumbs }: CourseDetailViewProps)
                       </li>
                     ))}
                   </ul>
+                  <a
+                    href={whatsappUrl(
+                      `Hello! I would like to enquire about the ${course.language} ${level.code} (${level.title}) level in the ${course.shortTitle} at Easy Spanish Academy.`,
+                    )}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label={`WhatsApp enquiry for ${course.language} ${level.code}`}
+                    className="mt-4 inline-flex items-center gap-1.5 self-start rounded-full bg-[#25D366]/12 px-3 py-1.5 text-xs font-semibold text-[#128C7E] ring-1 ring-[#25D366]/25 transition hover:bg-[#25D366] hover:text-white hover:ring-[#25D366] focus-esa"
+                  >
+                    <WhatsAppGlyph className="h-3.5 w-3.5" />
+                    Enquiry
+                  </a>
                 </article>
               ))}
             </div>
