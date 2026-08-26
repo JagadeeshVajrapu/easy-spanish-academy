@@ -105,7 +105,7 @@ export default async function BlogPostPage({ params }: PageProps) {
                     href="/book-demo"
                     className="inline-flex items-center justify-center rounded-lg bg-esa-red px-5 py-3 text-sm font-bold text-white transition hover:bg-esa-red-dark focus-esa"
                   >
-                    Book a Demo Today
+                    Book a Free Demo
                   </Link>
                   <Link
                     href="/courses"

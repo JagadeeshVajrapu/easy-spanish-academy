@@ -2,7 +2,7 @@ import type { ReactNode } from "react";
 import Link from "next/link";
 import { Mail, MapPin, Phone } from "lucide-react";
 import { SocialLinks } from "@/components/layout/SocialLinks";
-import { BrandLogo, BrandWordmark } from "@/components/ui/BrandLogo";
+import { BrandLogo } from "@/components/ui/BrandLogo";
 import { FlagAccent } from "@/components/ui/FlagAccent";
 import { FOOTER_LINKS, SITE } from "@/lib/constants";
 import { whatsappUrl } from "@/lib/utils";
@@ -57,12 +57,8 @@ export function Footer() {
         <div className="grid gap-8 lg:grid-cols-12 lg:gap-x-8 lg:gap-y-10 xl:gap-x-10">
           {/* Brand — own column, never overlaps links */}
           <div className="min-w-0 lg:col-span-4">
-            <Link
-              href="/"
-              className="flex max-w-full items-start gap-3 focus-esa"
-            >
+            <Link href="/" className="inline-flex focus-esa">
               <BrandLogo size="footer" />
-              <BrandWordmark tone="dark" className="min-w-0 flex-1 pt-0.5" />
             </Link>
             <p className="mt-3 max-w-sm text-sm leading-relaxed text-white/75">
               {SITE.tagline}
@@ -102,7 +98,7 @@ export function Footer() {
               </ul>
             </div>
 
-            <div className="col-span-2 min-w-0 md:col-span-1">
+            <div className="col-span-2 min-w-0 md:col-span-1 md:min-w-[15.5rem]">
               <FooterHeading>Contact</FooterHeading>
               <ul className="mt-3 space-y-3">
                 <li>
@@ -119,12 +115,12 @@ export function Footer() {
                 <li>
                   <a
                     href={SITE.emailHref}
-                    className="flex w-full items-start gap-2.5 text-sm text-white/85 transition hover:text-white focus-esa"
+                    className="flex w-full items-center gap-2.5 text-sm text-white/85 transition hover:text-white focus-esa"
                   >
                     <span className="inline-flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-white/10 text-esa-gold">
                       <Mail className="h-3.5 w-3.5" aria-hidden />
                     </span>
-                    <span className="min-w-0 flex-1 break-words font-medium leading-snug">
+                    <span className="shrink-0 whitespace-nowrap text-[13px] font-medium leading-none tracking-tight sm:text-sm">
                       {SITE.email}
                     </span>
                   </a>

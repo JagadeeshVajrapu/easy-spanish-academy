@@ -16,32 +16,6 @@ export type BlogPost = {
 
 export const BLOG_POSTS: BlogPost[] = [
   {
-    slug: "spanish-vs-german-which-language-2026",
-    title: "Spanish vs German: Which Language Should You Learn in 2026?",
-    excerpt:
-      "Compare Spanish and German for career, travel, and study goals—so you can choose the right online foreign language course in India.",
-    category: "Learning Tips",
-    date: "2026-03-15",
-    readTime: "7 min read",
-    image:
-      "https://images.unsplash.com/photo-1512820790803-83ca734da794?auto=format&fit=crop&w=1200&q=80",
-    imageAlt: "Language books suggesting a choice between Spanish and German",
-    keywords: [
-      "Spanish vs German",
-      "learn Spanish online",
-      "learn German online",
-      "foreign language courses in India",
-    ],
-    outline: [
-      "Spanish vs German: how to decide based on your goals",
-      "Career, travel, and study abroad opportunities for each language",
-      "Learning feel: pronunciation, early speaking wins, and consistency",
-      "Why online Spanish and German classes work well for Indian learners",
-      "How Easy Spanish Academy helps you choose and start confidently",
-    ],
-    status: "draft-template",
-  },
-  {
     slug: "why-learning-spanish-boosts-career-and-travel",
     title:
       "Why Learning Spanish Can Boost Your Career and Travel Opportunities",
@@ -116,8 +90,8 @@ export const BLOG_POSTS: BlogPost[] = [
     outline: [
       "What makes strong online Spanish classes in India",
       "What to expect from quality online German classes",
-      "Live sessions, recordings, study PDFs, and trainer support",
-      "Weekday and weekend flexibility for foreign language classes online",
+      "Live sessions, study materials, and trainer support",
+      "Weekdays and weekend flexibility for foreign language classes online",
       "How to evaluate a language academy in India before you enrol",
     ],
     status: "draft-template",
@@ -144,7 +118,7 @@ export const BLOG_POSTS: BlogPost[] = [
       "Why online language classes suit students and working professionals",
       "Benefits of Spanish classes online and German classes online",
       "Live Zoom/Google Meet learning with doubt-clearing support",
-      "Access to recordings, study PDFs, and guided practice",
+      "Access to study materials and guided practice",
       "How foreign language courses online in India fit around your schedule",
     ],
     status: "draft-template",

@@ -1,7 +1,6 @@
 import Image from "next/image";
 import { Container } from "@/components/ui/Container";
 import { Breadcrumbs, type BreadcrumbItem } from "@/components/ui/Breadcrumbs";
-import { BodyText, HeroHeading } from "@/components/ui/Typography";
 import { cn } from "@/lib/utils";
 
 type PageHeroProps = {
@@ -36,16 +35,20 @@ export function PageHero({
         />
         <div className="bg-hero-overlay absolute inset-0" />
       </div>
-      <Container className="relative flex min-h-[38vh] items-end px-4 pb-12 pt-20 sm:min-h-[46vh] sm:px-6 sm:pb-16 sm:pt-24 lg:min-h-[52vh] lg:px-8 lg:pb-20 lg:pt-28">
+      <Container className="relative flex min-h-[42vh] items-end px-4 pb-12 pt-20 sm:min-h-[50vh] sm:px-6 sm:pb-16 sm:pt-24 lg:min-h-[56vh] lg:px-8 lg:pb-20 lg:pt-28">
         <div className="hero-text-shadow max-w-3xl">
-          {breadcrumbs ? <Breadcrumbs items={breadcrumbs} light className="mb-3" /> : null}
-          {eyebrow ? (
-            <p className="text-label mb-3 text-esa-gold">{eyebrow}</p>
+          {breadcrumbs ? (
+            <Breadcrumbs items={breadcrumbs} light className="mb-4 text-base" />
           ) : null}
-          <HeroHeading className="text-white">{title}</HeroHeading>
-          <BodyText className="mt-3 max-w-2xl text-white/90 sm:mt-4">
+          {eyebrow ? (
+            <p className="mb-3 text-sm font-bold uppercase tracking-[0.12em] text-esa-gold sm:text-base">
+              {eyebrow}
+            </p>
+          ) : null}
+          <h1 className="text-hero text-white">{title}</h1>
+          <p className="mt-4 max-w-2xl text-base font-medium leading-relaxed text-white/95 sm:mt-5 sm:text-lg md:text-xl">
             {description}
-          </BodyText>
+          </p>
         </div>
       </Container>
     </section>

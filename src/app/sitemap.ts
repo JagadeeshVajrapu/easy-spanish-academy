@@ -1,5 +1,6 @@
 import type { MetadataRoute } from "next";
 import { SITE } from "@/lib/constants";
+import { BLOG_POSTS } from "@/lib/blog-data";
 import { GERMAN_COURSES, SPANISH_COURSES, courseHref } from "@/lib/course-data";
 
 export default function sitemap(): MetadataRoute.Sitemap {
@@ -8,9 +9,9 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "/about",
     "/why-choose-us",
     "/courses",
-    "/courses/spanish",
     "/courses/german/certificate-diploma",
     "/book-demo",
+    "/blog",
     "/contact",
     "/privacy",
   ];
@@ -19,7 +20,9 @@ export default function sitemap(): MetadataRoute.Sitemap {
     courseHref(course),
   );
 
-  return [...staticRoutes, ...courseRoutes].map((route) => ({
+  const blogRoutes = BLOG_POSTS.map((post) => `/blog/${post.slug}`);
+
+  return [...staticRoutes, ...courseRoutes, ...blogRoutes].map((route) => ({
     url: `${SITE.url}${route}`,
     lastModified: new Date(),
     changeFrequency: "monthly" as const,

@@ -37,7 +37,12 @@ export function SectionHeading({
         {title}
       </SectionTitle>
       {description ? (
-        <BodyText className={cn("mt-4", light && "text-white/75")}>
+        <BodyText
+          className={cn(
+            "mt-4 font-medium text-esa-navy/80",
+            light && "text-white/80",
+          )}
+        >
           {description}
         </BodyText>
       ) : null}

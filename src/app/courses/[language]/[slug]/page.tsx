@@ -37,11 +37,11 @@ export default async function CourseDetailPage({ params }: PageProps) {
   const course = getCourseByPath(language, slug);
   if (!course) notFound();
 
-  // German has no listing page — link breadcrumb to the A1–B2 course directly.
+  // Language listing pages removed — Spanish breadcrumb goes to the courses hub.
   const languageHref =
     language === "german"
       ? "/courses/german/certificate-diploma"
-      : `/courses/${language}`;
+      : "/courses";
 
   return (
     <CourseDetailView

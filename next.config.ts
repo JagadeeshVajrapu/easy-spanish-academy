@@ -16,6 +16,11 @@ const nextConfig: NextConfig = {
   async redirects() {
     return [
       {
+        source: "/courses/spanish",
+        destination: "/courses",
+        permanent: true,
+      },
+      {
         source: "/courses/german",
         destination: "/courses/german/certificate-diploma",
         permanent: true,
@@ -26,14 +31,14 @@ const nextConfig: NextConfig = {
         permanent: true,
       },
       {
-        source: "/blog",
-        destination: "/",
-        permanent: false,
+        source: "/spanish-courses",
+        destination: "/courses",
+        permanent: true,
       },
       {
-        source: "/blog/:slug",
-        destination: "/",
-        permanent: false,
+        source: "/blog/spanish-vs-german-which-language-2026",
+        destination: "/blog",
+        permanent: true,
       },
     ];
   },

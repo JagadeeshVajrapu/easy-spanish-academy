@@ -16,11 +16,11 @@ import { SITE } from "@/lib/constants";
 export const metadata: Metadata = {
   title: "Blog",
   description:
-    "Spanish vs German guides, career benefits of Spanish, German A1 for beginners, and tips for choosing online Spanish & German classes in India.",
+    "Guides on learning Spanish and German online in India—career benefits, German A1 for beginners, and tips for choosing the right language classes.",
   openGraph: {
     title: `Blog | ${SITE.name}`,
     description:
-      "Practical guides for Spanish and German learners—career, travel, beginners, and online class tips.",
+      "Practical guides for Spanish and German learners—career, beginners, and online class tips.",
     url: `${SITE.url}/blog`,
   },
 };
@@ -32,8 +32,8 @@ export default function BlogPage() {
     <>
       <PageHero
         eyebrow="Blog"
-        title="Ideas to inspire your language journey."
-        description="Practical guides for Spanish and German learners. Click any guide to read the full page."
+        title="Guides for Spanish and German learners."
+        description="Practical articles on careers, beginners, and choosing online Spanish & German classes. Click any guide to read the full page."
         image="https://images.unsplash.com/photo-1481627834876-b7833e8f5570?auto=format&fit=crop&w=2000&q=80"
         imageAlt="Books and learning materials for language study"
         breadcrumbs={[

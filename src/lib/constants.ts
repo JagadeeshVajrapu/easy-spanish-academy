@@ -49,12 +49,16 @@ export type CourseNavItem = {
 export const COURSE_NAV: readonly CourseNavItem[] = [
   {
     label: "Spanish Language",
-    href: "/courses/spanish",
+    href: "/courses",
     flag: "ES",
     children: [
       {
         label: "Certificate Course",
         href: "/courses/spanish/certificate-diploma",
+      },
+      {
+        label: "Spanish Crash Course",
+        href: "/courses/spanish/crash-course",
       },
       {
         label: "School Orientation Program",
@@ -78,6 +82,7 @@ export const NAV_LINKS = [
     children: COURSE_NAV,
   },
   { label: "Why Choose Us", href: "/why-choose-us" },
+  { label: "Blog", href: "/blog" },
   { label: "Contact", href: "/contact" },
 ] as const;
 
@@ -87,11 +92,13 @@ export const FOOTER_LINKS = {
     { label: "About Us", href: "/about" },
     { label: "Why Choose Us", href: "/why-choose-us" },
     { label: "Courses", href: "/courses" },
+    { label: "Blog", href: "/blog" },
     { label: "Contact", href: "/contact" },
     { label: "Privacy Policy", href: "/privacy" },
   ],
   courses: [
     { label: "Spanish Certificate", href: "/courses/spanish/certificate-diploma" },
+    { label: "Spanish Crash Course", href: "/courses/spanish/crash-course" },
     { label: "School Orientation Program", href: "/courses/spanish/school-course" },
     { label: "German Certificate", href: "/courses/german/certificate-diploma" },
   ],

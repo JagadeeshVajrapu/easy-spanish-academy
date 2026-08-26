@@ -21,8 +21,8 @@ import { SITE } from "@/lib/constants";
 
 const highlights = [
   {
-    title: "Spanish & German",
-    detail: "Two European languages under one structured online academy.",
+    title: "Spanish & German Languages",
+    detail: "Two languages under one structured online academy.",
     icon: "flags" as const,
   },
   {
@@ -32,11 +32,11 @@ const highlights = [
   },
   {
     title: "Live Online Classes",
-    detail: "Interactive Zoom and Google Meet sessions with expert trainers.",
+    detail: "Interactive Zoom and Google Meet Classes with expert trainers.",
     icon: MonitorPlay,
   },
   {
-    title: "Weekday & Weekend Batches",
+    title: "Weekdays & Weekend Batches",
     detail: "Flexible timings for students and working professionals.",
     icon: CalendarDays,
   },
@@ -47,7 +47,7 @@ const highlights = [
   },
   {
     title: "Study Support",
-    detail: "Online PDFs, recorded classes, and books delivered to your doorstep.",
+    detail: "Online PDFs, Study Materials, and books delivered to your doorstep.",
     icon: BookOpen,
   },
 ];
@@ -108,17 +108,17 @@ export default function HomePage() {
       <section className="esa-surface-warm border-b border-esa-border/60">
         <div className="container-esa grid items-center gap-10 py-14 sm:py-16 lg:grid-cols-2 lg:gap-14 lg:py-20">
           <div className="min-w-0">
-            <p className="inline-flex max-w-full items-center gap-2 rounded-full border border-esa-red/25 bg-esa-red-soft px-3.5 py-2 text-sm font-bold text-esa-red shadow-esa-soft sm:text-[0.95rem]">
-              <span className="h-2 w-2 shrink-0 rounded-full bg-esa-red" aria-hidden />
+            <p className="inline-flex max-w-full items-center rounded-full border border-esa-red/25 bg-esa-red-soft px-3.5 py-2 text-sm font-bold text-esa-red shadow-esa-soft sm:text-[0.95rem]">
               <span className="leading-snug">{SITE.instituteTagline}</span>
             </p>
             <h1 className="text-hero mt-5 max-w-2xl font-bold text-esa-navy">
               Learn Today. Speak Tomorrow.{" "}
               <span className="text-esa-red">Connect Forever.</span>
             </h1>
-            <p className="mt-4 max-w-xl text-[1.05rem] font-medium leading-relaxed text-esa-navy/75 sm:text-lg">
-              Online Spanish and German programs from A1 to B2—with live classes,
-              weekday and weekend batches, and guided speaking practice.
+            <p className="mt-4 max-w-xl text-[1.05rem] font-medium leading-relaxed text-esa-navy/80 sm:text-lg">
+              Online Spanish and German language programs from A1 to B2, featuring
+              live classes, flexible weekdays and weekend batches, and a strong
+              emphasis on speaking practice.
             </p>
             <div className="mt-6 flex flex-wrap gap-2.5" aria-label="Languages offered">
               <span className="inline-flex cursor-default select-none items-center gap-2.5 rounded-lg border border-esa-border bg-white px-4 py-2.5 text-base font-bold text-esa-navy shadow-esa-soft">
@@ -133,7 +133,7 @@ export default function HomePage() {
                 href="/book-demo"
                 className="esa-btn inline-flex items-center justify-center rounded-lg bg-esa-red px-5 py-3.5 text-base font-bold text-white shadow-esa-soft hover:bg-esa-red-dark focus-esa"
               >
-                Book a Demo Today
+                Book a Free Demo
               </Link>
               <Link
                 href="/courses"
@@ -168,11 +168,13 @@ export default function HomePage() {
       <section className="section-pad bg-white">
         <div className="container-esa">
           <div className="mx-auto max-w-2xl text-center">
-            <p className="text-label text-esa-red">Why Easy Spanish Academy</p>
+            <p className="text-sm font-bold uppercase tracking-[0.12em] text-esa-red sm:text-base">
+              Why Easy Spanish Academy
+            </p>
             <h2 className="text-section mt-2">
               Language Learning Built for Real Progress
             </h2>
-            <p className="mt-3 text-base leading-relaxed text-esa-muted sm:text-lg">
+            <p className="mt-3 text-base leading-relaxed text-esa-navy/80 sm:text-lg">
               One academy, two languages, and a clear path from your first words to
               confident conversations.
             </p>
@@ -197,7 +199,7 @@ export default function HomePage() {
                   )}
                 </div>
                 <h3 className="text-lg font-bold text-esa-navy">{item.title}</h3>
-                <p className="mt-2 flex-1 text-base leading-relaxed text-esa-muted">
+                <p className="mt-2 flex-1 text-base font-medium leading-relaxed text-esa-navy/80">
                   {item.detail}
                 </p>
               </article>
@@ -305,7 +307,7 @@ export default function HomePage() {
               label="Spanish Language"
               title="Spanish Programs"
               text="Certificate & Diploma from A1 to B2, plus crash and school-oriented programs."
-              href="/courses/spanish"
+              href="/courses"
               cta="Explore Spanish"
             />
             <PathCard
@@ -418,37 +420,37 @@ export default function HomePage() {
           <h2 className="text-section mx-auto max-w-2xl">
             Start Your Language Journey Today
           </h2>
-          <p className="mx-auto mt-3 max-w-xl text-esa-muted">
+          <p className="mx-auto mt-4 max-w-xl text-base font-medium leading-relaxed text-esa-navy/80 sm:text-lg">
             {SITE.tagline} — explore courses or book a demo to get started.
           </p>
           <div className="mt-7 flex flex-col items-center justify-center gap-2.5 sm:flex-row">
             <Link
               href="/courses"
-              className="group esa-btn inline-flex w-full items-center justify-center gap-2 rounded-lg bg-esa-red px-5 py-3 text-sm font-semibold text-white shadow-esa-soft hover:bg-esa-red-dark focus-esa sm:w-auto"
+              className="group esa-btn inline-flex w-full items-center justify-center gap-2 rounded-lg bg-esa-red px-5 py-3.5 text-base font-semibold text-white shadow-esa-soft hover:bg-esa-red-dark focus-esa sm:w-auto"
             >
               Explore Courses
               <ArrowRight className="h-4 w-4 transition duration-200 group-hover:translate-x-1" />
             </Link>
             <Link
               href="/book-demo"
-              className="group esa-btn inline-flex w-full items-center justify-center gap-2 rounded-lg border border-esa-border bg-white px-5 py-3 text-sm font-semibold text-esa-navy hover:border-esa-red/25 focus-esa sm:w-auto"
+              className="group esa-btn inline-flex w-full items-center justify-center gap-2 rounded-lg border border-esa-border bg-white px-5 py-3.5 text-base font-semibold text-esa-navy hover:border-esa-red/25 focus-esa sm:w-auto"
             >
               Book a Demo
             </Link>
           </div>
-          <div className="mt-8 flex flex-col items-center gap-2 text-sm text-esa-muted sm:flex-row sm:justify-center sm:gap-6">
+          <div className="mt-8 flex flex-col items-center gap-3 text-base font-medium text-esa-navy/80 sm:flex-row sm:justify-center sm:gap-6">
             <a
               href={SITE.phoneHref}
               className="inline-flex items-center gap-2 transition hover:text-esa-red focus-esa"
             >
-              <Phone className="h-4 w-4 text-[#3B82F6]" aria-hidden />
+              <Phone className="h-5 w-5 text-[#3B82F6]" aria-hidden />
               {SITE.phoneDisplay}
             </a>
             <a
               href={SITE.emailHref}
-              className="inline-flex items-center gap-2 transition hover:text-esa-red focus-esa"
+              className="inline-flex items-center gap-2 whitespace-nowrap transition hover:text-esa-red focus-esa"
             >
-              <Mail className="h-4 w-4 text-esa-red" aria-hidden />
+              <Mail className="h-5 w-5 text-esa-red" aria-hidden />
               {SITE.email}
             </a>
           </div>

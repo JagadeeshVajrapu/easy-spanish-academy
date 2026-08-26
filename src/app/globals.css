@@ -17,7 +17,7 @@
   --esa-bg: #f7f4ef;
   --esa-surface: #ffffff;
   --esa-soft: #efeae3;
-  --esa-muted: #5c6b7a;
+  --esa-muted: #3a4654;
   --esa-border: #e4ddd3;
   --esa-ring: color-mix(in oklab, var(--esa-red) 32%, transparent);
   --esa-overlay: rgb(21 34 56 / 0.72);
@@ -152,32 +152,32 @@
   }
 
   .text-hero {
-    font-size: clamp(1.85rem, 4.2vw, 3.15rem);
+    font-size: clamp(2.05rem, 4.6vw, 3.45rem);
     font-weight: 700;
-    line-height: 1.15;
+    line-height: 1.12;
     letter-spacing: -0.03em;
   }
 
   .text-section {
-    font-size: clamp(1.45rem, 2.8vw, 2.15rem);
+    font-size: clamp(1.6rem, 3vw, 2.35rem);
     font-weight: 700;
-    line-height: 1.22;
+    line-height: 1.2;
     letter-spacing: -0.025em;
   }
 
   .text-label {
-    font-size: 0.75rem;
-    font-weight: 600;
+    font-size: 0.875rem;
+    font-weight: 700;
     letter-spacing: 0.08em;
     text-transform: uppercase;
   }
 
   .bg-hero-overlay {
     background: linear-gradient(
-      180deg,
-      rgb(21 34 56 / 0.5) 0%,
-      rgb(21 34 56 / 0.78) 50%,
-      rgb(21 34 56 / 0.9) 100%
+      105deg,
+      rgb(21 34 56 / 0.72) 0%,
+      rgb(21 34 56 / 0.55) 45%,
+      rgb(21 34 56 / 0.35) 100%
     );
   }
 
@@ -188,19 +188,19 @@
   }
 
   .text-body {
-    font-size: 1rem;
+    font-size: 1.0625rem;
     line-height: 1.65;
     color: var(--esa-muted);
   }
 
   @media (min-width: 640px) {
     .text-body {
-      font-size: 1.0625rem;
+      font-size: 1.125rem;
     }
   }
 
   .text-body-sm {
-    font-size: 0.875rem;
+    font-size: 0.9375rem;
     line-height: 1.65;
     color: var(--esa-muted);
   }

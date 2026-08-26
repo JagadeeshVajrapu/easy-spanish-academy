@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import {
   BookOpenCheck,
+  CalendarDays,
   Flag,
   MessageCircle,
   MessageSquare,
@@ -56,6 +57,11 @@ const focusAreas = [
     icon: Users,
     title: "Support for every learner",
     text: "School students, college learners, and working professionals all get friendly guidance—from first enquiry to batch start.",
+  },
+  {
+    icon: CalendarDays,
+    title: "Flexible weekdays & weekend batches",
+    text: "Choose a batch that fits your routine—weekdays or weekends—so learning Spanish or German stays consistent and easy to continue.",
   },
 ];
 
@@ -112,7 +118,7 @@ export default function AboutPage() {
               level.
             </BodyText>
             <div className="mt-8 flex flex-wrap gap-3">
-              <Button href="/courses/spanish">Spanish Courses</Button>
+              <Button href="/courses">Spanish Courses</Button>
               <Button href="/courses/german/certificate-diploma" variant="outline">
                 German Courses
               </Button>
@@ -174,7 +180,7 @@ export default function AboutPage() {
                 "Easy start for absolute beginners",
                 "Level-based Spanish & German courses from A1 to B2",
                 "Speaking practice in every learning stage",
-                "Weekday and weekend batch options",
+                "Weekdays and weekend batch options",
                 "Study PDFs online and books delivered to your doorstep",
                 "Helpful guidance when you enquire and join a batch",
               ].map((item) => (
@@ -196,7 +202,7 @@ export default function AboutPage() {
                 opportunities for life.
               </BodyText>
               <div className="mt-6 flex flex-wrap gap-3">
-                <Button href="/book-demo">Book a Demo Today</Button>
+                <Button href="/book-demo">Book a Free Demo</Button>
                 <Button
                   href={whatsappUrl(SITE.whatsappMessage)}
                   variant="whatsapp"

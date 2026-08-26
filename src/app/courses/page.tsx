@@ -36,7 +36,7 @@ export default function CoursesIndexPage() {
           </p>
           <div className="mt-7 flex flex-wrap gap-3">
             <Link
-              href="/courses/spanish"
+              href="/courses"
               className="inline-flex items-center gap-2.5 rounded-xl bg-esa-red px-5 py-3 text-sm font-semibold text-white shadow-esa-soft transition hover:bg-esa-red-dark focus-esa"
             >
               <FlagAccent country="ES" size="lg" />
@@ -53,7 +53,7 @@ export default function CoursesIndexPage() {
         </div>
       </section>
 
-      <section className="section-pad bg-esa-bg">
+      <section id="spanish-programs" className="section-pad bg-esa-bg">
         <div className="container-esa">
           <div className="mb-6 flex flex-wrap items-end justify-between gap-3">
             <div>
@@ -71,7 +71,7 @@ export default function CoursesIndexPage() {
               </ul>
             </div>
             <Link
-              href="/courses/spanish"
+              href="#spanish-programs"
               className="text-sm font-semibold text-esa-red focus-esa"
             >
               View all Spanish →

@@ -4,15 +4,15 @@ import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import { useEffect, useId, useRef, useState } from "react";
 import { ChevronDown, Menu, X } from "lucide-react";
-import { BrandLogo, BrandWordmark } from "@/components/ui/BrandLogo";
+import { BrandLogo } from "@/components/ui/BrandLogo";
 import { FlagAccent } from "@/components/ui/FlagAccent";
 import { COURSE_NAV, NAV_LINKS, SITE } from "@/lib/constants";
 import { cn } from "@/lib/utils";
 
-function isCoursePathActive(pathname: string, href: string) {
+function isCoursePathActive(pathname: string, href: string, flag?: "ES" | "DE") {
+  if (flag === "ES") return pathname.startsWith("/courses/spanish");
+  if (flag === "DE") return pathname.startsWith("/courses/german");
   if (pathname === href || pathname.startsWith(`${href}/`)) return true;
-  // German nav points at the certificate page, but any /courses/german/* should highlight it.
-  if (href.includes("/german") && pathname.startsWith("/courses/german")) return true;
   return false;
 }
 
@@ -23,10 +23,10 @@ function isNavLinkActive(pathname: string, href: string) {
 
 const navLinkClass = (active: boolean) =>
   cn(
-    "inline-flex min-h-9 shrink-0 items-center justify-center whitespace-nowrap rounded-lg px-2 text-[13px] font-medium transition duration-200 focus-esa xl:min-h-10 xl:px-2.5 xl:text-sm",
+    "inline-flex min-h-9 shrink-0 items-center justify-center whitespace-nowrap rounded-lg px-2 text-[13px] font-bold transition duration-200 focus-esa xl:min-h-10 xl:px-2.5 xl:text-sm",
     active
       ? "bg-esa-red-soft text-esa-red ring-1 ring-esa-red/15"
-      : "text-esa-navy/85 hover:bg-esa-soft hover:text-esa-navy",
+      : "text-esa-navy hover:bg-esa-soft hover:text-esa-navy",
   );
 
 export function Navbar() {
@@ -98,13 +98,13 @@ export function Navbar() {
         className="absolute left-1/2 top-full z-50 mt-2 w-[17rem] -translate-x-1/2 rounded-xl border border-esa-border bg-white p-2 shadow-esa-lift"
       >
         {COURSE_NAV.map((group) => (
-          <div key={group.href} className="rounded-lg">
+          <div key={group.label} className="rounded-lg">
             <Link
               href={group.href}
               role="menuitem"
               className={cn(
                 "flex items-center gap-2.5 rounded-lg px-3 py-2.5 text-sm font-semibold focus-esa",
-                isCoursePathActive(pathname, group.href)
+                isCoursePathActive(pathname, group.href, group.flag)
                   ? "bg-esa-red-soft text-esa-red"
                   : "text-esa-navy hover:bg-esa-soft",
               )}
@@ -148,12 +148,12 @@ export function Navbar() {
     return (
       <div className="space-y-1 border-t border-esa-border p-2">
         {COURSE_NAV.map((group) => (
-          <div key={group.href} className="rounded-lg">
+          <div key={group.label} className="rounded-lg">
             <button
               type="button"
               className={cn(
                 "flex w-full items-center gap-2.5 rounded-lg px-3 py-2.5 text-left text-base font-semibold focus-esa",
-                isCoursePathActive(pathname, group.href)
+                isCoursePathActive(pathname, group.href, group.flag)
                   ? "bg-esa-red-soft text-esa-red"
                   : "text-esa-navy hover:bg-esa-soft",
               )}
@@ -190,8 +190,8 @@ export function Navbar() {
 
   return (
     <header className="sticky top-0 z-40 border-b border-esa-border/70 bg-white/95 shadow-esa-soft backdrop-blur-md">
-      <div className="container-esa flex h-16 items-center gap-3 sm:h-[4.25rem] lg:gap-4">
-        {/* Brand */}
+      <div className="container-esa grid h-[5.25rem] grid-cols-[auto_1fr_auto] items-center gap-3 sm:h-[5.75rem] sm:gap-4 lg:gap-5">
+        {/* Brand — own column so tagline never overlaps nav */}
         <Link
           href="/"
           onClick={(event) => {
@@ -201,15 +201,14 @@ export function Navbar() {
               window.scrollTo({ top: 0, behavior: "smooth" });
             }
           }}
-          className="group flex shrink-0 items-center gap-2 focus-esa sm:gap-2.5"
+          className="z-10 flex shrink-0 items-center focus-esa"
         >
           <BrandLogo size="nav" priority />
-          <BrandWordmark className="hidden sm:block" />
         </Link>
 
-        {/* Desktop nav — single row, no wrap */}
+        {/* Desktop nav — centered in remaining space */}
         <nav
-          className="hidden min-w-0 flex-1 items-center justify-center lg:flex"
+          className="hidden min-w-0 items-center justify-center lg:flex"
           aria-label="Primary"
         >
           <div className="flex flex-nowrap items-center justify-center gap-1 xl:gap-1.5">
@@ -265,14 +264,13 @@ export function Navbar() {
         </nav>
 
         {/* Actions */}
-        <div className="ml-auto flex shrink-0 items-center gap-2 sm:gap-2.5 lg:ml-0">
+        <div className="flex shrink-0 items-center justify-end gap-2 sm:gap-2.5">
           <Link
             href="/book-demo"
             className="esa-btn hidden rounded-lg bg-esa-red px-3.5 py-2.5 text-sm font-semibold text-white shadow-esa-soft transition hover:bg-esa-red-dark focus-esa lg:inline-flex xl:px-5"
             onClick={closeMenus}
           >
-            <span className="xl:hidden">Book a Demo</span>
-            <span className="hidden xl:inline">Book a Demo Today</span>
+            <span className="font-bold">Book a Free Demo</span>
           </Link>
           <button
             type="button"
@@ -306,7 +304,7 @@ export function Navbar() {
                   <button
                     type="button"
                     className={cn(
-                      "flex w-full items-center justify-between px-3 py-3 text-left text-base font-medium focus-esa",
+                      "flex w-full items-center justify-between px-3 py-3 text-left text-base font-bold focus-esa",
                       courseActive || mobileCoursesOpen
                         ? "bg-esa-red-soft text-esa-red"
                         : "text-esa-navy",
@@ -333,7 +331,7 @@ export function Navbar() {
                 key={item.href}
                 type="button"
                 className={cn(
-                  "rounded-lg px-3 py-3 text-left text-base font-medium focus-esa",
+                  "rounded-lg px-3 py-3 text-left text-base font-bold focus-esa",
                   isNavLinkActive(pathname, item.href)
                     ? "bg-esa-red-soft text-esa-red ring-1 ring-esa-red/15"
                     : "text-esa-navy",
@@ -348,9 +346,9 @@ export function Navbar() {
           <Link
             href="/book-demo"
             onClick={closeMenus}
-            className="mt-2 rounded-lg bg-esa-red px-3 py-3 text-center text-base font-semibold text-white shadow-esa-soft focus-esa"
+            className="mt-2 rounded-lg bg-esa-red px-3 py-3 text-center text-base font-bold text-white shadow-esa-soft focus-esa"
           >
-            Book a Demo Today
+            Book a Free Demo
           </Link>
           <a
             href={SITE.phoneHref}

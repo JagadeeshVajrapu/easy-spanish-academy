@@ -73,35 +73,32 @@ export const SCHOOL_BOARDS = [
   "CBSE",
   "ICSE",
   "State Boards",
-  "IB",
-  "IGCSE / Cambridge",
-  "International Schools",
 ] as const;
 
 export const SCHOOL_STUDENT_GETS = [
   {
-    title: "Live & interactive Spanish tuition",
-    text: "Engaging live classes that keep school students active, curious, and speaking from day one.",
+    title: "Live online Spanish classes",
+    text: "Students join live classes from home. Classes are fun, clear, and easy to follow.",
   },
   {
-    title: "Expert language trainers",
-    text: "Experienced trainers who understand school learners and teach with clarity and patience.",
+    title: "Friendly expert trainers",
+    text: "Teachers explain slowly and clearly, so school students feel comfortable asking questions.",
   },
   {
-    title: "Speaking & pronunciation practice",
-    text: "Focused speaking and pronunciation work so students build real confidence to communicate.",
+    title: "Speaking practice every class",
+    text: "Students practise speaking Spanish in class—not only reading from books.",
   },
   {
-    title: "School-focused curriculum",
-    text: "Learning designed around age groups and academic requirements across major school boards.",
+    title: "Fits school boards & age groups",
+    text: "We support students from CBSE, ICSE, and State Boards.",
   },
   {
-    title: "Spanish culture & global opportunities",
-    text: "An introduction to Spanish culture and the wider opportunities that language skills can open.",
+    title: "Culture & real-life use",
+    text: "Students learn useful words and a little Spanish culture in a simple way.",
   },
   {
-    title: "Beginner to advanced pathway",
-    text: "Structured learning from beginner foundations toward more advanced levels with clear progress.",
+    title: "Step-by-step progress",
+    text: "From first words to stronger speaking—clear steps that parents can understand.",
   },
 ] as const;
 
@@ -150,15 +147,35 @@ export const LANGUAGE_ADDONS = {
     "Spoken across Spain & Latin America",
     "Great for travel, career & culture",
     "Beginner-friendly pronunciation",
-    "Structured A1 to B2 pathways",
+    "Clear A1–B2 levels",
   ],
   German: [
     "Key language of Europe’s largest economy",
     "Strong for study abroad & careers",
     "Useful in engineering, IT & business",
-    "Clear A1 to B2 certificate pathway",
+    "Clear A1–B2 certificate path",
   ],
 } as const;
+
+/** Highlight chips for the school program hero */
+export const SCHOOL_HERO_CHIPS = [
+  {
+    label: "Structured A1 to B2 pathways",
+    hint: "Clear level steps",
+  },
+  {
+    label: "Live online tuition",
+    hint: "Interactive classes",
+  },
+  {
+    label: "All major boards",
+    hint: "CBSE · ICSE · State",
+  },
+  {
+    label: "Speaking-focused",
+    hint: "Confidence in class",
+  },
+] as const;
 
 const SPANISH_LEVELS: CourseLevelDetail[] = [
   {
@@ -330,9 +347,8 @@ export const SPANISH_COURSES: CourseProgram[] = [
     topicDetails: CORE_TOPIC_AREAS,
     certification:
       "This pathway is oriented toward certificate / diploma learning. Contact us for details on current certification information and course options.",
-    image:
-      "https://images.unsplash.com/photo-1434030216411-0b793f4b4173?auto=format&fit=crop&w=1200&q=80",
-    imageAlt: "Student studying Spanish notes and materials",
+    image: "/images/spanish-certificate-banner.jpg",
+    imageAlt: "Learn Spanish — speak, connect, and explore with Easy Spanish Academy",
     ctaLabel: "View Course",
     enquiryInterest: "Spanish Certificate & Diploma Course",
     faq: courseFaq("Spanish", "Spanish Certificate & Diploma Course"),
@@ -348,65 +364,69 @@ export const SPANISH_COURSES: CourseProgram[] = [
     levelList: ["A1", "A2", "B1", "B2"],
     levelDetails: SPANISH_LEVELS,
     overview:
-      "An intensive Spanish option focused on faster progress, practical communication, and speaking confidence.",
+      "An intensive Spanish course with a strong focus on speaking and grammatical rules—ideal for business, travelling, and everyday communication.",
     introduction:
-      "The Spanish Crash Course is built for learners who want intensive learning and speaking practice. You move through essential foundations with a clear A1→B2 focus—prioritizing usable communication over slow, passive study.",
+      "The Spanish Crash Course is built for learners who want faster results. We especially focus on speaking practice and clear grammatical rules, so you can use Spanish for business purposes, travelling, and real conversations with confidence.",
     whoFor:
-      "Learners who prefer a faster, focused path and can commit to regular practice.",
+      "Learners who need Spanish quickly for work, travel, or practical communication and can commit to regular practice.",
     outcomes: [
-      "Accelerate foundational and intermediate Spanish skills",
-      "Prioritize practical speaking and listening",
-      "Cover essential grammar and vocabulary efficiently",
-      "Build usable communication habits quickly",
+      "Speak more confidently in everyday and professional situations",
+      "Apply clear grammatical rules in real conversations",
+      "Use Spanish for business meetings, emails, and workplace talk",
+      "Handle travel situations—airports, hotels, directions, and dining",
     ],
     benefits: [
-      "Intensive learning focus",
-      "Speaking-first practice",
-      "Clear A1→B2 direction",
-      "High-frequency vocabulary",
-      "Practical grammar for communication",
-      "Faster momentum with guided practice",
+      "Speaking-first intensive practice",
+      "Clear focus on grammatical rules",
+      "Business and workplace Spanish",
+      "Travel and real-life conversation skills",
+      "High-frequency vocabulary you can use fast",
+      "Faster momentum with guided live classes",
     ],
     skills: CORE_TOPIC_AREAS,
     topics: [
-      "Intensive foundations and essential phrases",
+      "Speaking practice in every class",
+      "Grammatical rules made simple and usable",
+      "Business and workplace Spanish",
+      "Travel phrases and real-life situations",
       "High-frequency vocabulary sets",
-      "Focused grammar for communication",
-      "Intensive speaking practice",
-      "Listening drills for real situations",
-      "Short writing and reading tasks",
+      "Listening and response drills",
     ],
     topicDetails: [
       {
-        title: "Intensive Foundations",
-        description: "Cover essential phrases and structures with focused, efficient practice.",
-      },
-      {
         title: "Speaking Focus",
-        description: "Spend more time speaking so confidence grows alongside understanding.",
+        description:
+          "Every class prioritises speaking so you build confidence to talk, ask, and reply clearly.",
       },
       {
-        title: "Practical Grammar",
-        description: "Learn the grammar you need to communicate—clearly and with purpose.",
+        title: "Grammatical Rules",
+        description:
+          "Learn the grammar you need for accurate sentences—explained simply and practised in speech.",
       },
       {
-        title: "Listening & Response",
-        description: "Train comprehension and response for everyday situations.",
+        title: "Business Purpose",
+        description:
+          "Practise useful Spanish for meetings, introductions, emails, and professional conversations.",
+      },
+      {
+        title: "Travelling Spanish",
+        description:
+          "Master practical phrases for airports, hotels, transport, dining, and asking for help.",
       },
       {
         title: "Vocabulary Momentum",
-        description: "Build high-frequency word banks you can use immediately.",
+        description: "Build high-frequency word banks you can use immediately at work and abroad.",
       },
       {
         title: "Guided Progress",
-        description: "Stay on track with clear goals across the A1→B2 pathway.",
+        description: "Stay on track with clear goals across an intensive A1→B2 pathway.",
       },
     ],
     certification:
       "Contact us for details on schedules, formats, and how this intensive pathway fits your goals.",
     image:
-      "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=1200&q=80",
-    imageAlt: "Learners practicing conversation in a language class",
+      "https://images.unsplash.com/photo-1488646953014-85cb44e25828?auto=format&fit=crop&w=1200&q=80",
+    imageAlt: "Traveller exploring a city—Spanish for business and travel",
     ctaLabel: "View Course",
     enquiryInterest: "Spanish Crash Course",
     faq: courseFaq("Spanish", "Spanish Crash Course"),
@@ -422,17 +442,17 @@ export const SPANISH_COURSES: CourseProgram[] = [
     levelList: ["A1", "A2", "B1", "B2"],
     levelDetails: SPANISH_LEVELS,
     overview:
-      "Easy Spanish Academy offers interactive Spanish tuition for school students—designed for different age groups and academic requirements across major boards.",
+      "Simple, live Spanish classes for school students. Parents can book a free demo to see how their child learns and speaks in class.",
     introduction:
-      "We help school students learn Spanish through live interactive classes and guided practice. In a free demo, students can experience Spanish, learn their first words, and see how they can progress with confidence.",
+      "In a free demo, your child can meet the teacher, learn first Spanish words, and try speaking in a friendly class. Then you can decide if this program is the right fit.",
     whoFor:
-      "School students and parents looking for Spanish tuition and interactive language support across major boards.",
-    audienceNote: "Learn Spanish. Speak with Confidence. Go Global.",
+      "School students and parents who want clear, live Spanish classes that fit school life.",
+    audienceNote: "Learn Spanish. Speak with confidence. Grow with every class.",
     outcomes: [
-      "Live Spanish tuition designed for school students",
-      "Learn first words and build speaking confidence early",
-      "Follow a clear path from beginner to advanced levels",
-      "Connect language learning with culture and global opportunities",
+      "Live online classes made for school students",
+      "Learn first words and start speaking early",
+      "Clear steps from beginner to higher levels",
+      "Helpful support for parents after the free demo",
     ],
     benefits: [
       "Live & interactive Spanish classes",
@@ -447,69 +467,69 @@ export const SPANISH_COURSES: CourseProgram[] = [
       "Live interactive Spanish classes",
       "Speaking and pronunciation practice",
       "School-focused curriculum support",
-      "Spanish culture introduction",
-      "Beginner to advanced pathway",
-      "Free demo for school students",
+      "Age-appropriate learning activities",
+      "Culture and conversation starters",
+      "Clear progress from beginner levels",
     ],
     topicDetails: [
       {
-        title: "Live & Interactive Classes",
+        title: "Live Online Classes",
         description:
-          "Engaging live tuition sessions designed for school students across different age groups.",
-      },
-      {
-        title: "Expert Trainers",
-        description:
-          "Language trainers who guide school learners with clear teaching and speaking practice.",
+          "Students learn live with a teacher—easy to join from home on Zoom or Google Meet.",
       },
       {
         title: "Speaking Practice",
         description:
-          "Pronunciation and conversation practice so students speak with growing confidence.",
+          "Every class includes speaking, so students gain confidence to say Spanish words out loud.",
       },
       {
-        title: "School-Focused Curriculum",
+        title: "Friendly Teachers",
         description:
-          "Tuition aligned with academic needs across CBSE, ICSE, State Boards, IB, IGCSE/Cambridge, and International Schools.",
+          "Trainers teach school students with patience and clear examples.",
       },
       {
-        title: "Culture & Global Opportunities",
+        title: "School Board Friendly",
         description:
-          "An introduction to Spanish culture and the wider opportunities language skills can open.",
+          "Suitable for CBSE, ICSE, and State Boards. Online and offline home tuition is also available.",
       },
       {
-        title: "Clear Progress Path",
+        title: "Culture & Daily Use",
         description:
-          "Structured learning from beginner foundations toward more advanced levels.",
+          "Students learn useful everyday Spanish and a little about Spanish culture.",
+      },
+      {
+        title: "Clear Progress",
+        description:
+          "Simple level steps so parents and students know what comes next.",
       },
     ],
     certification:
-      "Start Spanish tuition for your child with Easy Spanish Academy. Book a free demo and help your student experience Spanish with confidence.",
+      "Book a free demo for your child. See the class, ask questions, and start with confidence.",
     image:
-      "https://images.unsplash.com/photo-1503676260728-1c00da094a0b?auto=format&fit=crop&w=1600&q=80",
-    imageAlt: "Happy school students learning together in class",
+      "https://images.unsplash.com/photo-1509062522246-3755977927d7?auto=format&fit=crop&w=1800&q=80",
+    imageAlt: "School students learning together in a bright classroom",
     ctaLabel: "View Program",
-    enquiryInterest: "Spanish Tuition for School Students",
+    enquiryInterest: "Spanish Classes for School Students",
     faq: [
       {
         question: "What is the School Orientation Program?",
         answer:
-          "It is interactive Spanish tuition for school students—designed for different age groups and academic requirements—with a free demo so learners can experience Spanish and take their first steps in the language.",
+          "It is a live Spanish class program for school students. Classes are simple, interactive, and focused on speaking. Parents can book a free demo first.",
       },
       {
         question: "Which school boards do you support?",
         answer:
-          "We support students from all major school boards: CBSE, ICSE, State Boards, IB, IGCSE/Cambridge, and International Schools.",
+          "We support students from CBSE, ICSE, and State Boards. Spanish language online and offline home tuition is also available.",
       },
       {
         question: "What do students get in this program?",
         answer:
-          "Live interactive Spanish classes, expert trainers, speaking and pronunciation practice, a school-focused curriculum, cultural exposure, and a structured path from beginner to advanced levels.",
+          "Live online classes, friendly trainers, speaking practice, school-friendly learning, and clear progress from beginner levels.",
       },
       {
-        question: "Do you provide Spanish tuition for school students?",
+        question: "Do you provide Spanish classes for school students?",
         answer:
-          "Yes. Easy Spanish Academy provides Spanish tuition for school students through live interactive classes aligned with their age group and academic needs.",
+          "Yes. Easy Spanish Academy offers live Spanish classes for school students. Book a free demo to see how it works.",
       },
       {
         question: "How can I book a free demo?",
@@ -563,9 +583,8 @@ export const GERMAN_COURSES: CourseProgram[] = [
     topicDetails: CORE_TOPIC_AREAS,
     certification:
       "This pathway is oriented toward certificate / diploma learning. Contact us for details on current options.",
-    image:
-      "https://images.unsplash.com/photo-1467269204594-9661b134dd2b?auto=format&fit=crop&w=1200&q=80",
-    imageAlt: "European streetscape reflecting German language learning",
+    image: "/images/german-course-banner.jpg",
+    imageAlt: "Learn German — speak, study, work, and settle with Easy Spanish Academy",
     ctaLabel: "View Course",
     enquiryInterest: "German Certificate & Diploma Course",
     faq: courseFaq("German", "German Certificate & Diploma Course"),

@@ -30,7 +30,7 @@ export function BrandWordmark({
     <span className={cn("min-w-0 leading-tight", className)}>
       <span
         className={cn(
-          "font-display block whitespace-nowrap text-base font-extrabold tracking-tight sm:text-[1.125rem] lg:text-[1.2rem] xl:text-[1.3rem]",
+          "font-display block whitespace-nowrap text-[1.05rem] font-extrabold tracking-tight sm:text-[1.2rem] lg:text-[1.3rem] xl:text-[1.4rem]",
           isLight ? "text-esa-navy" : "text-white",
         )}
       >
@@ -42,7 +42,6 @@ export function BrandWordmark({
         <span
           className={cn(
             "mt-0.5 block max-w-full text-[10px] font-semibold leading-snug tracking-[0.01em] sm:text-[11px]",
-            // Nav: hide tagline. Footer: always wrap so it never spills into other columns.
             isLight ? "hidden text-esa-red" : "whitespace-normal text-esa-gold",
           )}
           title={SITE.instituteTagline}
@@ -54,19 +53,22 @@ export function BrandWordmark({
   );
 }
 
-/** Nav mark is landscape ~900×507 (aspect 1.775). */
+/**
+ * Balanced lockup size — full tagline readable, no overlap with nav.
+ * (~previous “good” size before it grew into the menu)
+ */
 const NAV = {
-  src: "/esa-mark.png",
-  width: 900,
-  height: 507,
-  className: "h-9 w-auto sm:h-10 md:h-11 max-w-[6.5rem] sm:max-w-[7.25rem] md:max-w-[7.75rem]",
+  src: "/esa-logo-lockup.png",
+  width: 1024,
+  height: 341,
+  className: "h-auto w-[15.5rem] sm:w-[17.5rem] md:w-[18.5rem] lg:w-[19.5rem]",
 } as const;
 
 const FOOTER = {
-  src: "/esa-mark.png",
-  width: 900,
-  height: 507,
-  className: "h-9 w-auto max-w-[5.75rem] sm:h-10 sm:max-w-[6.5rem]",
+  src: "/esa-logo-lockup.png",
+  width: 1024,
+  height: 341,
+  className: "h-auto w-[16.5rem] sm:w-[18.5rem]",
 } as const;
 
 export function BrandLogo({
@@ -81,20 +83,18 @@ export function BrandLogo({
   const mark = (
     <span
       className={cn(
-        "inline-flex shrink-0 items-center justify-center overflow-hidden transition duration-300",
-        size === "nav" && "rounded-lg bg-transparent p-0",
-        size === "footer" &&
-          "rounded-xl bg-white p-1.5 shadow-esa-soft ring-1 ring-esa-gold/30 sm:p-2",
+        "inline-flex shrink-0 items-center justify-center bg-transparent p-0",
+        size === "footer" && "rounded-xl bg-white/95 px-2 py-1.5",
         className,
       )}
     >
       <Image
         src={config.src}
-        alt={size === "nav" ? "" : "Easy Spanish Academy"}
+        alt="Easy Spanish Academy — Learn today, speak tomorrow, connect forever"
         width={config.width}
         height={config.height}
         priority={priority}
-        className={cn("object-contain object-center", config.className)}
+        className={cn("object-contain object-left", config.className)}
       />
     </span>
   );

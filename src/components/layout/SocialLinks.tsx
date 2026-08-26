@@ -63,6 +63,7 @@ const SOCIAL_LINKS = [
 type SocialLinksProps = {
   className?: string;
   iconClassName?: string;
+  /** Kept for existing callers (TopBar / Footer). */
   tone?: "dark" | "light";
   size?: "md" | "lg";
 };
@@ -78,10 +79,10 @@ const sizeMap = {
   },
 } as const;
 
+/** White button background with brand-colored icons (readable on light & dark bars). */
 export function SocialLinks({
   className,
   iconClassName,
-  tone = "dark",
   size = "md",
 }: SocialLinksProps) {
   const sizing = sizeMap[size];
@@ -96,11 +97,8 @@ export function SocialLinks({
           rel="noopener noreferrer"
           aria-label={`Open Easy Spanish Academy on ${label}`}
           className={cn(
-            "inline-flex items-center justify-center rounded-md transition hover:scale-105 focus-esa",
+            "inline-flex items-center justify-center rounded-md bg-white shadow-sm ring-1 ring-black/10 transition hover:scale-105 focus-esa",
             sizing.button,
-            tone === "dark"
-              ? "bg-white/8 hover:bg-white/15"
-              : "border border-esa-border bg-esa-bg hover:bg-white",
             iconClassName,
           )}
         >

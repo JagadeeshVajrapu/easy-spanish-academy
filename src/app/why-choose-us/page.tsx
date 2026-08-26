@@ -23,11 +23,11 @@ import { whatsappUrl } from "@/lib/utils";
 export const metadata: Metadata = {
   title: "Why Choose Us",
   description:
-    "Why choose Easy Spanish Academy for online Spanish and German classes—live Zoom/Google Meet sessions, weekday & weekend batches, study PDFs, doorstep books, and expert trainers.",
+    "Why choose Easy Spanish Academy for online Spanish and German language classes—live Zoom/Google Meet sessions, weekdays & weekend batches, study PDFs, doorstep books, and expert trainers.",
   openGraph: {
     title: `Why Choose Us | ${SITE.name}`,
     description:
-      "100% online live classes, flexible timings, weekday & weekend batches, study materials, and guided Spanish & German learning.",
+      "100% online live classes, flexible timings, weekdays & weekend batches, study materials, and guided Spanish & German language learning.",
     url: `${SITE.url}/why-choose-us`,
   },
 };
@@ -36,12 +36,12 @@ const whyChoosePoints = [
   {
     icon: MonitorPlay,
     title: "100% Online Live Classes",
-    text: "Learn Spanish and German live via Zoom or Google Meet—interactive sessions from anywhere in India.",
+    text: "Learn Spanish and German languages live via Zoom or Google Meet—interactive sessions from anywhere in India.",
   },
   {
     icon: CalendarDays,
-    title: "Weekday & Weekend Batches",
-    text: "Flexible class timings with weekday and weekend batches for students and working professionals.",
+    title: "Weekdays & Weekend Batches",
+    text: "Flexible class timings with weekdays and weekend batches for students and working professionals.",
   },
   {
     icon: FileText,
@@ -56,12 +56,12 @@ const whyChoosePoints = [
   {
     icon: Sparkles,
     title: "Affordable Course Fees",
-    text: "Quality Spanish and German learning designed to stay accessible, with clear guidance on current options.",
+    text: "Quality Spanish and German language learning designed to stay accessible, with clear guidance on current options.",
   },
   {
     icon: GraduationCap,
     title: "Proficiency Test Preparation",
-    text: "Focused support for Spanish and German proficiency exam preparation alongside your level pathway.",
+    text: "Focused support for Spanish and German language proficiency exam preparation alongside your level pathway.",
   },
   {
     icon: BookOpen,
@@ -85,10 +85,10 @@ export default function WhyChooseUsPage() {
     <>
       <PageHero
         eyebrow="Why Choose Us"
-        title="Why learners choose Easy Spanish Academy."
-        description="Online Spanish and German classes built around live teaching, flexible batches, real study support, and speaking confidence."
-        image="https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&w=2000&q=80"
-        imageAlt="Learners choosing an online language academy"
+        title="Why learners choose Easy Spanish Academy"
+        description="Online Spanish and German language classes built around live teaching, flexible batches, real study support, and speaking confidence."
+        image="https://images.unsplash.com/photo-1577896851231-70ef18881754?auto=format&fit=crop&w=2000&q=80"
+        imageAlt="Indian students learning together in a bright classroom"
         breadcrumbs={[
           { label: "Home", href: "/" },
           { label: "Why Choose Us" },
@@ -100,7 +100,8 @@ export default function WhyChooseUsPage() {
           <SectionHeading
             eyebrow="Our promise"
             title="Why Choose Us"
-            description="Everything we offer is designed to make online Spanish and German learning clear, flexible, and practical—for beginners and growing speakers."
+            description="Everything we offer is designed to make online Spanish and German language learning clear, flexible, and practical—for beginners and growing speakers."
+            className="[&_h2]:text-[clamp(2rem,4vw,2.85rem)]"
           />
         </AnimateIn>
 
@@ -114,7 +115,7 @@ export default function WhyChooseUsPage() {
                 <h3 className="font-display text-lg font-semibold text-esa-navy transition-colors duration-300 group-hover:text-esa-red">
                   {item.title}
                 </h3>
-                <p className="mt-2 flex-1 text-sm leading-relaxed text-esa-muted sm:text-[0.95rem]">
+                <p className="mt-2 flex-1 text-sm font-medium leading-relaxed text-esa-navy/80 sm:text-[0.95rem]">
                   {item.text}
                 </p>
               </article>
@@ -127,28 +128,18 @@ export default function WhyChooseUsPage() {
         <div className="grid gap-8 rounded-3xl border border-esa-border bg-white p-6 shadow-esa-soft sm:p-8 lg:grid-cols-[1.2fr_auto] lg:items-center lg:p-10">
           <AnimateIn>
             <p className="text-label text-esa-red">Book a free demo</p>
-            <h2 className="mt-2 text-section text-esa-navy">
-              Book a free demo session today
+            <h2 className="text-section mt-2 text-esa-navy">
+              Ready to experience a live class?
             </h2>
-            <p className="mt-3 max-w-2xl text-sm leading-relaxed text-esa-muted sm:text-base">
-              Prefer weekday or weekend batches? Want to see how live online
-              Spanish or German classes work? Book a demo—or message us on
+            <p className="mt-3 max-w-2xl text-sm leading-relaxed text-esa-navy/80 sm:text-base">
+              Prefer weekdays or weekend batches? Want to see how live online
+              Spanish or German language classes work? Book a demo—or message us on
               WhatsApp.
             </p>
-            <p className="mt-4 text-sm font-semibold text-esa-navy">
-              Call us on{" "}
-              <a
-                href={SITE.phoneHref}
-                className="text-esa-red transition hover:text-esa-red-dark focus-esa"
-              >
-                {SITE.phoneDisplay}
-              </a>
-            </p>
           </AnimateIn>
-
-          <AnimateIn delay={0.06}>
-            <div className="flex w-full flex-col gap-2.5 sm:flex-row lg:flex-col xl:flex-row">
-              <Button href="/book-demo" size="lg" className="w-full sm:w-auto">
+          <AnimateIn delay={0.08}>
+            <div className="flex flex-col gap-3 sm:flex-row lg:flex-col">
+              <Button href="/book-demo" size="lg">
                 Book a Free Demo
               </Button>
               <Button
@@ -157,19 +148,13 @@ export default function WhyChooseUsPage() {
                 )}
                 variant="whatsapp"
                 size="lg"
-                className="w-full sm:w-auto"
                 target="_blank"
                 rel="noopener noreferrer"
               >
                 <MessageCircle className="h-4 w-4" aria-hidden />
                 WhatsApp
               </Button>
-              <Button
-                href={SITE.phoneHref}
-                variant="call"
-                size="lg"
-                className="w-full sm:w-auto"
-              >
+              <Button href={SITE.phoneHref} variant="call" size="lg">
                 <Phone className="h-4 w-4" aria-hidden />
                 Call Now
               </Button>

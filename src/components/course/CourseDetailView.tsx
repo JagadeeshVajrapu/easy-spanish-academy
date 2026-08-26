@@ -20,6 +20,7 @@ import {
   LANGUAGE_ADDONS,
   LANGUAGE_HIGHLIGHTS,
   SCHOOL_BOARDS,
+  SCHOOL_HERO_CHIPS,
   SCHOOL_STUDENT_GETS,
   courseHref,
   type CourseProgram,
@@ -48,6 +49,7 @@ function WhatsAppGlyph({ className }: { className?: string }) {
 export function CourseDetailView({ course, breadcrumbs }: CourseDetailViewProps) {
   const demoHref = `/book-demo?interest=${encodeURIComponent(course.enquiryInterest)}`;
   const isSchool = course.id === "school";
+  const isBannerImage = course.image.startsWith("/images/");
   const highlights = LANGUAGE_HIGHLIGHTS[course.language];
 
   const schoolGetIcons = [
@@ -59,38 +61,34 @@ export function CourseDetailView({ course, breadcrumbs }: CourseDetailViewProps)
     GraduationCap,
   ] as const;
 
+  const schoolChipIcons = [GraduationCap, MonitorPlay, BookOpen, Mic] as const;
+
   return (
     <>
       {/* COURSE HERO */}
       <section
         className={
           isSchool
-            ? "relative overflow-hidden text-white"
+            ? "relative overflow-hidden text-esa-navy"
             : "relative overflow-hidden bg-esa-navy text-white"
         }
       >
         {isSchool ? (
-          <>
-            <Image
-              src={course.image}
-              alt=""
-              fill
-              priority
-              className="object-cover object-center"
-              sizes="100vw"
-              aria-hidden
-            />
-            <div
-              aria-hidden
-              className="absolute inset-0 bg-gradient-to-r from-esa-navy/92 via-esa-navy/82 to-esa-navy/55"
-            />
-          </>
+          <Image
+            src={course.image}
+            alt=""
+            fill
+            priority
+            className="object-cover object-center"
+            sizes="100vw"
+            aria-hidden
+          />
         ) : null}
-        <div className="container-esa relative py-10 sm:py-12 lg:py-14">
-          {breadcrumbs?.length ? (
+        <div className="container-esa relative py-12 sm:py-14 lg:py-16">
+          {!isSchool && breadcrumbs?.length ? (
             <nav
               aria-label="Breadcrumb"
-              className="mb-6 flex flex-wrap items-center gap-1.5 text-sm text-white/80"
+              className="mb-6 flex flex-wrap items-center gap-1.5 text-sm font-medium text-white/90 sm:text-base"
             >
               {breadcrumbs.map((item, index) => (
                 <span key={`${item.label}-${index}`} className="inline-flex items-center gap-1.5">
@@ -115,81 +113,168 @@ export function CourseDetailView({ course, breadcrumbs }: CourseDetailViewProps)
           <div
             className={
               isSchool
-                ? "max-w-3xl"
-                : "grid items-center gap-8 lg:grid-cols-[1.15fr_0.85fr] lg:gap-12"
+                ? "max-w-3xl rounded-3xl border border-white/80 bg-white/96 p-6 shadow-esa-lift backdrop-blur-md sm:p-8 lg:p-9"
+                : "grid items-center gap-8 lg:grid-cols-[1.05fr_0.95fr] lg:gap-10 xl:gap-12"
             }
           >
+            {isSchool && breadcrumbs?.length ? (
+              <nav
+                aria-label="Breadcrumb"
+                className="mb-5 flex flex-wrap items-center gap-1.5 text-sm font-medium text-esa-navy/70 sm:text-base"
+              >
+                {breadcrumbs.map((item, index) => (
+                  <span key={`${item.label}-${index}`} className="inline-flex items-center gap-1.5">
+                    {index > 0 ? (
+                      <ChevronRight className="h-3.5 w-3.5 shrink-0 text-esa-navy/40" aria-hidden />
+                    ) : null}
+                    {item.href ? (
+                      <Link
+                        href={item.href}
+                        className="text-esa-navy/75 transition hover:text-esa-red focus-esa"
+                      >
+                        {item.label}
+                      </Link>
+                    ) : (
+                      <span className="font-semibold text-esa-navy">{item.label}</span>
+                    )}
+                  </span>
+                ))}
+              </nav>
+            ) : null}
+
             <div className="min-w-0">
-              <p className="text-label text-esa-gold">
-                {isSchool ? "Spanish tuition for school students" : "Course"}
+              <p
+                className={
+                  isSchool
+                    ? "text-sm font-bold uppercase tracking-[0.12em] text-esa-red sm:text-base"
+                    : "text-sm font-bold uppercase tracking-[0.12em] text-esa-gold sm:text-base"
+                }
+              >
+                {isSchool ? "Spanish classes for school students" : "Course"}
               </p>
-              <div className="mt-3 inline-flex items-center gap-3 rounded-xl border border-white/20 bg-white/10 px-3.5 py-2.5 shadow-esa-soft backdrop-blur-sm">
+              <div
+                className={
+                  isSchool
+                    ? "mt-3 inline-flex items-center gap-3 rounded-xl border border-esa-border bg-esa-bg px-3.5 py-2.5 shadow-esa-soft"
+                    : "mt-3 inline-flex items-center gap-3 rounded-xl border border-white/20 bg-white/10 px-3.5 py-2.5 shadow-esa-soft backdrop-blur-sm"
+                }
+              >
                 <FlagAccent country={course.flag} size="xl" />
                 <span className="min-w-0">
-                  <span className="block text-xs font-semibold uppercase tracking-[0.14em] text-esa-gold">
+                  <span
+                    className={
+                      isSchool
+                        ? "block text-xs font-semibold uppercase tracking-[0.14em] text-esa-red"
+                        : "block text-xs font-semibold uppercase tracking-[0.14em] text-esa-gold"
+                    }
+                  >
                     {course.language === "Spanish" ? "Spain" : "Germany"}
                   </span>
-                  <span className="block text-base font-bold text-white sm:text-lg">
+                  <span
+                    className={
+                      isSchool
+                        ? "block text-base font-bold text-esa-navy sm:text-lg"
+                        : "block text-base font-bold text-white sm:text-lg"
+                    }
+                  >
                     {course.language} Language
                   </span>
                 </span>
               </div>
-              <h1 className="text-hero mt-4 max-w-3xl text-white">{course.title}</h1>
+              <h1
+                className={
+                  isSchool
+                    ? "text-hero mt-4 max-w-3xl text-esa-navy"
+                    : "text-hero mt-4 max-w-3xl text-white"
+                }
+              >
+                {course.title}
+              </h1>
               {course.audienceNote ? (
-                <p className="mt-3 text-sm font-medium text-esa-gold sm:text-base md:text-lg">
+                <p
+                  className={
+                    isSchool
+                      ? "mt-3 text-base font-semibold text-esa-red sm:text-lg md:text-xl"
+                      : "mt-3 text-base font-semibold text-esa-gold sm:text-lg md:text-xl"
+                  }
+                >
                   {course.audienceNote}
                 </p>
               ) : null}
-              <p className="mt-4 max-w-2xl text-base leading-relaxed text-white/80 sm:text-lg">
+              <p
+                className={
+                  isSchool
+                    ? "mt-4 max-w-2xl text-base font-medium leading-relaxed text-esa-muted sm:text-lg"
+                    : "mt-4 max-w-2xl text-base font-medium leading-relaxed text-white/95 sm:text-lg md:text-xl"
+                }
+              >
                 {course.overview}
               </p>
-              <ul className="mt-4 flex flex-wrap gap-2">
-                {LANGUAGE_ADDONS[course.language].map((line) => (
-                  <li
-                    key={line}
-                    className="rounded-full border border-white/15 bg-white/10 px-3 py-1.5 text-xs font-semibold text-white/95 sm:text-sm"
-                  >
-                    {line}
-                  </li>
-                ))}
-              </ul>
+
               {isSchool ? (
-                <div className="mt-5 flex flex-wrap gap-2">
-                  {["Live online tuition", "All major boards", "Speaking-focused"].map(
-                    (chip) => (
-                      <span
-                        key={chip}
-                        className="rounded-full border border-white/20 bg-white/10 px-3 py-1 text-xs font-semibold text-white"
+                <ul className="mt-6 grid gap-3 sm:grid-cols-2">
+                  {SCHOOL_HERO_CHIPS.map((chip, index) => {
+                    const Icon = schoolChipIcons[index] ?? Sparkles;
+                    return (
+                      <li
+                        key={chip.label}
+                        className="group flex items-start gap-3 rounded-2xl border border-esa-red/15 bg-gradient-to-br from-esa-red-soft/80 to-white px-3.5 py-3.5 shadow-esa-soft transition duration-200 hover:-translate-y-0.5 hover:border-esa-red/30 hover:shadow-esa-card"
                       >
-                        {chip}
-                      </span>
-                    ),
-                  )}
-                </div>
-              ) : null}
-              <div className="mt-7 flex flex-col gap-2.5 sm:flex-row sm:flex-wrap">
+                        <span className="inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-esa-red text-white shadow-esa-soft transition duration-200 group-hover:scale-105">
+                          <Icon className="h-5 w-5" aria-hidden />
+                        </span>
+                        <span className="min-w-0 pt-0.5">
+                          <span className="block text-sm font-bold leading-snug text-esa-navy sm:text-[0.95rem]">
+                            {chip.label}
+                          </span>
+                          <span className="mt-0.5 block text-xs font-medium text-esa-muted">
+                            {chip.hint}
+                          </span>
+                        </span>
+                      </li>
+                    );
+                  })}
+                </ul>
+              ) : (
+                <ul className="mt-5 flex flex-wrap gap-2.5">
+                  {LANGUAGE_ADDONS[course.language].map((line) => (
+                    <li
+                      key={line}
+                      className="whitespace-nowrap rounded-full border border-white/20 bg-white/15 px-3.5 py-2 text-sm font-semibold text-white"
+                    >
+                      {line}
+                    </li>
+                  ))}
+                </ul>
+              )}
+
+              <div className="mt-8 flex flex-col gap-2.5 sm:flex-row sm:flex-wrap">
                 <Link
                   href={demoHref}
-                  className="inline-flex items-center justify-center rounded-lg bg-esa-red px-5 py-3 text-sm font-semibold text-white transition hover:bg-esa-red-dark focus-esa"
+                  className="inline-flex items-center justify-center rounded-lg bg-esa-red px-5 py-3.5 text-base font-semibold text-white transition hover:bg-esa-red-dark focus-esa"
                 >
                   {isSchool ? "Book a Free Demo" : "Book a Demo"}
                 </Link>
                 <a
                   href={whatsappUrl(
                     isSchool
-                      ? "Hello! I would like Spanish tuition for my school student at Easy Spanish Academy."
+                      ? "Hello! I would like Spanish classes for my school student at Easy Spanish Academy."
                       : `Hello! I would like to enquire about the ${course.title} at Easy Spanish Academy.`,
                   )}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center justify-center gap-2 rounded-lg bg-[#25D366] px-5 py-3 text-sm font-semibold text-white transition hover:bg-[#1da851] focus-esa"
+                  className="inline-flex items-center justify-center gap-2 rounded-lg bg-[#25D366] px-5 py-3.5 text-base font-semibold text-white transition hover:bg-[#1da851] focus-esa"
                 >
                   <WhatsAppGlyph className="h-4 w-4" />
                   WhatsApp
                 </a>
                 <Link
                   href="/contact"
-                  className="inline-flex items-center justify-center rounded-lg border border-white/25 bg-white/10 px-5 py-3 text-sm font-semibold text-white transition hover:bg-white/15 focus-esa"
+                  className={
+                    isSchool
+                      ? "inline-flex items-center justify-center rounded-lg border border-esa-border bg-white px-5 py-3.5 text-base font-semibold text-esa-navy transition hover:bg-esa-soft focus-esa"
+                      : "inline-flex items-center justify-center rounded-lg border border-white/25 bg-white/10 px-5 py-3.5 text-base font-semibold text-white transition hover:bg-white/15 focus-esa"
+                  }
                 >
                   Talk to a Consultant
                 </Link>
@@ -197,15 +282,50 @@ export function CourseDetailView({ course, breadcrumbs }: CourseDetailViewProps)
             </div>
 
             {!isSchool ? (
-              <div className="relative mx-auto aspect-[4/3] w-full max-w-lg overflow-hidden rounded-2xl border border-white/15 shadow-esa-lift lg:mx-0 lg:max-w-none">
-                <Image
-                  src={course.image}
-                  alt={course.imageAlt}
-                  fill
-                  className="object-cover object-center"
-                  sizes="(max-width: 1024px) 90vw, 40vw"
-                  priority
+              <div className="relative mx-auto w-full max-w-xl lg:mx-0 lg:max-w-none">
+                <div
+                  aria-hidden
+                  className={
+                    course.language === "German"
+                      ? "absolute -inset-3 rounded-[1.75rem] bg-gradient-to-br from-[#000000]/25 via-[#DD0000]/20 to-[#FFCC00]/30 blur-[2px]"
+                      : "absolute -inset-3 rounded-[1.75rem] bg-gradient-to-br from-esa-red/30 via-esa-gold/25 to-white/10 blur-[2px]"
+                  }
                 />
+                <div
+                  className={
+                    isBannerImage
+                      ? "relative overflow-hidden rounded-2xl border border-white/25 bg-white p-2.5 shadow-esa-lift sm:p-3"
+                      : "relative overflow-hidden rounded-2xl border border-white/15 shadow-esa-lift"
+                  }
+                >
+                  <div
+                    className={
+                      isBannerImage
+                        ? "relative aspect-[3/2] w-full overflow-hidden rounded-xl bg-[#f7f5f2]"
+                        : "relative aspect-[4/3] w-full"
+                    }
+                  >
+                    <Image
+                      src={course.image}
+                      alt={course.imageAlt}
+                      fill
+                      className={
+                        isBannerImage
+                          ? "object-contain object-center"
+                          : "object-cover object-center"
+                      }
+                      sizes="(max-width: 1024px) 90vw, 42vw"
+                      priority
+                    />
+                  </div>
+                  {isBannerImage ? (
+                    <p className="mt-2.5 px-1 text-center text-[11px] font-semibold uppercase tracking-[0.14em] text-esa-navy/55 sm:text-xs">
+                      {course.language === "German"
+                        ? "German Certificate Pathway"
+                        : "Spanish Certificate Pathway"}
+                    </p>
+                  ) : null}
+                </div>
               </div>
             ) : null}
           </div>
@@ -217,25 +337,32 @@ export function CourseDetailView({ course, breadcrumbs }: CourseDetailViewProps)
         <>
           <section className="section-pad bg-white">
             <div className="container-esa mx-auto max-w-6xl">
-              <div className="max-w-2xl">
-                <p className="text-label text-esa-red">For all major school boards</p>
-                <h2 className="text-section mt-2">
-                  Spanish tuition that fits every school pathway
-                </h2>
-                <p className="mt-3 text-esa-muted">
-                  Interactive Spanish classes for school students, designed for
-                  different age groups and academic requirements.
-                </p>
-              </div>
-              <div className="mt-8 flex flex-wrap gap-2.5">
-                {SCHOOL_BOARDS.map((board) => (
-                  <span
-                    key={board}
-                    className="rounded-lg border border-esa-border bg-esa-bg px-3.5 py-2 text-sm font-semibold text-esa-navy shadow-esa-soft"
-                  >
-                    {board}
-                  </span>
-                ))}
+              <div className="overflow-hidden rounded-3xl border border-esa-border bg-gradient-to-br from-esa-bg via-white to-esa-red-soft/30 p-6 shadow-esa-soft sm:p-8 lg:p-10">
+                <div className="max-w-3xl">
+                  <p className="text-base font-bold uppercase tracking-[0.12em] text-esa-red sm:text-lg md:text-xl">
+                    For all major school boards
+                  </p>
+                  <h2 className="mt-2 text-2xl font-bold tracking-tight text-esa-navy sm:text-3xl lg:text-4xl">
+                    Spanish classes for every school board
+                  </h2>
+                  <p className="mt-4 max-w-2xl text-base font-medium leading-relaxed text-esa-navy/80 sm:text-lg">
+                    Live Spanish classes for school students—designed for different ages
+                    across CBSE, ICSE, and State Boards.
+                  </p>
+                  <p className="mt-3 inline-flex max-w-2xl rounded-xl border border-esa-red/20 bg-white px-4 py-3 text-base font-semibold leading-relaxed text-esa-red shadow-esa-soft sm:text-lg">
+                    Spanish Language Online & Offline Home Tuition is also Available
+                  </p>
+                </div>
+                <div className="mt-8 flex flex-wrap gap-3">
+                  {SCHOOL_BOARDS.map((board) => (
+                    <span
+                      key={board}
+                      className="rounded-xl border border-esa-border bg-white px-5 py-3 text-sm font-bold text-esa-navy shadow-esa-soft transition hover:border-esa-red/25 hover:text-esa-red sm:text-base"
+                    >
+                      {board}
+                    </span>
+                  ))}
+                </div>
               </div>
             </div>
           </section>
@@ -243,7 +370,9 @@ export function CourseDetailView({ course, breadcrumbs }: CourseDetailViewProps)
           <section className="section-pad bg-esa-bg">
             <div className="container-esa mx-auto max-w-6xl">
               <div className="max-w-2xl">
-                <p className="text-label text-esa-red">What students get</p>
+                <p className="text-sm font-bold uppercase tracking-[0.12em] text-esa-red sm:text-base">
+                  What students get
+                </p>
                 <h2 className="text-section mt-2">
                   Built for school learners who want to speak with confidence
                 </h2>
@@ -259,10 +388,10 @@ export function CourseDetailView({ course, breadcrumbs }: CourseDetailViewProps)
                       <div className="inline-flex h-11 w-11 items-center justify-center rounded-xl bg-esa-red-soft text-esa-red">
                         <Icon className="h-5 w-5" aria-hidden />
                       </div>
-                      <h3 className="mt-4 text-base font-bold text-esa-navy">
+                      <h3 className="mt-4 text-lg font-bold text-esa-navy">
                         {item.title}
                       </h3>
-                      <p className="mt-2 flex-1 text-sm leading-relaxed text-esa-muted">
+                      <p className="mt-2 flex-1 text-base font-medium leading-relaxed text-esa-navy/80">
                         {item.text}
                       </p>
                     </article>
@@ -277,20 +406,22 @@ export function CourseDetailView({ course, breadcrumbs }: CourseDetailViewProps)
               <div className="overflow-hidden rounded-3xl border border-esa-border bg-esa-navy text-white shadow-esa-soft">
                 <div className="grid lg:grid-cols-[1.15fr_0.85fr]">
                   <div className="p-6 sm:p-8 lg:p-10">
-                    <p className="text-label text-esa-gold">Free demo for school students</p>
+                    <p className="text-sm font-bold uppercase tracking-[0.12em] text-esa-gold sm:text-base">
+                      Free demo for school students
+                    </p>
                     <h2 className="text-section mt-2 text-white">
-                      Start Spanish tuition with confidence
+                      Start Spanish classes with confidence
                     </h2>
-                    <p className="mt-3 max-w-xl text-white/80 sm:text-base">
+                    <p className="mt-3 max-w-xl text-base font-medium text-white/95 sm:text-lg">
                       {course.introduction}
                     </p>
                     <ul className="mt-5 space-y-2.5">
                       {course.outcomes.map((outcome) => (
                         <li
                           key={outcome}
-                          className="flex items-start gap-2.5 text-sm text-white/90"
+                          className="flex items-start gap-2.5 text-base font-medium text-white/95"
                         >
-                          <CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0 text-esa-gold" />
+                          <CheckCircle2 className="mt-0.5 h-5 w-5 shrink-0 text-esa-gold" />
                           {outcome}
                         </li>
                       ))}
@@ -318,7 +449,7 @@ export function CourseDetailView({ course, breadcrumbs }: CourseDetailViewProps)
                   </div>
                   <div className="relative min-h-[220px] lg:min-h-full">
                     <Image
-                      src="https://images.unsplash.com/photo-1588072432836-e10032774350?auto=format&fit=crop&w=1200&q=80"
+                      src="https://images.unsplash.com/photo-1509062522246-3755977927d7?auto=format&fit=crop&w=1200&q=80"
                       alt="School students smiling during a learning session"
                       fill
                       className="object-cover object-center"
@@ -336,7 +467,7 @@ export function CourseDetailView({ course, breadcrumbs }: CourseDetailViewProps)
             <div className="max-w-2xl">
               <p className="text-label text-esa-red">Why {course.language}</p>
               <h2 className="text-section mt-2">{course.language} language highlights</h2>
-              <p className="mt-3 text-esa-muted">
+              <p className="mt-3 text-base font-medium leading-relaxed text-esa-navy/80 sm:text-lg">
                 Useful facts about {course.language}—and why learners choose this
                 pathway at Easy Spanish Academy.
               </p>
@@ -355,57 +486,6 @@ export function CourseDetailView({ course, breadcrumbs }: CourseDetailViewProps)
           </div>
         </section>
       )}
-
-      {/* COURSE LEVEL */}
-      <section id="levels" className="section-pad scroll-mt-36 bg-esa-bg">
-        <div className="container-esa mx-auto max-w-6xl">
-          <div className="max-w-2xl">
-            <p className="text-label text-esa-red">Course Level</p>
-            <h2 className="text-section mt-2">Choose your starting level</h2>
-            <p className="mt-3 text-esa-muted">
-              Levels follow a clear A1–B2 pathway. Enquire on any level—or book a
-              demo and we will help you begin at the right stage.
-            </p>
-          </div>
-          <div className="mt-8 grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
-            {course.levelDetails.map((level) => {
-              const levelMessage = `Hello! I am interested in ${course.language} ${level.code} (${level.title}) at Easy Spanish Academy. Please share details.`;
-              return (
-                <article
-                  key={level.code}
-                  className="flex h-full flex-col rounded-xl border border-esa-border bg-white p-5 shadow-esa-soft transition duration-200 hover:border-esa-red/20 hover:shadow-esa-card"
-                >
-                  <span className="inline-flex h-11 w-11 items-center justify-center rounded-lg bg-esa-navy text-base font-bold text-white">
-                    {level.code}
-                  </span>
-                  <h3 className="mt-3 text-base font-bold text-esa-navy">{level.title}</h3>
-                  <p className="mt-3 flex-1 text-sm leading-relaxed text-esa-muted">
-                    {level.description}
-                  </p>
-                  <ul className="mt-4 space-y-2 border-t border-esa-border pt-4">
-                    {level.focus.map((item) => (
-                      <li key={item} className="flex gap-2 text-sm text-esa-navy/85">
-                        <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-esa-red" />
-                        {item}
-                      </li>
-                    ))}
-                  </ul>
-                  <a
-                    href={whatsappUrl(levelMessage)}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    aria-label={`Enquire about ${level.code} on WhatsApp`}
-                    className="mt-5 inline-flex items-center gap-2 self-start rounded-full border border-esa-border bg-esa-bg px-3.5 py-2 text-sm font-semibold text-esa-navy transition hover:border-[#25D366]/40 hover:bg-[#25D366]/10 hover:text-[#128C7E] focus-esa"
-                  >
-                    <WhatsAppGlyph className="h-4 w-4 text-[#25D366]" />
-                    Enquire
-                  </a>
-                </article>
-              );
-            })}
-          </div>
-        </div>
-      </section>
 
       {/* COURSE BENEFITS — skipped for school (covered in What students get) */}
       {!isSchool ? (
@@ -449,23 +529,17 @@ export function CourseDetailView({ course, breadcrumbs }: CourseDetailViewProps)
         </div>
       </section>
 
-      {/* BOOK A DEMO */}
+      {/* BOOK A DEMO — skipped for school (covered in Free demo section above) */}
+      {!isSchool ? (
       <section className="section-pad bg-white">
         <div className="container-esa mx-auto max-w-6xl">
           <div className="rounded-2xl border border-esa-border bg-esa-bg p-6 sm:p-8 lg:flex lg:items-center lg:justify-between lg:gap-8">
             <div className="max-w-xl">
-              <p className="text-label text-esa-red">
-                {isSchool ? "Spanish tuition for school students" : "Book a Demo"}
-              </p>
-              <h2 className="text-section mt-2">
-                {isSchool
-                  ? "Ready to start your child’s Spanish journey?"
-                  : "Ready to experience a class?"}
-              </h2>
+              <p className="text-label text-esa-red">Book a Demo</p>
+              <h2 className="text-section mt-2">Ready to experience a class?</h2>
               <p className="mt-3 text-esa-muted">
-                {isSchool
-                  ? "Book a free demo for Spanish tuition. Your child can experience Spanish, learn first words, and see how they can progress with confidence."
-                  : `Book a demo for ${course.shortTitle} and tell us your goals. We will help you take the next step.`}
+                Book a demo for {course.shortTitle} and tell us your goals. We will help
+                you take the next step.
               </p>
             </div>
             <div className="mt-6 flex flex-col gap-2.5 sm:flex-row lg:mt-0">
@@ -473,14 +547,12 @@ export function CourseDetailView({ course, breadcrumbs }: CourseDetailViewProps)
                 href={demoHref}
                 className="inline-flex shrink-0 items-center justify-center gap-2 rounded-lg bg-esa-red px-5 py-3 text-sm font-semibold text-white transition hover:bg-esa-red-dark focus-esa"
               >
-                {isSchool ? "Book a Free Demo" : "Book a Demo"}
+                Book a Demo
                 <ArrowRight className="h-4 w-4" aria-hidden />
               </Link>
               <a
                 href={whatsappUrl(
-                  isSchool
-                    ? "Hello! I would like Spanish tuition for my school student at Easy Spanish Academy."
-                    : `Hello! I would like to book a demo for ${course.title}.`,
+                  `Hello! I would like to book a demo for ${course.title}.`,
                 )}
                 target="_blank"
                 rel="noopener noreferrer"
@@ -493,6 +565,7 @@ export function CourseDetailView({ course, breadcrumbs }: CourseDetailViewProps)
           </div>
         </div>
       </section>
+      ) : null}
 
       {/* TALK TO CONSULTANT */}
       <section className="section-pad bg-esa-navy text-white">
@@ -540,15 +613,21 @@ export function CourseProgramCard({ course }: { course: CourseProgram }) {
 
   return (
     <article className="group flex h-full flex-col overflow-hidden rounded-xl border border-esa-border bg-white shadow-esa-soft transition duration-200 hover:border-esa-red/20 hover:shadow-esa-lift">
-      <Link href={href} className="relative block h-36 overflow-hidden focus-esa sm:h-40">
+      <Link href={href} className="relative block h-36 overflow-hidden bg-esa-bg focus-esa sm:h-40">
         <Image
           src={course.image}
           alt={course.imageAlt}
           fill
-          className="object-cover object-center transition duration-500 group-hover:scale-105"
+          className={
+            course.image.startsWith("/images/")
+              ? "object-contain object-center transition duration-500 group-hover:scale-[1.02]"
+              : "object-cover object-center transition duration-500 group-hover:scale-105"
+          }
           sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
         />
-        <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-esa-navy/50 to-transparent" />
+        {!course.image.startsWith("/images/") ? (
+          <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-esa-navy/50 to-transparent" />
+        ) : null}
         <div className="absolute left-3 top-3 inline-flex items-center gap-2 rounded-lg border border-white/40 bg-white/95 px-2.5 py-1.5 shadow-esa-soft backdrop-blur-sm">
           <FlagAccent country={course.flag} size="md" />
           <span className="text-[11px] font-bold uppercase tracking-wide text-esa-navy">
