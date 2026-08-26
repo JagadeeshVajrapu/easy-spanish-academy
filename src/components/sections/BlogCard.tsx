@@ -34,13 +34,13 @@ export function BlogCard({ post, className }: BlogCardProps) {
         href={`/blog/${post.slug}`}
         className="grid focus-esa sm:grid-cols-[minmax(11rem,15rem)_1fr] md:grid-cols-[minmax(13rem,17rem)_1fr]"
       >
-        <span className="relative block aspect-[16/11] overflow-hidden sm:aspect-auto sm:min-h-[9.5rem] md:min-h-[10.5rem]">
+        <span className="relative block aspect-[16/11] overflow-hidden bg-esa-soft sm:aspect-auto sm:min-h-[9.5rem] md:min-h-[10.5rem]">
           <Image
             src={imageSrc}
             alt={post.title}
             fill
             loading="lazy"
-            className="object-cover object-center transition-transform duration-500 ease-out group-hover:scale-105"
+            className="object-contain object-center transition-transform duration-500 ease-out group-hover:scale-[1.02]"
             sizes="(max-width: 640px) 100vw, 280px"
             unoptimized={shouldUnoptimizeImage(imageSrc)}
           />

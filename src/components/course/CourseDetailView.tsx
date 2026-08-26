@@ -298,26 +298,30 @@ export function CourseDetailView({ course, breadcrumbs }: CourseDetailViewProps)
                       : "relative overflow-hidden rounded-2xl border border-white/15 shadow-esa-lift"
                   }
                 >
-                  <div
-                    className={
-                      isBannerImage
-                        ? "relative aspect-[3/2] w-full overflow-hidden rounded-xl bg-[#f7f5f2]"
-                        : "relative aspect-[4/3] w-full"
-                    }
-                  >
-                    <Image
-                      src={course.image}
-                      alt={course.imageAlt}
-                      fill
-                      className={
-                        isBannerImage
-                          ? "object-contain object-center"
-                          : "object-cover object-center"
-                      }
-                      sizes="(max-width: 1024px) 90vw, 42vw"
-                      priority
-                    />
-                  </div>
+                  {isBannerImage ? (
+                    <div className="overflow-hidden rounded-xl bg-[#f7f5f2]">
+                      <Image
+                        src={course.image}
+                        alt={course.imageAlt}
+                        width={1600}
+                        height={900}
+                        className="h-auto w-full object-contain object-center"
+                        sizes="(max-width: 1024px) 90vw, 42vw"
+                        priority
+                      />
+                    </div>
+                  ) : (
+                    <div className="relative aspect-[4/3] w-full">
+                      <Image
+                        src={course.image}
+                        alt={course.imageAlt}
+                        fill
+                        className="object-cover object-center"
+                        sizes="(max-width: 1024px) 90vw, 42vw"
+                        priority
+                      />
+                    </div>
+                  )}
                   {isBannerImage ? (
                     <p className="mt-2.5 px-1 text-center text-[11px] font-semibold uppercase tracking-[0.14em] text-esa-navy/55 sm:text-xs">
                       {course.language === "German"

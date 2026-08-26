@@ -45,16 +45,20 @@ export function ImageUploadField({ value, onChange }: ImageUploadFieldProps) {
       />
       <p className="text-xs text-esa-muted">
         JPG, PNG, WEBP or GIF · max 5MB · uploaded to Cloudinary
+        <br />
+        Best size: <span className="font-semibold text-esa-navy">1600×900</span> (16:9) —
+        or any landscape image. Full image is shown (nothing cropped).
       </p>
       {uploading ? <p className="text-sm text-esa-navy">Uploading…</p> : null}
       {error ? <p className="text-sm text-esa-red">{error}</p> : null}
       {value ? (
-        <div className="relative aspect-[16/9] max-w-xl overflow-hidden rounded-xl border border-esa-border bg-esa-soft">
+        <div className="overflow-hidden rounded-xl border border-esa-border bg-esa-soft">
           <Image
             src={value}
             alt="Featured preview"
-            fill
-            className="object-cover"
+            width={1600}
+            height={900}
+            className="mx-auto h-auto max-h-72 w-full object-contain object-center"
             sizes="640px"
             unoptimized={shouldUnoptimizeImage(value)}
           />

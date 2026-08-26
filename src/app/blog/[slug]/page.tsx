@@ -139,13 +139,14 @@ export default async function BlogPostPage({ params }: PageProps) {
 
       <section className="section-pad bg-esa-bg">
         <div className="container-esa mx-auto max-w-4xl">
-          <div className="relative mb-8 aspect-[16/9] overflow-hidden rounded-2xl border border-esa-border shadow-esa-soft">
+          <div className="relative mb-8 overflow-hidden rounded-2xl border border-esa-border bg-esa-soft shadow-esa-soft">
             <Image
               src={featuredImage}
               alt={post.title}
-              fill
+              width={1600}
+              height={900}
               priority
-              className="object-cover object-center"
+              className="mx-auto h-auto w-full object-contain object-center"
               sizes="(max-width: 1024px) 100vw, 896px"
               unoptimized={shouldUnoptimizeImage(featuredImage)}
             />
