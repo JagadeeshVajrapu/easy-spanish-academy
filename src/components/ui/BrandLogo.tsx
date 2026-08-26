@@ -18,6 +18,10 @@ type BrandWordmarkProps = {
   className?: string;
 };
 
+/** Matches the shared lockup tagline under the brand name. */
+export const BRAND_LOCKUP_TAGLINE =
+  "Learn today | speak tomorrow | connect forever";
+
 /** Creative brand name + optional single-line institute tagline. */
 export function BrandWordmark({
   tone = "light",
@@ -53,10 +57,7 @@ export function BrandWordmark({
   );
 }
 
-/**
- * Balanced lockup size — full tagline readable, no overlap with nav.
- * (~previous “good” size before it grew into the menu)
- */
+/** Header lockup — dark text on light UI */
 const NAV = {
   src: "/esa-logo-lockup.png",
   width: 1024,
@@ -64,12 +65,8 @@ const NAV = {
   className: "h-auto w-[15.5rem] sm:w-[17.5rem] md:w-[18.5rem] lg:w-[19.5rem]",
 } as const;
 
-const FOOTER = {
-  src: "/esa-logo-lockup.png",
-  width: 1024,
-  height: 341,
-  className: "h-auto w-[16.5rem] sm:w-[18.5rem]",
-} as const;
+/** Cache-bust after regenerating navy-baked footer mark. */
+const FOOTER_MARK_VERSION = "8";
 
 export function BrandLogo({
   href,
@@ -78,23 +75,46 @@ export function BrandLogo({
   size = "nav",
   onClick,
 }: BrandLogoProps) {
-  const config = size === "footer" ? FOOTER : NAV;
+  const isFooter = size === "footer";
 
-  const mark = (
+  const mark = isFooter ? (
+    /* Header-style lockup: mark + name + full single-line tagline on navy. */
     <span
       className={cn(
-        "inline-flex shrink-0 items-center justify-center bg-transparent p-0",
-        size === "footer" && "rounded-xl bg-white/95 px-2 py-1.5",
+        "inline-flex max-w-full items-center gap-2.5 sm:gap-3",
         className,
       )}
     >
       <Image
-        src={config.src}
-        alt="Easy Spanish Academy — Learn today, speak tomorrow, connect forever"
-        width={config.width}
-        height={config.height}
+        src={`/esa-footer-mark.png?v=${FOOTER_MARK_VERSION}`}
+        alt=""
+        width={789}
+        height={477}
         priority={priority}
-        className={cn("object-contain object-left", config.className)}
+        quality={100}
+        unoptimized
+        className="h-10 w-auto shrink-0 object-contain object-left sm:h-11"
+        aria-hidden
+      />
+      <span className="min-w-0 shrink">
+        <span className="font-display block whitespace-nowrap text-[1.05rem] font-extrabold leading-none tracking-tight text-white sm:text-[1.15rem]">
+          Easy <span className="text-esa-red">Spanish</span> Academy
+        </span>
+        <span className="mt-1.5 block whitespace-nowrap text-[10px] font-medium leading-none tracking-[0.01em] text-white/80 sm:text-[11px]">
+          {BRAND_LOCKUP_TAGLINE}
+        </span>
+      </span>
+    </span>
+  ) : (
+    <span className={cn("inline-flex shrink-0 items-center justify-center bg-transparent p-0", className)}>
+      <Image
+        src={NAV.src}
+        alt={`Easy Spanish Academy — ${BRAND_LOCKUP_TAGLINE}`}
+        width={NAV.width}
+        height={NAV.height}
+        priority={priority}
+        quality={100}
+        className={cn("object-contain object-left", NAV.className)}
       />
     </span>
   );

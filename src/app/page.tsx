@@ -151,11 +151,11 @@ export default function HomePage() {
               aria-hidden
             />
             <div className="relative aspect-[4/3] overflow-hidden rounded-2xl border border-esa-border shadow-esa-card">
-              <Image
+        <Image
                 src="https://images.unsplash.com/photo-1524178232363-1fb2b075b655?auto=format&fit=crop&w=1400&q=80"
                 alt="Learners building language confidence in a guided classroom setting"
                 fill
-                priority
+          priority
                 className="esa-media object-cover object-center"
                 sizes="(max-width: 1024px) 100vw, 50vw"
               />
@@ -445,8 +445,8 @@ export default function HomePage() {
             >
               <Phone className="h-5 w-5 text-[#3B82F6]" aria-hidden />
               {SITE.phoneDisplay}
-            </a>
-            <a
+          </a>
+          <a
               href={SITE.emailHref}
               className="inline-flex items-center gap-2 whitespace-nowrap transition hover:text-esa-red focus-esa"
             >

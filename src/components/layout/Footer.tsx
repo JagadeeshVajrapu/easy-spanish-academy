@@ -54,16 +54,14 @@ export function Footer() {
   return (
     <footer className="border-t border-white/10 bg-esa-navy text-white">
       <div className="container-esa py-9 md:py-10 lg:py-11">
-        <div className="grid gap-8 lg:grid-cols-12 lg:gap-x-8 lg:gap-y-10 xl:gap-x-10">
-          {/* Brand — own column, never overlaps links */}
-          <div className="min-w-0 lg:col-span-4">
+        {/* Brand sizes to lockup; link columns share remaining space with tighter gaps */}
+        <div className="grid grid-cols-1 gap-10 sm:grid-cols-2 lg:grid-cols-[auto_minmax(0,0.7fr)_minmax(0,0.85fr)_minmax(0,1.15fr)] lg:items-start lg:gap-x-5 lg:gap-y-10 xl:gap-x-6">
+          {/* Brand */}
+          <div className="min-w-0 sm:col-span-2 lg:col-span-1 lg:max-w-none">
             <Link href="/" className="inline-flex focus-esa">
               <BrandLogo size="footer" />
             </Link>
-            <p className="mt-3 max-w-sm text-sm leading-relaxed text-white/75">
-              {SITE.tagline}
-            </p>
-            <div className="mt-3 flex flex-wrap gap-2">
+            <div className="mt-5 flex flex-wrap gap-2">
               <span className="inline-flex items-center gap-1.5 rounded-md border border-white/10 bg-white/5 px-2.5 py-1 text-xs text-white/90">
                 <FlagAccent country="ES" /> Spanish Language
               </span>
@@ -74,87 +72,87 @@ export function Footer() {
             <SocialLinks className="mt-4" />
           </div>
 
-          {/* Link columns */}
-          <div className="grid grid-cols-2 gap-x-6 gap-y-8 sm:gap-x-8 md:grid-cols-3 lg:col-span-8 lg:gap-x-8">
-            <div className="min-w-0">
-              <FooterHeading>Quick Links</FooterHeading>
-              <ul className="mt-3 space-y-2.5">
-                {FOOTER_LINKS.explore.map((link) => (
-                  <li key={link.href}>
-                    <FooterLink href={link.href}>{link.label}</FooterLink>
-                  </li>
-                ))}
-              </ul>
-            </div>
+          {/* Quick Links */}
+          <div className="min-w-0">
+            <FooterHeading>Quick Links</FooterHeading>
+            <ul className="mt-3 space-y-2.5">
+              {FOOTER_LINKS.explore.map((link) => (
+                <li key={link.href}>
+                  <FooterLink href={link.href}>{link.label}</FooterLink>
+                </li>
+              ))}
+            </ul>
+          </div>
 
-            <div className="min-w-0">
-              <FooterHeading>Courses</FooterHeading>
-              <ul className="mt-3 space-y-2.5">
-                {FOOTER_LINKS.courses.map((link) => (
-                  <li key={link.href}>
-                    <FooterLink href={link.href}>{link.label}</FooterLink>
-                  </li>
-                ))}
-              </ul>
-            </div>
+          {/* Courses */}
+          <div className="min-w-0">
+            <FooterHeading>Courses</FooterHeading>
+            <ul className="mt-3 space-y-2.5">
+              {FOOTER_LINKS.courses.map((link) => (
+                <li key={link.href}>
+                  <FooterLink href={link.href}>{link.label}</FooterLink>
+                </li>
+              ))}
+            </ul>
+          </div>
 
-            <div className="col-span-2 min-w-0 md:col-span-1 md:min-w-[15.5rem]">
-              <FooterHeading>Contact</FooterHeading>
-              <ul className="mt-3 space-y-3">
-                <li>
-                  <a
-                    href={SITE.phoneHref}
-                    className="flex w-full items-center gap-2.5 text-sm text-white/85 transition hover:text-white focus-esa"
-                  >
-                    <span className="inline-flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-white/10 text-esa-gold">
-                      <Phone className="h-3.5 w-3.5" aria-hidden />
-                    </span>
-                    <span className="min-w-0 font-medium">{SITE.phoneDisplay}</span>
-                  </a>
-                </li>
-                <li>
-                  <a
-                    href={SITE.emailHref}
-                    className="flex w-full items-center gap-2.5 text-sm text-white/85 transition hover:text-white focus-esa"
-                  >
-                    <span className="inline-flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-white/10 text-esa-gold">
-                      <Mail className="h-3.5 w-3.5" aria-hidden />
-                    </span>
-                    <span className="shrink-0 whitespace-nowrap text-[13px] font-medium leading-none tracking-tight sm:text-sm">
-                      {SITE.email}
-                    </span>
-                  </a>
-                </li>
-                <li>
-                  <a
-                    href={whatsappUrl(SITE.whatsappMessage)}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex w-full items-center gap-2.5 text-sm text-white/85 transition hover:text-white focus-esa"
-                  >
-                    <span className="inline-flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-[#25D366]/20 text-[#25D366]">
-                      <WhatsAppIcon className="h-3.5 w-3.5" />
-                    </span>
-                    <span className="min-w-0 font-medium">WhatsApp us</span>
-                  </a>
-                </li>
-                <li>
-                  <a
-                    href={SITE.addressMapsHref}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex w-full items-start gap-2.5 text-sm text-white/85 transition hover:text-white focus-esa"
-                  >
-                    <span className="inline-flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-white/10 text-esa-gold">
-                      <MapPin className="h-3.5 w-3.5" aria-hidden />
-                    </span>
-                    <span className="min-w-0 flex-1 leading-relaxed">
-                      {SITE.addressLine1}, {SITE.addressLine2}
-                    </span>
-                  </a>
-                </li>
-              </ul>
-            </div>
+          {/* Contact */}
+          <div className="min-w-0">
+            <FooterHeading>Contact</FooterHeading>
+            <ul className="mt-3 space-y-3">
+              <li>
+                <a
+                  href={SITE.phoneHref}
+                  className="flex w-full items-center gap-2.5 text-sm text-white/85 transition hover:text-white focus-esa"
+                >
+                  <span className="inline-flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-white/10 text-esa-gold">
+                    <Phone className="h-3.5 w-3.5" aria-hidden />
+                  </span>
+                  <span className="min-w-0 font-medium">{SITE.phoneDisplay}</span>
+                </a>
+              </li>
+              <li>
+                <a
+                  href={SITE.emailHref}
+                  className="flex w-full items-center gap-2.5 text-sm text-white/85 transition hover:text-white focus-esa"
+                >
+                  <span className="inline-flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-white/10 text-esa-gold">
+                    <Mail className="h-3.5 w-3.5" aria-hidden />
+                  </span>
+                  <span className="min-w-0 text-[12px] font-medium leading-snug tracking-tight sm:text-[13px]">
+                    {SITE.email}
+                  </span>
+                </a>
+              </li>
+              <li>
+                <a
+                  href={whatsappUrl(SITE.whatsappMessage)}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex w-full items-center gap-2.5 text-sm text-white/85 transition hover:text-white focus-esa"
+                >
+                  <span className="inline-flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-[#25D366]/20 text-[#25D366]">
+                    <WhatsAppIcon className="h-3.5 w-3.5" />
+                  </span>
+                  <span className="min-w-0 font-medium">WhatsApp us</span>
+                </a>
+              </li>
+              <li>
+                <a
+                  href={SITE.addressMapsHref}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex w-full items-start gap-2.5 text-sm text-white/85 transition hover:text-white focus-esa"
+                >
+                  <span className="inline-flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-white/10 text-esa-gold">
+                    <MapPin className="h-3.5 w-3.5" aria-hidden />
+                  </span>
+                  <span className="min-w-0 flex-1 leading-relaxed">
+                    {SITE.addressLine1}, {SITE.addressLine2}
+                  </span>
+                </a>
+              </li>
+            </ul>
           </div>
         </div>
 
