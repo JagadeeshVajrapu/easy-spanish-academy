@@ -61,7 +61,7 @@ export function CourseDetailView({ course, breadcrumbs }: CourseDetailViewProps)
     GraduationCap,
   ] as const;
 
-  const schoolChipIcons = [GraduationCap, MonitorPlay, BookOpen, Mic] as const;
+  const schoolChipIcons = [MonitorPlay, BookOpen, Mic, GraduationCap] as const;
 
   return (
     <>
@@ -331,6 +331,46 @@ export function CourseDetailView({ course, breadcrumbs }: CourseDetailViewProps)
           </div>
         </div>
       </section>
+
+      {/* COURSE LEVEL — certificate pathways only (not school / crash) */}
+      {course.id === "certificate" ? (
+        <section className="section-pad bg-esa-bg">
+          <div className="container-esa mx-auto max-w-6xl">
+            <div className="max-w-2xl">
+              <p className="text-label text-esa-red">Course Level</p>
+              <h2 className="text-section mt-2">Choose your starting level</h2>
+              <p className="mt-3 text-esa-muted">
+                Levels follow a clear A1–B2 pathway. When you book a demo, share your
+                experience and we will help you begin at the right stage.
+              </p>
+            </div>
+            <div className="mt-8 grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
+              {course.levelDetails.map((level) => (
+                <article
+                  key={level.code}
+                  className="flex h-full flex-col rounded-xl border border-esa-border bg-white p-5 shadow-esa-soft"
+                >
+                  <span className="inline-flex h-11 w-11 items-center justify-center rounded-lg bg-esa-navy text-base font-bold text-white">
+                    {level.code}
+                  </span>
+                  <h3 className="mt-3 text-base font-bold text-esa-navy">{level.title}</h3>
+                  <p className="mt-3 flex-1 text-sm leading-relaxed text-esa-muted">
+                    {level.description}
+                  </p>
+                  <ul className="mt-4 space-y-2 border-t border-esa-border pt-4">
+                    {level.focus.map((item) => (
+                      <li key={item} className="flex gap-2 text-sm text-esa-navy/85">
+                        <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-esa-red" />
+                        {item}
+                      </li>
+                    ))}
+                  </ul>
+                </article>
+              ))}
+            </div>
+          </div>
+        </section>
+      ) : null}
 
       {/* SCHOOL: boards + what students get + CTA */}
       {isSchool ? (

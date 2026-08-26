@@ -157,12 +157,8 @@ export const LANGUAGE_ADDONS = {
   ],
 } as const;
 
-/** Highlight chips for the school program hero */
+/** Highlight chips for the school program hero (no A1–B2 level boxes) */
 export const SCHOOL_HERO_CHIPS = [
-  {
-    label: "Structured A1 to B2 pathways",
-    hint: "Clear level steps",
-  },
   {
     label: "Live online tuition",
     hint: "Interactive classes",
@@ -174,6 +170,10 @@ export const SCHOOL_HERO_CHIPS = [
   {
     label: "Speaking-focused",
     hint: "Confidence in class",
+  },
+  {
+    label: "Ages 5–16 · Up to Class 10",
+    hint: "School-friendly pace",
   },
 ] as const;
 
@@ -360,15 +360,15 @@ export const SPANISH_COURSES: CourseProgram[] = [
     flag: "ES",
     title: "Spanish Crash Course",
     shortTitle: "Crash Course",
-    levels: "A1 → B2",
-    levelList: ["A1", "A2", "B1", "B2"],
+    levels: "3-month intensive",
+    levelList: ["Speaking", "Grammar", "Business", "Travel"],
     levelDetails: SPANISH_LEVELS,
     overview:
-      "An intensive Spanish course with a strong focus on speaking and grammatical rules—ideal for business, travelling, and everyday communication.",
+      "A focused 3-month Spanish course for professional travellers—built around speaking, grammar, business use, and travel conversations.",
     introduction:
-      "The Spanish Crash Course is built for learners who want faster results. We especially focus on speaking practice and clear grammatical rules, so you can use Spanish for business purposes, travelling, and real conversations with confidence.",
+      "The Spanish Crash Course is designed as a 3-month intensive path for professionals and travellers who need practical Spanish quickly. We emphasise speaking practice and clear grammatical rules so you can communicate for business, travel, and everyday situations with confidence.",
     whoFor:
-      "Learners who need Spanish quickly for work, travel, or practical communication and can commit to regular practice.",
+      "Professionals and travellers who need Spanish in about 3 months for work trips, client meetings, or overseas travel—and can commit to regular practice.",
     outcomes: [
       "Speak more confidently in everyday and professional situations",
       "Apply clear grammatical rules in real conversations",

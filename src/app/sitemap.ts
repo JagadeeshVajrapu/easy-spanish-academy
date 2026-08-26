@@ -1,31 +1,33 @@
 import type { MetadataRoute } from "next";
+import { listPublishedBlogs } from "@/lib/blog-service";
 import { SITE } from "@/lib/constants";
-import { BLOG_POSTS } from "@/lib/blog-data";
-import { GERMAN_COURSES, SPANISH_COURSES, courseHref } from "@/lib/course-data";
 
-export default function sitemap(): MetadataRoute.Sitemap {
-  const staticRoutes = [
+export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
+  const staticRoutes: MetadataRoute.Sitemap = [
     "",
     "/about",
-    "/why-choose-us",
     "/courses",
-    "/courses/german/certificate-diploma",
-    "/book-demo",
+    "/why-choose-us",
     "/blog",
     "/contact",
+    "/book-demo",
+    "/faq",
     "/privacy",
-  ];
-
-  const courseRoutes = [...SPANISH_COURSES, ...GERMAN_COURSES].map((course) =>
-    courseHref(course),
-  );
-
-  const blogRoutes = BLOG_POSTS.map((post) => `/blog/${post.slug}`);
-
-  return [...staticRoutes, ...courseRoutes, ...blogRoutes].map((route) => ({
-    url: `${SITE.url}${route}`,
+  ].map((path) => ({
+    url: `${SITE.url}${path || "/"}`,
     lastModified: new Date(),
-    changeFrequency: "monthly" as const,
-    priority: route === "" ? 1 : 0.8,
   }));
+
+  let blogRoutes: MetadataRoute.Sitemap = [];
+  try {
+    const blogs = await listPublishedBlogs();
+    blogRoutes = blogs.map((blog) => ({
+      url: `${SITE.url}/blog/${blog.slug}`,
+      lastModified: new Date(blog.updatedAt),
+    }));
+  } catch {
+    blogRoutes = [];
+  }
+
+  return [...staticRoutes, ...blogRoutes];
 }

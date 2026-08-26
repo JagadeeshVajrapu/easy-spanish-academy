@@ -25,8 +25,8 @@ export const BLOG_POSTS: BlogPost[] = [
     date: "2026-03-10",
     readTime: "6 min read",
     image:
-      "https://images.unsplash.com/photo-1488646953014-85cb44e25828?auto=format&fit=crop&w=1200&q=80",
-    imageAlt: "Travel and career inspiration for Spanish learners",
+      "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&w=1200&q=80",
+    imageAlt: "Working professional planning career and travel goals",
     keywords: [
       "Spanish language course",
       "Spanish classes online",
@@ -52,8 +52,8 @@ export const BLOG_POSTS: BlogPost[] = [
     date: "2026-03-05",
     readTime: "8 min read",
     image:
-      "https://images.unsplash.com/photo-1467269204594-9661b134dd2b?auto=format&fit=crop&w=1200&q=80",
-    imageAlt: "European streetscape suggesting German language learning",
+      "https://images.unsplash.com/photo-1521737711867-e3b97375f902?auto=format&fit=crop&w=1200&q=80",
+    imageAlt: "Adult professionals collaborating—German for study and careers",
     keywords: [
       "German A1 course",
       "German classes online",
@@ -80,7 +80,7 @@ export const BLOG_POSTS: BlogPost[] = [
     readTime: "7 min read",
     image:
       "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=1200&q=80",
-    imageAlt: "Students learning languages online together",
+    imageAlt: "Adults in a live online learning session on laptop",
     keywords: [
       "online Spanish classes India",
       "online German classes India",
@@ -107,7 +107,7 @@ export const BLOG_POSTS: BlogPost[] = [
     readTime: "6 min read",
     image:
       "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=1200&q=80",
-    imageAlt: "Laptop and notebook for online language learning",
+    imageAlt: "Laptop and notebook for online language learning at any age",
     keywords: [
       "online language classes",
       "Spanish classes online",

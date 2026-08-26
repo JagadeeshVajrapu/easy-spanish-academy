@@ -1,10 +1,6 @@
 import type { Metadata } from "next";
 import { DM_Sans } from "next/font/google";
-import { Footer } from "@/components/layout/Footer";
-import { Navbar } from "@/components/layout/Navbar";
-import { TopBar } from "@/components/layout/TopBar";
-import { ScrollToTop } from "@/components/layout/ScrollToTop";
-import { ContactFab } from "@/components/sections/ContactFab";
+import { SiteChrome } from "@/components/layout/SiteChrome";
 import { SITE } from "@/lib/constants";
 import "./globals.css";
 
@@ -58,12 +54,7 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${dmSans.variable} h-full antialiased`}>
       <body className="flex min-h-full flex-col bg-esa-bg text-esa-navy">
-        <ScrollToTop />
-        <TopBar />
-        <Navbar />
-        <main className="flex-1">{children}</main>
-        <Footer />
-        <ContactFab />
+        <SiteChrome>{children}</SiteChrome>
       </body>
     </html>
   );

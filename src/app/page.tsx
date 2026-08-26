@@ -133,7 +133,7 @@ export default function HomePage() {
                 href="/book-demo"
                 className="esa-btn inline-flex items-center justify-center rounded-lg bg-esa-red px-5 py-3.5 text-base font-bold text-white shadow-esa-soft hover:bg-esa-red-dark focus-esa"
               >
-                Book a Free Demo
+                Book a Free Demo Today
               </Link>
               <Link
                 href="/courses"

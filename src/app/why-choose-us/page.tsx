@@ -86,9 +86,9 @@ export default function WhyChooseUsPage() {
       <PageHero
         eyebrow="Why Choose Us"
         title="Why learners choose Easy Spanish Academy"
-        description="Online Spanish and German language classes built around live teaching, flexible batches, real study support, and speaking confidence."
-        image="https://images.unsplash.com/photo-1577896851231-70ef18881754?auto=format&fit=crop&w=2000&q=80"
-        imageAlt="Indian students learning together in a bright classroom"
+        description="Online Spanish and German language classes built around live teaching, flexible batches, real study support, and speaking confidence—for school students, professionals, and adult learners."
+        image="https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&w=2000&q=80"
+        imageAlt="Professionals and adult learners collaborating in a training session"
         breadcrumbs={[
           { label: "Home", href: "/" },
           { label: "Why Choose Us" },
@@ -140,7 +140,7 @@ export default function WhyChooseUsPage() {
           <AnimateIn delay={0.08}>
             <div className="flex flex-col gap-3 sm:flex-row lg:flex-col">
               <Button href="/book-demo" size="lg">
-                Book a Free Demo
+                Book a Free Demo Today
               </Button>
               <Button
                 href={whatsappUrl(

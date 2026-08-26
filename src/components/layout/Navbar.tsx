@@ -46,10 +46,6 @@ export function Navbar() {
   }, [open]);
 
   useEffect(() => {
-    if (!open) setMobileCoursesOpen(false);
-  }, [open]);
-
-  useEffect(() => {
     if (!coursesOpen) return;
     function onPointerDown(event: MouseEvent) {
       if (
@@ -87,9 +83,7 @@ export function Navbar() {
     pathname.startsWith("/spanish-courses") ||
     pathname.startsWith("/german-courses");
 
-  useEffect(() => {
-    setCoursesOpen(false);
-  }, [pathname]);
+  const showMobileCourses = open && mobileCoursesOpen;
 
   function renderDesktopCourseMenu() {
     return (
@@ -270,7 +264,7 @@ export function Navbar() {
             className="esa-btn hidden rounded-lg bg-esa-red px-3.5 py-2.5 text-sm font-semibold text-white shadow-esa-soft transition hover:bg-esa-red-dark focus-esa lg:inline-flex xl:px-5"
             onClick={closeMenus}
           >
-            <span className="font-bold">Book a Free Demo</span>
+            <span className="font-bold">Book a Free Demo Today</span>
           </Link>
           <button
             type="button"
@@ -305,11 +299,11 @@ export function Navbar() {
                     type="button"
                     className={cn(
                       "flex w-full items-center justify-between px-3 py-3 text-left text-base font-bold focus-esa",
-                      courseActive || mobileCoursesOpen
+                      courseActive || showMobileCourses
                         ? "bg-esa-red-soft text-esa-red"
                         : "text-esa-navy",
                     )}
-                    aria-expanded={mobileCoursesOpen}
+                    aria-expanded={showMobileCourses}
                     aria-current={courseActive ? "page" : undefined}
                     onClick={() => setMobileCoursesOpen((v) => !v)}
                   >
@@ -317,11 +311,11 @@ export function Navbar() {
                     <ChevronDown
                       className={cn(
                         "h-5 w-5 transition duration-200",
-                        mobileCoursesOpen && "rotate-180",
+                        showMobileCourses && "rotate-180",
                       )}
                     />
                   </button>
-                  {mobileCoursesOpen ? renderMobileCourseMenu() : null}
+                  {showMobileCourses ? renderMobileCourseMenu() : null}
                 </div>
               );
             }
@@ -348,7 +342,7 @@ export function Navbar() {
             onClick={closeMenus}
             className="mt-2 rounded-lg bg-esa-red px-3 py-3 text-center text-base font-bold text-white shadow-esa-soft focus-esa"
           >
-            Book a Free Demo
+            Book a Free Demo Today
           </Link>
           <a
             href={SITE.phoneHref}

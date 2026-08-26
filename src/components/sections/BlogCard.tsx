@@ -1,90 +1,79 @@
 import Image from "next/image";
 import Link from "next/link";
 import { Clock3 } from "lucide-react";
-import type { BlogPost } from "@/lib/blog-data";
+import { shouldUnoptimizeImage } from "@/lib/blog-media";
+import type { PublicBlog } from "@/lib/blog-service";
 import { cn } from "@/lib/utils";
 
 type BlogCardProps = {
-  post: BlogPost;
+  post: PublicBlog;
   className?: string;
 };
 
+function formatDate(value: string | null) {
+  if (!value) return "";
+  return new Date(value).toLocaleDateString("en-IN", {
+    day: "numeric",
+    month: "short",
+    year: "numeric",
+  });
+}
+
+/** Hablo-style horizontal row: image left, title / excerpt / read more right */
 export function BlogCard({ post, className }: BlogCardProps) {
+  const imageSrc =
+    post.featuredImage ||
+    "https://images.unsplash.com/photo-1434030216411-0b793f4b4173?auto=format&fit=crop&w=1200&q=80";
+
   return (
     <article
       className={cn(
-        "group flex h-full flex-col overflow-hidden rounded-2xl border border-esa-border bg-white shadow-esa-soft transition duration-300 hover:-translate-y-1.5 hover:border-esa-red/25 hover:shadow-esa-card",
+        "group overflow-hidden rounded-xl border border-esa-border bg-white shadow-esa-soft transition duration-300 hover:border-esa-red/25 hover:shadow-esa-card",
         className,
       )}
     >
       <Link
         href={`/blog/${post.slug}`}
-        className="relative block aspect-[16/10] overflow-hidden focus-esa"
+        className="grid focus-esa sm:grid-cols-[minmax(11rem,15rem)_1fr] md:grid-cols-[minmax(13rem,17rem)_1fr]"
       >
-        <Image
-          src={post.image}
-          alt={post.imageAlt}
-          fill
-          loading="lazy"
-          className="object-cover object-center transition-transform duration-500 ease-out group-hover:scale-105"
-          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-        />
-        <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-esa-navy/40 via-transparent to-transparent transition duration-300 group-hover:from-esa-navy/55" />
-        <span className="absolute left-4 top-4 rounded-lg bg-white/95 px-2.5 py-1 text-xs font-semibold uppercase tracking-wider text-esa-red shadow-esa-soft transition duration-300 group-hover:scale-[1.03]">
-          {post.category}
+        <span className="relative block aspect-[16/11] overflow-hidden sm:aspect-auto sm:min-h-[9.5rem] md:min-h-[10.5rem]">
+          <Image
+            src={imageSrc}
+            alt={post.title}
+            fill
+            loading="lazy"
+            className="object-cover object-center transition-transform duration-500 ease-out group-hover:scale-105"
+            sizes="(max-width: 640px) 100vw, 280px"
+            unoptimized={shouldUnoptimizeImage(imageSrc)}
+          />
+        </span>
+
+        <span className="flex flex-col justify-center p-4 sm:p-5 md:p-6">
+          <span className="mb-2 inline-flex flex-wrap items-center gap-2 text-xs font-medium text-esa-muted">
+            <span className="rounded-md bg-esa-red-soft px-2 py-0.5 font-semibold uppercase tracking-wider text-esa-red">
+              {post.category}
+            </span>
+            {post.publishedAt ? (
+              <span className="inline-flex items-center gap-1">
+                <Clock3 className="h-3.5 w-3.5" aria-hidden />
+                {formatDate(post.publishedAt)}
+              </span>
+            ) : null}
+          </span>
+
+          <h3 className="font-display text-lg font-semibold leading-snug text-esa-navy transition-colors duration-300 group-hover:text-esa-red sm:text-xl">
+            {post.title}
+          </h3>
+
+          <p className="mt-2 line-clamp-2 text-sm leading-relaxed text-esa-muted sm:line-clamp-3">
+            {post.excerpt}
+          </p>
+
+          <span className="mt-3 text-sm font-bold text-esa-red transition group-hover:text-esa-red-dark">
+            Read more →
+          </span>
         </span>
       </Link>
-
-      <div className="flex flex-1 flex-col p-5 sm:p-6">
-        <div className="mb-2 inline-flex items-center gap-1.5 text-sm font-medium text-esa-muted">
-          <Clock3 className="h-3.5 w-3.5" aria-hidden />
-          {post.readTime}
-        </div>
-
-        <h3 className="font-display text-xl font-semibold leading-snug text-esa-navy transition-colors duration-300 group-hover:text-esa-red sm:text-[1.35rem]">
-          <Link href={`/blog/${post.slug}`} className="focus-esa">
-            {post.title}
-          </Link>
-        </h3>
-
-        <p className="mt-3 text-sm leading-relaxed text-esa-muted sm:text-[0.95rem]">
-          {post.excerpt}
-        </p>
-
-        {post.keywords?.length ? (
-          <div className="mt-3 flex flex-wrap gap-1.5">
-            {post.keywords.map((keyword) => (
-              <span
-                key={keyword}
-                className="rounded-md bg-esa-soft px-2 py-0.5 text-[11px] font-medium text-esa-navy/80"
-              >
-                {keyword}
-              </span>
-            ))}
-          </div>
-        ) : null}
-
-        <div className="mt-4 flex-1 border-t border-esa-border/80 pt-4">
-          <p className="text-xs font-semibold uppercase tracking-wider text-esa-red">
-            Key points
-          </p>
-          <ul className="mt-2.5 space-y-2">
-            {post.outline.slice(0, 3).map((item) => (
-              <li key={item} className="flex gap-2.5 text-sm leading-relaxed text-esa-navy/85">
-                <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-esa-red" aria-hidden />
-                <span>{item}</span>
-              </li>
-            ))}
-          </ul>
-        </div>
-
-        <Link
-          href={`/blog/${post.slug}`}
-          className="mt-5 inline-flex text-sm font-bold text-esa-red transition hover:text-esa-red-dark focus-esa"
-        >
-          Read full guide →
-        </Link>
-      </div>
     </article>
   );
 }
